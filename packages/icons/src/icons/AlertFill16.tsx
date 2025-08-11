@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const AlertFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M7.4 1.82461V2.31409C5.19838 2.60742 3.5 4.49259 3.5 6.77444V10.7718H3C2.44772 10.7718 2 11.2195 2 11.7718C2 12.3241 2.44772 12.7718 3 12.7718H13C13.5523 12.7718 14 12.3241 14 11.7718C14 11.2195 13.5523 10.7718 13 10.7718H12.5V6.77444C12.5 4.49259 10.8016 2.60742 8.6 2.31409V1.82461C8.6 1.49324 8.33137 1.22461 8 1.22461C7.66863 1.22461 7.4 1.49324 7.4 1.82461ZM7.99927 14.7744C8.82764 14.7744 9.49917 14.3267 9.49917 13.7744L7.99927 13.7745L6.49937 13.7744C6.49937 14.3267 7.1709 14.7744 7.99927 14.7744Z"/>
+      </svg>
+    )
+  });
+
+  AlertFill16.displayName = 'AlertFill16';
+
+  export default AlertFill16

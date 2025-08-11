@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const EditLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M11.7832 3.13161C11.627 2.9754 11.3738 2.9754 11.2175 3.13161L10.3489 4.00022L11.5004 5.1517L12.369 4.28308C12.5252 4.12687 12.5252 3.87361 12.369 3.7174L11.7832 3.13161ZM10.6519 6.00022L9.50041 4.84875L3.10039 11.2488V12.4001H4.25196L10.6519 6.00022ZM4.74892 13.6002L4.74901 13.6001H14.0004V12.4001H5.94901L13.2175 5.13161C13.8424 4.50677 13.8424 3.49371 13.2175 2.86887L12.6318 2.28308C12.0069 1.65824 10.9939 1.65824 10.369 2.28308L1.90039 10.7517V13.6002H4.74892Z"/>
+      </svg>
+    )
+  });
+
+  EditLine16.displayName = 'EditLine16';
+
+  export default EditLine16

@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const DistributionMapLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M3.2 3.2V4.8999H12.8V3.2H3.2ZM3.2 12.8V6.0999H5.90002V12.8H3.2ZM7.10002 12.8H12.8V6.0999H7.10002V12.8ZM3 2C2.44772 2 2 2.44772 2 3V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V3C14 2.44772 13.5523 2 13 2H3ZM12 11.0999H8V9.8999H12V11.0999ZM8 9.0999H12V7.8999H8V9.0999Z"/>
+      </svg>
+    )
+  });
+
+  DistributionMapLine16.displayName = 'DistributionMapLine16';
+
+  export default DistributionMapLine16

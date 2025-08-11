@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": false,
+    "outDir": "./dist/cjs",
+    "module": "CommonJS",
+    "jsx": "react-jsx"
+  },
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules", "turbo"]
+}

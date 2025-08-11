@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const RouterLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path d="M8.47121 3.3569 9.27645 2.50425 9.89245 3.21464 7.99747 5.10963 6.10248 3.21464 6.71849 2.50425 7.52372 3.3569V.704102H8.47121V3.3569ZM8.47121 13.5422V10.3683H7.52372V13.5422L6.71849 12.6896 6.10248 13.4 7.99747 15.295 9.89245 13.4 9.27645 12.6896 8.47121 13.5422ZM2.97593 11.7416 4.63382 10.0837 5.29725 10.7941 3.59194 12.4046H4.77608V13.3995H2.02844V10.6045H2.97593V11.7416ZM13.0664 11.7421 11.3611 10.0842 10.7925 10.7946 12.403 12.4051H11.3132V13.4H13.966V10.6049H13.066L13.0664 11.7421ZM3.63937 6.81539H4.63428V7.66804H3.63937V6.81539ZM8.47121 6.81539H7.4763V7.66804H8.47121V6.81539ZM12.4035 6.81539H11.4085V7.66804H12.4035V6.81539Z"/><path fillRule="evenodd" clipRule="evenodd" d="M1.93359 5.10963L7.99747 5.10963L7.99746 5.15705H14.0139V9.37335H1.93359V5.10963ZM2.92851 8.47328H13.2082V6.10454H2.92851V8.47328Z"/>
+      </svg>
+    )
+  });
+
+  RouterLine16.displayName = 'RouterLine16';
+
+  export default RouterLine16

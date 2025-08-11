@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const MenuClusterFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M13.2628 1.8418H2.7837C2.06014 1.8418 1.47363 2.4388 1.47363 3.1753V5.1593C1.47363 5.8958 2.06014 6.4928 2.7837 6.4928H13.2628C13.9864 6.4928 14.5729 5.8958 14.5729 5.1593V3.1753C14.5729 2.4388 13.9864 1.8418 13.2628 1.8418ZM11.4733 4.1673C11.4733 4.6328 11.1029 5.0098 10.6456 5.0098 10.1883 5.0098 9.81791 4.6328 9.81791 4.1673 9.81791 3.7018 10.1883 3.3248 10.6456 3.3248 11.1029 3.3248 11.4733 3.7018 11.4733 4.1673ZM2.7837 7.3253H13.2628C13.9864 7.3253 14.5729 7.9223 14.5729 8.6588V10.6428C14.5729 11.3793 13.9864 11.9763 13.2628 11.9763H2.7837C2.06014 11.9763 1.47363 11.3793 1.47363 10.6428V8.6588C1.47363 7.9223 2.06014 7.3253 2.7837 7.3253ZM10.6456 10.5008C11.1029 10.5008 11.4733 10.1238 11.4733 9.6583 11.4733 9.1928 11.1029 8.8158 10.6456 8.8158 10.1883 8.8158 9.81791 9.1928 9.81791 9.6583 9.81791 10.1238 10.1883 10.5008 10.6456 10.5008Z"/><path d="M2.12891 12.8243H13.9181V14.1578H2.12891V12.8243Z"/>
+      </svg>
+    )
+  });
+
+  MenuClusterFill16.displayName = 'MenuClusterFill16';
+
+  export default MenuClusterFill16

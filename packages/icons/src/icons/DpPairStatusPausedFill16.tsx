@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const DpPairStatusPausedFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <g clipPath="url(#clip0_1_1527)"><path d="M8.00007 0.990234C4.12915 0.990234 0.990234 4.12924 0.990234 8.00029C0.990234 11.8718 4.12871 15.0103 8.00007 15.0103C11.8714 15.0103 15.0103 11.8722 15.0103 8.00029C15.0103 4.12924 11.8719 0.990234 8.00007 0.990234ZM6.24778 5.07943C6.5704 5.07943 6.83195 5.34096 6.83195 5.6636V10.337C6.83195 10.6596 6.5704 10.9211 6.24778 10.9211C5.92515 10.9211 5.6636 10.6596 5.6636 10.337V5.6636C5.6636 5.34098 5.92513 5.07943 6.24778 5.07943ZM9.7528 5.07943C10.0754 5.07943 10.337 5.34096 10.337 5.6636V10.337C10.337 10.6596 10.0754 10.9211 9.7528 10.9211C9.43018 10.9211 9.16863 10.6596 9.16863 10.337V5.6636C9.16863 5.34098 9.43018 5.07943 9.7528 5.07943Z"/></g><defs><clipPath id="clip0_1_1527"><path d="M0 0H16V16H0z"/></clipPath></defs>
+      </svg>
+    )
+  });
+
+  DpPairStatusPausedFill16.displayName = 'DpPairStatusPausedFill16';
+
+  export default DpPairStatusPausedFill16

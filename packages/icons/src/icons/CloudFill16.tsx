@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const CloudFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M3.65481 6.4356C3.78385 4.06615 5.7462 2.18457 8.14806 2.18457C10.2003 2.18457 11.9317 3.55827 12.4727 5.43626C12.1274 5.35637 11.7676 5.31414 11.3979 5.31414C9.20715 5.31414 7.3628 6.79721 6.81408 8.81414H7.86127C8.37607 7.35764 9.76511 6.31414 11.3979 6.31414C11.8352 6.31414 12.2551 6.389 12.6454 6.52662C12.6454 6.52693 12.6454 6.52723 12.6454 6.52753C14.1033 7.04153 15.1481 8.43116 15.1481 10.0648C15.1481 12.0529 13.6006 13.6797 11.6444 13.8065V13.8141H11.4536C11.4351 13.8144 11.4166 13.8145 11.3981 13.8145C11.3795 13.8145 11.361 13.8144 11.3426 13.8141H4.65452C4.63689 13.8143 4.61924 13.8145 4.60156 13.8145C2.53049 13.8145 0.851562 12.1357 0.851562 10.0648C0.851562 8.32089 2.04211 6.85506 3.65481 6.4356Z"/>
+      </svg>
+    )
+  });
+
+  CloudFill16.displayName = 'CloudFill16';
+
+  export default CloudFill16

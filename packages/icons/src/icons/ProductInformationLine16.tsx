@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ProductInformationLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M6.3 3.2H3.2V6.3H6.3V3.2ZM3.2 2H2V3.2V6.3V7.5H3.2H6.3H7.5V6.3V3.2V2H6.3H3.2ZM6.3 9.7H3.2V12.8H6.3V9.7ZM3.2 8.5H2V9.7V12.8V14H3.2H6.3H7.5V12.8V9.7V8.5H6.3H3.2ZM9.7 9.7H12.8V12.8H9.7V9.7ZM8.5 8.5H9.7H12.8H14V9.7V12.8V14H12.8H9.7H8.5V12.8V9.7V8.5ZM8.5 5.5H14V6.7H8.5V5.5ZM14 2.79999H8.5V3.99999H14V2.79999Z"/>
+      </svg>
+    )
+  });
+
+  ProductInformationLine16.displayName = 'ProductInformationLine16';
+
+  export default ProductInformationLine16

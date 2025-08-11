@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ResourcePlanningFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M0.990234 8.00033C0.990234 4.38771 3.72691 1.41427 7.24023 1.04004V3.8671C5.27849 4.22073 3.79023 5.93673 3.79023 8.00033C3.79023 8.54973 3.89572 9.07448 4.08754 9.55545L1.64698 10.9645C1.22563 10.0644 0.990234 9.05985 0.990234 8.00033ZM2.42525 12.2472C3.70434 13.9208 5.72121 15.0003 7.99023 15.0003C10.2628 15.0003 12.2824 13.9174 13.5612 12.2394L11.1029 10.8201C10.3345 11.6679 9.22455 12.2003 7.99023 12.2003C6.75951 12.2003 5.65242 11.671 4.88424 10.8275L2.42525 12.2472ZM14.9902 8.00033C14.9902 9.05637 14.7564 10.0578 14.3376 10.9556L11.8966 9.54628C12.0861 9.06781 12.1902 8.54624 12.1902 8.00033C12.1902 5.93673 10.702 4.22073 8.74023 3.8671V1.04004C12.2536 1.41427 14.9902 4.38771 14.9902 8.00033ZM8 10.5203C9.38071 10.5203 10.5 9.40097 10.5 8.02025C10.5 6.63954 9.38071 5.52025 8 5.52025C6.61929 5.52025 5.5 6.63954 5.5 8.02025C5.5 9.40097 6.61929 10.5203 8 10.5203Z"/>
+      </svg>
+    )
+  });
+
+  ResourcePlanningFill16.displayName = 'ResourcePlanningFill16';
+
+  export default ResourcePlanningFill16

@@ -1,0 +1,167 @@
+{
+  "name": "@xsky/eris-ui",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"yarn dev:js:cjs\" \"yarn dev:js:esm\"",
+    "copy-assets:cjs": "node copy-assets-to-dist.js cjs",
+    "copy-assets:esm": "node copy-assets-to-dist.js esm",
+    "dev:js:cjs": "concurrently \"tsc --watch --project tsconfig.cjs.json\"  \"tsc-alias --watch -p tsconfig.cjs.json\" \"yarn copy-assets:cjs\"",
+    "dev:js:esm": "concurrently \"tsc --watch --project tsconfig.esm.json\"  \"tsc-alias --watch -p tsconfig.esm.json\" \"yarn copy-assets:esm\"",
+    "build": "sh ./scripts/build.sh",
+    "build:js:cjs": "tsc --project tsconfig.cjs.json && tsc-alias -p tsconfig.cjs.json && yarn copy-assets:cjs",
+    "build:js:esm": "tsc --project tsconfig.esm.json && tsc-alias -p tsconfig.esm.json && yarn copy-assets:esm",
+    "clean": "rimraf dist",
+    "lint": "eslint . --fix",
+    "generate:component": "turbo gen react-component",
+    "test": "vitest run",
+    "ut:watch": "vitest --ui",
+    "ut:coverage": "FORCE_COLOR=1 vitest run --coverage",
+    "json2exc:vi": "node ./scripts/json2exc.js vi",
+    "json2exc:en": "node ./scripts/json2exc.js en",
+    "i18n:scanner": "i18next-scanner --config ./i18next-scanner.config.js"
+  },
+  "files": [
+    "dist",
+    "ConfigProvider.d.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@turbo/gen": "^1.10.12",
+    "@types/big.js": "^6.2.2",
+    "@types/lodash": "^4.14.201",
+    "@types/node": "^20.5.2",
+    "@types/react": "^18.2.0",
+    "@types/react-beautiful-dnd": "^13.1.7",
+    "@types/react-dom": "^18.2.0",
+    "@vitest/coverage-istanbul": "3.0.5",
+    "@vitest/coverage-v8": "3.0.5",
+    "@vitest/ui": "3.0.5",
+    "@xsky/eris-eslint-config-ui": "*",
+    "@xsky/eris-icons": "*",
+    "@xsky/eris-tsconfig-ui": "*",
+    "@xsky/eris-ui-preset": "*",
+    "autoprefixer": "^10.4.16",
+    "cypress": "12.7.0",
+    "eslint": "^8.53.0",
+    "excel4node": "^1.8.2",
+    "happy-dom": "^12.10.3",
+    "i18next-scanner": "^4.4.0",
+    "postcss": "^8.4.31",
+    "react": "^18.2.0",
+    "react-dom": "18.2.0",
+    "rimraf": "^5.0.1",
+    "tailwindcss": "^3.3.5",
+    "tsc-alias": "^1.8.8",
+    "typescript": "^5.2.2",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "3.0.5"
+  },
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    "./ConfigProvider": {
+      "require": {
+        "types": "./dist/cjs/ConfigProvider.d.ts",
+        "default": "./dist/cjs/ConfigProvider.js"
+      },
+      "import": {
+        "types": "./dist/esm/ConfigProvider.d.ts",
+        "default": "./dist/esm/ConfigProvider.js"
+      }
+    },
+    ".": {
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      }
+    },
+    "./test": {
+      "require": {
+        "types": "./dist/cjs/test/index.d.ts",
+        "default": "./dist/cjs/test/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/test/index.d.ts",
+        "default": "./dist/esm/test/index.js"
+      }
+    },
+    "./test/cypress": {
+      "require": {
+        "types": "./dist/cjs/test/cypress/index.d.ts",
+        "default": "./dist/cjs/test/cypress/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/test/cypress/index.d.ts",
+        "default": "./dist/esm/test/cypress/index.js"
+      }
+    },
+    "./CHANGELOG.md": "./CHANGELOG.md",
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@acring/cmdk": "1.0.4",
+    "@floating-ui/react": "0.27.4",
+    "@hookform/resolvers": "4.1.3",
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-collapsible": "^1.0.3",
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@radix-ui/react-dropdown-menu": "^2.0.5",
+    "@radix-ui/react-popover": "^1.0.6",
+    "@radix-ui/react-radio-group": "^1.1.3",
+    "@radix-ui/react-scroll-area": "^1.0.4",
+    "@radix-ui/react-select": "^1.2.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-tooltip": "^1.0.6",
+    "@tanstack/react-table": "^8.20.5",
+    "@tanstack/react-virtual": "^3.8.4",
+    "big.js": "^5.2.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^1.2.1",
+    "color-js": "^1.0.5",
+    "copyfiles": "^2.4.1",
+    "date-fns": "^2.30.0",
+    "echarts": "^5.5.1",
+    "echarts-for-react": "^3.0.2",
+    "i18next": "^23.7.12",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "lodash": "^4.17.21",
+    "lottie-react": "^2.4.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-day-picker": "^8.8.0",
+    "react-draggable": "^4.4.5",
+    "react-hook-form": "7.54.2",
+    "react-i18next": "^14.0.0",
+    "react-infinite-scroll-hook": "^4.1.1",
+    "react-spring": "^9.7.3",
+    "react-virtuoso": "4.12.5",
+    "tailwind-merge": "^1.13.2",
+    "tailwindcss-animate": "^1.0.6",
+    "vitest-canvas-mock": "^0.3.3",
+    "yup": "1.6.1"
+  },
+  "peerDependencies": {
+    "@xsky/eris-icons": "*",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint  --fix",
+      "prettier --write"
+    ]
+  }
+}

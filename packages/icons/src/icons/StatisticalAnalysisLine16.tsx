@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const StatisticalAnalysisLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M2.2 10.8V3.2H13.8V10.8H2.2ZM1 3C1 2.44772 1.44772 2 2 2H14C14.5523 2 15 2.44772 15 3V11C15 11.5523 14.5523 12 14 12H10.1091V13H12V14.2H4V13H5.89088L5.89088 12H2C1.44772 12 1 11.5523 1 11V3ZM8.90912 13L8.90912 12H7.09088V13H8.90912ZM9.11592 8.3842L12.1188 5.3813L11.2703 4.53277L8.69166 7.11141L7.38585 5.80561C7.15154 5.57129 6.77164 5.57129 6.53733 5.80561L3.88335 8.45958L4.73188 9.30811L6.96159 7.0784L8.26739 8.3842C8.50171 8.61852 8.88161 8.61852 9.11592 8.3842Z"/>
+      </svg>
+    )
+  });
+
+  StatisticalAnalysisLine16.displayName = 'StatisticalAnalysisLine16';
+
+  export default StatisticalAnalysisLine16

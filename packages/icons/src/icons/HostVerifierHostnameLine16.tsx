@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const HostVerifierHostnameLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path d="M11.3479 4.43168H12.398V5.48173H11.3479V4.43168Z"/><path fillRule="evenodd" clipRule="evenodd" d="M1.39941 7.40783H14.6001V2.51758H1.39941V7.40783ZM13.4 6.20777H2.59948V3.71764H13.4V6.20777Z"/><path d="M12.398 10.456H11.3479V11.506H12.398V10.456Z"/><path fillRule="evenodd" clipRule="evenodd" d="M1.39941 13.4081H14.6001V8.53589H1.39941V13.4081ZM13.4 12.2081H2.59948V9.73595H13.4V12.2081Z"/>
+      </svg>
+    )
+  });
+
+  HostVerifierHostnameLine16.displayName = 'HostVerifierHostnameLine16';
+
+  export default HostVerifierHostnameLine16

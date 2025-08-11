@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const MiddleLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M10.6689 6.14945L11.6418 5.16986V5.36259V10.8232L10.6688 9.86042L9.82031 10.7109L12.2446 13.127L14.6688 10.7109L13.8203 9.86042L12.8474 10.8232V10.3919V5.17532L13.8204 6.14945L14.6689 5.30092L12.2447 2.87305L9.82042 5.30092L10.6689 6.14945ZM1.3265 3.27734H8.3265L8.32617 6.25018H1.32617L1.3265 3.27734ZM1.3265 8.18554H8.3265V9.38554H1.3265V8.18554ZM8.3265 11.2824H1.3265V12.4824H8.3265V11.2824Z"/>
+      </svg>
+    )
+  });
+
+  MiddleLine16.displayName = 'MiddleLine16';
+
+  export default MiddleLine16

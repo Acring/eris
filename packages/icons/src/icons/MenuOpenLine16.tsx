@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const MenuOpenLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M14.4257 9.50954C14.7381 9.82196 15.2446 9.82196 15.5571 9.50954C15.8695 9.19712 15.8695 8.69059 15.5571 8.37817L8.00018 0.821289L0.443299 8.37817C0.130879 8.69059 0.13088 9.19712 0.443299 9.50954C0.755719 9.82196 1.26225 9.82196 1.57467 9.50954L8.00018 3.08403L14.4257 9.50954ZM1.6002 13.5783C1.15837 13.5783 0.800196 13.9365 0.800196 14.3783C0.800196 14.8202 1.15837 15.1783 1.6002 15.1783H14.4002C14.842 15.1783 15.2002 14.8202 15.2002 14.3783C15.2002 13.9365 14.842 13.5783 14.4002 13.5783H1.6002Z"/>
+      </svg>
+    )
+  });
+
+  MenuOpenLine16.displayName = 'MenuOpenLine16';
+
+  export default MenuOpenLine16

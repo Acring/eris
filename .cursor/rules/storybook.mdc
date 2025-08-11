@@ -1,0 +1,37 @@
+---
+description: Storybook 编写规范
+globs: apps/storybook/stories/*.stories.tsx
+alwaysApply: false
+---
+
+- render 中不允许使用 hook，如果例子需要使用 hook ，需要先定义 xxxStory 函数组件，然后在 render 中使用
+- 每个 story 需要有对应的 name 和 description，
+
+参考:
+
+```
+function SearchableStory(args: React.ComponentProps<typeof Combobox>) {
+  const [value, setValue] = useState<string>('');
+
+  return (
+   ...
+  );
+}
+
+export const Searchable: Story = {
+  name: '异步搜索',
+  render: (args) => <SearchableStory {...args} />,
+};
+
+Searchable.storyName = '异步搜索';
+
+Searchable.parameters = {
+  docs: {
+    description: {
+      story: '支持异步搜索，当用户输入时，会自动触发搜索。',
+    },
+  }
+  render: (args) => <SearchableStory {...args} />,
+  },
+};
+```

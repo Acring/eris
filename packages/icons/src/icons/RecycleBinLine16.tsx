@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const RecycleBinLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M9.52341 1.42709C9.43403 1.28735 9.29078 1.19085 9.1277 1.16051C8.96461 1.13018 8.79625 1.16871 8.66259 1.26696L4.0599 4.65039H3.00039C2.83044 4.65039 2.66847 4.72247 2.55469 4.84871C2.44092 4.97495 2.38601 5.14352 2.40362 5.31256L3.34112 14.3126C3.37296 14.6182 3.63059 14.8504 3.93789 14.8504H12.0629C12.3702 14.8504 12.6278 14.6182 12.6597 14.3126L13.5972 5.31256C13.6148 5.14352 13.5599 4.97495 13.4461 4.84871C13.3323 4.72247 13.1703 4.65039 13.0004 4.65039H11.5852L9.52341 1.42709ZM10.1607 4.65039L8.8575 2.61302L6.08594 4.65039H10.1607ZM4.47864 13.6504L3.66614 5.85039H12.3346L11.5221 13.6504H4.47864ZM6.06763 8.08377V11.4172H7.26763V8.08377H6.06763ZM8.73462 11.4167V8.08413H9.93462V11.4167H8.73462Z"/>
+      </svg>
+    )
+  });
+
+  RecycleBinLine16.displayName = 'RecycleBinLine16';
+
+  export default RecycleBinLine16

@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const UrgentLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8ZM8 2.2C4.79675 2.2 2.2 4.79675 2.2 8C2.2 11.2033 4.79675 13.8 8 13.8C11.2033 13.8 13.8 11.2033 13.8 8C13.8 4.79675 11.2033 2.2 8 2.2ZM8.02825 6.99902L8.97259 3.77051L4.08301 8.98147H8.02825L7.12227 12.2287L11.9176 6.99902H8.02825Z"/>
+      </svg>
+    )
+  });
+
+  UrgentLine16.displayName = 'UrgentLine16';
+
+  export default UrgentLine16

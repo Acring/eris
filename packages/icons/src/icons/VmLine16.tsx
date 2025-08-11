@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const VmLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M2.2 3.2V10.8H13.8V3.2H2.2ZM2 2C1.44772 2 1 2.44772 1 3V11C1 11.5523 1.44772 12 2 12H5.89088L5.89088 13H4V14.2H12V13H10.1091V12H14C14.5523 12 15 11.5523 15 11V3C15 2.44772 14.5523 2 14 2H2ZM8.90912 12L8.90912 13H7.09088V12H8.90912ZM5.6 6.30657H4.4V9.63973H5.6V6.30657ZM7.4 4.63999H8.6V9.63973H7.4V4.63999ZM11.6 7.13986H10.4V9.63973H11.6V7.13986Z"/>
+      </svg>
+    )
+  });
+
+  VmLine16.displayName = 'VmLine16';
+
+  export default VmLine16

@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ExpandLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M10.54 3.54872L12.7022 5.71089L10.54 7.87305L11.3886 8.72157L14.3993 5.71089L11.3886 2.7002L10.54 3.54872ZM8 2.70021H2V3.90021H8V2.70021ZM8 7.40029H2V8.60029H8V7.40029ZM14 12.1002V13.3002H2V12.1002H14Z"/>
+      </svg>
+    )
+  });
+
+  ExpandLine16.displayName = 'ExpandLine16';
+
+  export default ExpandLine16

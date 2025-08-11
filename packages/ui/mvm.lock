@@ -1,0 +1,7 @@
+{
+  "dependencies": {},
+  "devDependencies": {
+    "@xsky/eris-icons": "1.26.1",
+    "@xsky/eris-ui-preset": "1.17.1"
+  }
+}

@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ArrowRightLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M9.55025 12.9492L8.70172 12.1007L12.2029 8.59951L1.49976 8.59951L1.49976 7.39951L12.2029 7.39951L8.70173 3.89831L9.55025 3.04978L13.6514 7.15097L13.6515 7.15094L14.5 7.99947L14.5 7.9995L14.5 7.99953L13.6515 8.84806L13.6514 8.84803L9.55025 12.9492Z"/>
+      </svg>
+    )
+  });
+
+  ArrowRightLine16.displayName = 'ArrowRightLine16';
+
+  export default ArrowRightLine16

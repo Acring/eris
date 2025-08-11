@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const TransmissionLine20 = React.forwardRef(({color = 'currentColor', size= 20, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 20 20" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M3.24027 10C3.24027 6.26671 6.26671 3.24027 10 3.24027C13.7333 3.24027 16.7597 6.26671 16.7597 10C16.7597 13.7333 13.7333 16.7597 10 16.7597C6.26671 16.7597 3.24027 13.7333 3.24027 10ZM10 1.60001C5.36081 1.60001 1.60001 5.36081 1.60001 10C1.60001 14.6392 5.36081 18.4 10 18.4C14.6392 18.4 18.4 14.6392 18.4 10C18.4 5.36081 14.6392 1.60001 10 1.60001ZM9.36213 6.40852V13.9581H7.72186V8.38914L6.38827 9.72333L5.22816 8.56375L7.96194 5.82873C8.19647 5.5941 8.54925 5.52386 8.85576 5.65078C9.16227 5.7777 9.36213 6.07678 9.36213 6.40852ZM10.6379 13.5915V6.0419H12.2782V11.6109L13.6118 10.2767L14.7719 11.4363L12.0381 14.1713C11.8036 14.4059 11.4508 14.4762 11.1443 14.3492C10.8377 14.2223 10.6379 13.9233 10.6379 13.5915Z"/>
+      </svg>
+    )
+  });
+
+  TransmissionLine20.displayName = 'TransmissionLine20';
+
+  export default TransmissionLine20

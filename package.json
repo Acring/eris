@@ -1,0 +1,55 @@
+{
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "dev:web": "turbo run dev --filter ui --filter ui-preset --filter web",
+    "dev:all": "turbo run dev --filter ui --filter ui-preset --filter storybook --filter icons",
+    "dev": "turbo run dev --filter ui --filter storybook",
+    "lint": "turbo run lint",
+    "build": "dotenv -- turbo run build",
+    "build-storybook": "dotenv -- turbo run build-storybook --filter storybook",
+    "git-publish": "turbo run git-publish --filter ui --filter ui-preset",
+    "reg-cli": "turbo run reg-cli --filter storybook",
+    "test": "dotenv -- turbo run test",
+    "ut:watch": "turbo run ut:watch --force --filter ui",
+    "ut:coverage": "turbo run ut:coverage --force --filter ui",
+    "vt": "bash ./scripts/vt-test.sh",
+    "vt:update": "bash ./scripts/vt-test-update.sh",
+    "test-storybook": "turbo run test-storybook --filter storybook",
+    "test-storybook:ci": "turbo run test-storybook:ci --filter storybook",
+    "cp:vt-actual": "turbo run cp:vt-actual --filter storybook",
+    "test-storybook:update": "turbo run test-storybook:update --filter storybook",
+    "rebase-master": "./scripts/rebase-master.sh",
+    "i18n:scanner": "turbo run i18n:scanner --filter ui",
+    "release": "dotenv -- turbo release --concurrency=1",
+    "postinstall": "yarn prepare"
+  },
+  "dependencies": {
+    "turbo": "1.11.1",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@b12k/mvm": "0.0.10",
+    "@commitlint/cli": "^17.6.7",
+    "@commitlint/config-conventional": "^17.6.7",
+    "@release-it/conventional-changelog": "5.1.1",
+    "@xsky/eris-tsconfig-ui": "*",
+    "concurrently": "^9.1.2",
+    "dotenv-cli": "^7.3.0",
+    "eslint": "^8.48.0",
+    "gitpkg": "^1.0.0-beta.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "release-it": "15.10.1"
+  },
+  "name": "eris",
+  "version": "0.0.0",
+  "packageManager": "yarn@3.7.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "configs/*"
+  ]
+}

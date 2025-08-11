@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const Opencloudos16Colorful = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M3.35367 5.73828C2.79116 6.32293 2.44531 7.11754 2.44531 7.99294C2.44531 9.78914 3.90143 11.2453 5.69763 11.2453C6.57302 11.2453 7.36763 10.8994 7.95229 10.3369L3.35367 5.73828Z" fill="#050498"/><path fillRule="evenodd" clipRule="evenodd" d="M3.3839 5.70652L3.38322 5.70583L7.9826 1.10645C8.57983 1.69612 8.94995 2.51527 8.94995 3.42086C8.94995 4.31183 8.59169 5.11911 8.01136 5.70652C8.0116 5.70676 8.01184 5.70701 8.01208 5.70725L3.4127 10.3066C2.81545 9.71695 2.44531 8.89779 2.44531 7.99218C2.44531 7.10122 2.80358 6.29393 3.3839 5.70652Z" fill="#00C0FF"/><path fillRule="evenodd" clipRule="evenodd" d="M8.04674 5.66408L12.6454 10.2627C13.2079 9.67804 13.5537 8.88343 13.5537 8.00804C13.5537 6.21184 12.0976 4.75572 10.3014 4.75572C9.426 4.75572 8.63139 5.10157 8.04674 5.66408Z" fill="#050498"/><path fillRule="evenodd" clipRule="evenodd" d="M12.6151 10.2886L12.6158 10.2893L8.01643 14.8887C7.4192 14.299 7.04907 13.4798 7.04907 12.5743C7.04907 11.6833 7.40733 10.876 7.98766 10.2886C7.98742 10.2884 7.98718 10.2881 7.98695 10.2879L12.5863 5.68849C13.1836 6.27817 13.5537 7.09733 13.5537 8.00294C13.5537 8.8939 13.1954 9.70119 12.6151 10.2886Z" fill="#0467EC"/>
+      </svg>
+    )
+  });
+
+  Opencloudos16Colorful.displayName = 'Opencloudos16Colorful';
+
+  export default Opencloudos16Colorful

@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const DownloadLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M8.5977 8.92109L10.5762 6.94263L11.4247 7.79115L8.00044 11.2154L4.57617 7.79115L5.4247 6.94263L7.39771 8.91563V1.7002H8.5977V8.92109ZM14.6004 10.2002V13.7002C14.6004 14.0316 14.3318 14.3002 14.0004 14.3002H2.00039C1.66902 14.3002 1.40039 14.0316 1.40039 13.7002V10.2002H2.60039V13.1002H13.4004V10.2002H14.6004Z"/>
+      </svg>
+    )
+  });
+
+  DownloadLine16.displayName = 'DownloadLine16';
+
+  export default DownloadLine16

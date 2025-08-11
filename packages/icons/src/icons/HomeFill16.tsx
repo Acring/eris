@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const HomeFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M2.85189 14.6631H13.1481C13.8844 14.6631 14.4814 14.0662 14.4814 13.3298V6.67334C14.4814 6.26188 14.2914 5.87347 13.9666 5.62086L8.81856 1.6168C8.33708 1.24232 7.66286 1.24232 7.18138 1.6168L2.0333 5.62087C1.70852 5.87347 1.51855 6.26188 1.51855 6.67334V13.3298C1.51855 14.0662 2.11551 14.6631 2.85189 14.6631ZM11.6008 10.3422H4.39918V11.7825H11.6008V10.3422Z"/>
+      </svg>
+    )
+  });
+
+  HomeFill16.displayName = 'HomeFill16';
+
+  export default HomeFill16

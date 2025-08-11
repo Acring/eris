@@ -1,0 +1,74 @@
+import LocaleComponent from './LocaleComponent';
+import SpinnerComponent from './SpinnerComponent';
+
+# ConfigProvider 全局化配置
+
+为组件提供统一的全局化配置
+
+## 使用
+
+ConfigProvider 使用 React 的 [Context](https://react.dev/learn/passing-data-deeply-with-context) 特性，只需在应用外围包裹一次即可全局生效。
+
+````jsx
+import React from 'react';
+import { ConfigProvider } from '@xsky/eris-ui';
+
+//...
+const Demo: React.FC = () => (
+  <ConfigProvider locale='zh-CN'>
+    <App />
+  </ConfigProvider>
+)
+
+export default Demo;
+````
+
+
+## 国际化
+
+### 示例
+
+<LocaleComponent />
+
+<div className="mt-4" />
+
+### 用法
+
+```jsx
+import { ConfigProvider } from '@xsky/eris-ui';
+
+// locale: zh-CN | en-US | vi-VN
+<ConfigProvider locale='zh-CN'>
+  <YourApp />
+</ConfigProvider>
+```
+
+## Spinner 自定义加载
+
+### 示例
+
+<SpinnerComponent />
+
+<div className="mt-4" />
+
+### 用法
+
+```jsx
+import { ConfigProvider } from '@xsky/eris-ui';
+/**
+ * spinnerIndicator?: {
+    sm?: React.ReactNode;
+    md?: React.ReactNode;
+    lg?: React.ReactNode;
+   };
+ */
+<ConfigProvider spinnerIndicator={{
+  default: {
+    sm: <Image src={xSpinner} width={16} height={16} alt="spinner" />,
+    md: <Image src={xSpinner} width={32} height={32} alt="spinner" />,
+    lg: <Image src={xSpinner} width={64} height={64} alt="spinner" />,
+  }
+}}>
+  <YourApp />
+</ConfigProvider>
+```

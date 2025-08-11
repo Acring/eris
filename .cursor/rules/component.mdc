@@ -1,0 +1,24 @@
+---
+description: 组件编码规范
+globs: packages/ui/components/**.tsx
+alwaysApply: false
+---
+# 组件编码规范
+
+## React.forwardRef
+组件需要使用 React.forwardRef 包裹，方便外部传入 ref
+
+## className
+每个组件都需要处理传入的 className 并附在组件的根元素上
+
+## props 透传
+除了自己要用的 props 之外，其他的 props 需要透传给组件的根元素上
+
+## displayName
+补充组件的 displayName
+
+## cva
+使用 cva 处理变体以及样式相关的关系
+
+## cn
+在我们的 [utils.ts](mdc:packages/ui/lib/utils.ts)  中有一个 cn 函数，用于处理 tailwind 的 className 合并以及方便 clsx 的特性。尽量都使用 cn 函数去包裹编写的 tailwind className ，尤其是其中存在多个判断条件的时候.

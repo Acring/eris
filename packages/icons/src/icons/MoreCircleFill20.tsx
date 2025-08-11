@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const MoreCircleFill20 = React.forwardRef(({color = 'currentColor', size= 20, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 20 20" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M10 18.75C14.8325 18.75 18.75 14.8325 18.75 10C18.75 5.16751 14.8325 1.25 10 1.25C5.16751 1.25 1.25 5.16751 1.25 10C1.25 14.8325 5.16751 18.75 10 18.75ZM6.66748 10C6.66748 10.6904 6.10784 11.25 5.41748 11.25C4.72712 11.25 4.16748 10.6904 4.16748 10C4.16748 9.30964 4.72712 8.75 5.41748 8.75C6.10784 8.75 6.66748 9.30964 6.66748 10ZM10.0008 11.25C10.6912 11.25 11.2508 10.6904 11.2508 10C11.2508 9.30964 10.6912 8.75 10.0008 8.75C9.31046 8.75 8.75081 9.30964 8.75081 10C8.75081 10.6904 9.31046 11.25 10.0008 11.25ZM14.5841 11.25C15.2745 11.25 15.8341 10.6904 15.8341 10C15.8341 9.30964 15.2745 8.75 14.5841 8.75C13.8938 8.75 13.3341 9.30964 13.3341 10C13.3341 10.6904 13.8938 11.25 14.5841 11.25Z"/>
+      </svg>
+    )
+  });
+
+  MoreCircleFill20.displayName = 'MoreCircleFill20';
+
+  export default MoreCircleFill20

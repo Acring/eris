@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const CheckboxIndeterminateFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M3 2C2.44772 2 2 2.44772 2 3V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V3C14 2.44772 13.5523 2 13 2H3ZM4.6 7.4C4.26863 7.4 4 7.66863 4 8C4 8.33137 4.26863 8.6 4.6 8.6H11.4C11.7314 8.6 12 8.33137 12 8C12 7.66863 11.7314 7.4 11.4 7.4H4.6Z"/>
+      </svg>
+    )
+  });
+
+  CheckboxIndeterminateFill16.displayName = 'CheckboxIndeterminateFill16';
+
+  export default CheckboxIndeterminateFill16

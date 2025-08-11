@@ -1,0 +1,16 @@
+---
+description: 当用户想要新增或者修改组件功能时调用
+globs: packages/ui/components/**/*.tsx
+alwaysApply: false
+---
+
+根据用户提供的组件文件和功能需求，实现对应的功能，补充类型定义，功能函数等，组件下的目录结构如下
+- index.ts
+- type.ts 类型文件
+- style.ts 样式文件
+- lib.ts 功能函数
+
+
+如果用户提到使用第三方依赖，先检查是否需要安装新的依赖，没有则需要在 [package.json](mdc:packages/ui/package.json) 下添加依赖并执行 yarn 脚本安装
+
+组件功能修改完成后需要在对应的 Storybook 文件(apps/storybook/stories/xxx.stories.tsx) 中查看是否需要增加对应的 storybook 字段展示和例子

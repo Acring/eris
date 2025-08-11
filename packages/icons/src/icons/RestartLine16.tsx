@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const RestartLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M8 13.8C9.91864 13.8 11.6197 12.8684 12.6755 11.4328L13.5322 12.2895C12.2515 13.9387 10.2497 15 8 15C4.13401 15 1 11.866 1 8C1 7.22295 1.12661 6.47548 1.36033 5.77708V5.77258L3.36033 7.77258H2.20438C2.20147 7.84803 2.2 7.92384 2.2 8C2.2 11.2033 4.79675 13.8 8 13.8ZM3.18283 4.76862C4.22412 3.21938 5.99302 2.2 8 2.2C11.2033 2.2 13.8 4.79675 13.8 8C13.8 8.15999 13.7935 8.31847 13.7808 8.47518H12.546L14.546 10.4752V10.4749L14.5488 10.4778C14.8404 9.70752 15 8.8724 15 8C15 4.13401 11.866 1 8 1C5.6623 1 3.59224 2.14593 2.32091 3.90669L3.18283 4.76862ZM6.5 4.83682C5.31753 5.39855 4.5 6.60381 4.5 8.00001C4.5 9.933 6.067 11.5 8 11.5C9.933 11.5 11.5 9.933 11.5 8.00001C11.5 6.60381 10.6825 5.39855 9.5 4.83682V6.2564C9.98985 6.67819 10.3 7.30288 10.3 8.00001C10.3 9.27026 9.27026 10.3 8 10.3C6.72974 10.3 5.7 9.27026 5.7 8.00001C5.7 7.30288 6.01015 6.67819 6.5 6.2564V4.83682ZM8.5 8.16842V4.17126H7.5V8.16842H8.5Z"/>
+      </svg>
+    )
+  });
+
+  RestartLine16.displayName = 'RestartLine16';
+
+  export default RestartLine16

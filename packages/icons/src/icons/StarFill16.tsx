@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const StarFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M8.47543 2.37818C8.38548 2.19693 8.20039 2.08249 7.99804 2.08301C7.79569 2.08353 7.6112 2.19892 7.52218 2.38063L5.91298 5.66526L2.25498 6.19569C2.05491 6.2247 1.88862 6.36473 1.82598 6.55695C1.76333 6.74917 1.81518 6.96029 1.95974 7.10162L4.61028 9.69289L3.97732 13.2927C3.94212 13.4928 4.02417 13.6955 4.18869 13.8149C4.35321 13.9342 4.57137 13.9493 4.75072 13.8536L7.99943 12.1217L11.2489 13.8537C11.4281 13.9492 11.6461 13.9342 11.8106 13.8151C11.9751 13.6959 12.0573 13.4934 12.0223 13.2933L11.3939 9.6929L14.0402 7.10129C14.1845 6.95995 14.2362 6.749 14.1736 6.55693C14.111 6.36486 13.9449 6.2249 13.745 6.19575L10.1068 5.66525L8.47543 2.37818Z"/>
+      </svg>
+    )
+  });
+
+  StarFill16.displayName = 'StarFill16';
+
+  export default StarFill16

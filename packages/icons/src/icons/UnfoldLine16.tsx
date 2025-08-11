@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const UnfoldLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M8.50037 3.10039H12.0518L8.5761 6.57613L9.42463 7.42465L12.9004 3.94892V7.50039H14.1004V2.50039V1.90039H13.5004H8.50037V3.10039ZM1.90039 14.1004V13.5004V8.00037H3.10039V12.0518L6.57613 8.5761L7.42465 9.42463L3.94892 12.9004H8.00039V14.1004H2.50039H1.90039Z"/>
+      </svg>
+    )
+  });
+
+  UnfoldLine16.displayName = 'UnfoldLine16';
+
+  export default UnfoldLine16

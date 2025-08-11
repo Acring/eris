@@ -1,0 +1,12 @@
+{
+  "name": "@xsky/eris-tsconfig-ui",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

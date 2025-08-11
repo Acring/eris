@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ExternalClusterLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M2.60039 3.2V12.8H5.80039L5.80039 11.2V5.6V4.4L5.80039 3.2H2.60039ZM7.00039 10.6V5.6L8.40039 5.6H9.00037V6.39999C9.00037 6.95228 9.44808 7.39999 10.0004 7.39999H13.6004C14.1527 7.39999 14.6004 6.95228 14.6004 6.39999V3.39999C14.6004 2.84771 14.1527 2.39999 13.6004 2.39999H10.0004C9.44808 2.39999 9.00037 2.84771 9.00037 3.39999V4.4H8.40039H7.00039V3C7.00039 2.44772 6.55268 2 6.00039 2H2.40039C1.84811 2 1.40039 2.44772 1.40039 3V13C1.40039 13.5523 1.8481 14 2.40039 14H6.00039C6.55268 14 7.00039 13.5523 7.00039 13V11.8H9.00037V12.6C9.00037 13.1523 9.44808 13.6 10.0004 13.6H13.6004C14.1527 13.6 14.6004 13.1523 14.6004 12.6V9.60001C14.6004 9.04772 14.1527 8.60001 13.6004 8.60001H10.0004C9.44808 8.60001 9.00037 9.04772 9.00037 9.60001V10.6L7.00039 10.6ZM10.2004 3.59999V6.19999H13.4004V3.59999H10.2004ZM10.2004 12.4V9.80001H13.4004V12.4H10.2004Z"/>
+      </svg>
+    )
+  });
+
+  ExternalClusterLine16.displayName = 'ExternalClusterLine16';
+
+  export default ExternalClusterLine16

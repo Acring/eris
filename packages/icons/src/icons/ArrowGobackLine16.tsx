@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ArrowGobackLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M5.00468 1.91895L1.8227 5.10093L1.39844 5.52519L1.8227 5.94945L5.00468 9.13143L5.85321 8.28291L3.64757 6.07727H10.6027C12.1489 6.07727 13.4024 7.33074 13.4024 8.87698C13.4024 10.4232 12.1489 11.6767 10.6026 11.6767H4.1719V12.8767H10.6026C12.8116 12.8767 14.6024 11.086 14.6024 8.87698C14.6024 6.668 12.8116 4.87727 10.6027 4.87727H3.74342L5.85321 2.76747L5.00468 1.91895Z"/>
+      </svg>
+    )
+  });
+
+  ArrowGobackLine16.displayName = 'ArrowGobackLine16';
+
+  export default ArrowGobackLine16

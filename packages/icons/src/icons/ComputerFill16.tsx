@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ComputerFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M1.5 3.40039C1.5 2.84811 1.94772 2.40039 2.5 2.40039H13.5C14.0523 2.40039 14.5 2.84811 14.5 3.40039V10.4004C14.5 10.9527 14.0523 11.4004 13.5 11.4004H10V12.4004H12V13.6004H4V12.4004H5.8L5.8 11.4004H2.5C1.94772 11.4004 1.5 10.9527 1.5 10.4004V3.40039ZM7 11.4004V12.4004H8.8V11.4004H7ZM13 8.40039V9.40039L3 9.40039V8.40039L13 8.40039Z"/>
+      </svg>
+    )
+  });
+
+  ComputerFill16.displayName = 'ComputerFill16';
+
+  export default ComputerFill16

@@ -1,0 +1,64 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx lint-staged
+
+# 单元测试文件检查
+checkUnitTestFile() {
+  test_files=$(git ls-files --directory packages/ui/components/*/__tests__)
+  for file in $(git diff --cached --name-only | grep -v '__tests__'); do
+    if echo "$file" | grep -q "packages/ui/components"; then
+
+      # 对应的组件的单元测试文件目录
+      test_file="${file%/*}/__tests__"
+
+      # 检查是否有对应的单元测试文件，如果有则跳过检查
+      for dir_file in $test_files; do
+        if echo "$dir_file" | grep -q "$test_file"; then
+          # 如果有对应的单元测试文件，则跳出循环
+          break 2
+        fi
+      done
+
+      # 打开终端，让用户输入
+      exec </dev/tty
+
+      echo "警告：组件文件 $file 缺少单元测试文件。"
+
+      while true; do
+        read -p "是否绕过本次检查？（y/n）：" answer
+
+        # 判断用户输入的是 y 还是 n
+        case $answer in
+        y | Y)
+          echo "已绕过本次检查。"
+          break
+          ;;
+        n | N)
+          echo "请添加单元测试文件后再提交。"
+          exit 1
+          ;;
+        *)
+          echo "请输入 y 或 n。"
+          ;;
+        esac
+      done
+    fi
+  done
+}
+
+# 单元测试覆盖率检查
+checkUnitTestCoverage() {
+  exec <&-
+  # If there are any changes to the ui package, run the unit tests
+  for file in $(git diff --cached --name-only); do
+    if echo "$file" | grep -q "packages/ui/components"; then
+      echo "*****Running unit tests******"
+      yarn run ut:coverage
+      break
+    fi
+  done
+}
+
+checkUnitTestCoverage
+checkUnitTestFile

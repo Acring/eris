@@ -1,0 +1,36 @@
+{
+  "extends": "@xsky/eris-tsconfig-ui/react-library.json",
+  "compilerOptions": {
+    "target": "ES2018",
+    "lib": ["DOM", "ESNext", "DOM.Iterable"],
+    "jsx": "react",
+    "module": "ES2020",
+    "moduleResolution": "Node",
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@/components/*": ["./components/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/i18n/*": ["./i18n/*"]
+    },
+    "types": ["cypress"]
+  },
+  "include": [
+    "./index.ts",
+    ".eslintrc.js",
+    "./components/**/*",
+    "./lib/**/*",
+    "custom.d.ts",
+    "setup.ts",
+    "ConfigProvider.tsx"
+  ],
+  "exclude": ["dist", "build", "node_modules"]
+}

@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const HdLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M11.5561 3.03125H4.47287L1.37598 8.46882V12.9682H12.1532V12.14H2.2042V8.82753H13.7959V12.9682H14.625V8.47787L11.5561 3.03125ZM2.57843 8.00017L4.97903 3.7491H11.0336L13.4346 8.00017H2.57843ZM9.2426 10.0697H6.75836V10.8979H9.2426V10.0697Z"/>
+      </svg>
+    )
+  });
+
+  HdLine16.displayName = 'HdLine16';
+
+  export default HdLine16

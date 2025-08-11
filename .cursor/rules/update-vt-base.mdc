@@ -1,0 +1,14 @@
+---
+description: 当用户想要更新 vt base 时执行
+globs: 
+alwaysApply: false
+---
+首先执行 
+```
+yarn build
+```
+
+然后执行 
+```
+yarn vt:update
+```

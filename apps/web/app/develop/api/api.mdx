@@ -1,0 +1,47 @@
+# API 设计规范
+
+> 本指南大部分参考 Antd 的设计指南
+
+---
+
+## Props:
+
+- 初始化属性：default + PropName
+- 强制渲染：forceRender
+- 强制渲染子组件：force + 子组件名称 + Render
+- 子渲染：子组件名称+ Render 例如：
+  ```
+    panelRender(originNode, info: { SubComponent1, SubComponent2, [somePassedProps]: someValue })
+  ```
+- 数据来源：dataSource
+- 面板打开：popup & dropdown open, 附加popup popupName + Open，如tooltipOpen
+  - 不要使用visible以确保所有visible api对齐
+- children:
+  - 主要显示内容。为了避免额外的属性名称。
+- 与显示相关的命名：show + PropName
+- 功能性：PropName + able
+- 禁用：disabled
+  - 子组件：disabled + 子组件名称
+- 额外：extra
+  - 子组件：子组件名称 + extra。例如：titleExtra
+- 主要图标：icon
+  - 功能组件：`functionName: { icon }`。例如：expandable: `{ icon: <Smile /> }`
+  - 多个图标：FunctionName + Icon
+- 触发：trigger
+  - 子功能触发：子功能 + Trigger
+  - 触发时间点：xxx + On + EventName (例如：destroyOnClose)
+- 组件使用其他组件配置。命名为组件名称。(例如：`<Table pagination={{...}} />`)
+- ClassName：className
+  - 额外的类应合并到 classes 中 (例如：`<Button classes={{ inner: 'custom-inner' }} />`)
+
+---
+
+## 事件:
+
+- 触发事件：on + EventName
+  - 触发子组件事件：on + SubComponentName + EventName (例如：onSearchChange)
+  - 触发prop事件：on + PropName + EventName (例如：onDragStart)
+- 在触发事件之前：before + EventName
+- 在触发事件之后：after + EventName
+
+---

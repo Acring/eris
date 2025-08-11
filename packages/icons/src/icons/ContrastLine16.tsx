@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ContrastLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M8.60001 2H7.40001V14H8.60001L8.60001 13H10.4V11.8H8.60001V4.2H10.4V3H8.60001L8.60001 2ZM2 3H7.4V4.2H2.2V11.8H7.4V13H2C1.44772 13 1 12.5523 1 12V4C1 3.44772 1.44772 3 2 3ZM11.2 3H13V4.2H11.2V3ZM13 11.8H11.2V13H13V11.8ZM15 11.2V13H13.8V11.2H15ZM15 10.2667V8.46667H13.8V10.2667H15ZM15 5.73334V7.53334L13.8 7.53334V5.73334H15ZM15 4.8V3L13.8 3V4.8H15Z"/>
+      </svg>
+    )
+  });
+
+  ContrastLine16.displayName = 'ContrastLine16';
+
+  export default ContrastLine16

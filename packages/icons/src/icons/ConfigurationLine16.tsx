@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ConfigurationLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M12.3 13.3V4.99706L12.2867 4.98374H10.0163V2.71332L10.0029 2.7H3.7V13.3H12.3ZM10.0163 1.5H3.5C2.94772 1.5 2.5 1.94772 2.5 2.5V13.5C2.5 14.0523 2.94772 14.5 3.5 14.5H12.5C13.0523 14.5 13.5 14.0523 13.5 13.5L13.5 4.98374L13.5 4.5L12 3L10.5 1.5H10.0163ZM8.75 4.73633H7.25V6.23633H8.75V4.73633ZM7.3999 7.73633H8.5999V11.7363H7.3999V7.73633Z"/>
+      </svg>
+    )
+  });
+
+  ConfigurationLine16.displayName = 'ConfigurationLine16';
+
+  export default ConfigurationLine16

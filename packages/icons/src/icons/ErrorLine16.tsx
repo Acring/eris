@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const ErrorLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M13.8 8C13.8 11.2033 11.2033 13.8 8 13.8C4.79675 13.8 2.2 11.2033 2.2 8C2.2 4.79675 4.79675 2.2 8 2.2C11.2033 2.2 13.8 4.79675 13.8 8ZM15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8ZM10.2176 11.0739L7.99804 8.85087L5.77845 11.0739L4.92926 10.2261L7.15017 8.00168L4.92926 5.77731L5.77845 4.92944L7.99804 7.15249L10.2176 4.92944L11.0668 5.77731L8.84591 8.00168L11.0668 10.2261L10.2176 11.0739Z"/>
+      </svg>
+    )
+  });
+
+  ErrorLine16.displayName = 'ErrorLine16';
+
+  export default ErrorLine16

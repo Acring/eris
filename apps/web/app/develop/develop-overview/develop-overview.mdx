@@ -1,0 +1,141 @@
+# 参与开发
+
+我们欢迎任何人为这个项目做出贡献，如果你有任何想法或者建议，欢迎提交 [issue](https://github.xsky.com/front-end/eris/issues)
+或者直接[提交代码](https://github.xsky.com/front-end/eris)修复其中的 bug
+
+项目地址: [https://github.xsky.com/front-end/eris](https://github.xsky.com/front-end/eris)
+
+---
+
+### 安装依赖
+
+```
+yarn install
+```
+
+### 启动 dev
+
+dev 会启动 storybook 并以 watch 模式，编译 ui 组件和 ui-preset 主题系统
+
+```
+yarn dev
+```
+
+### 目录
+
+- `packages/ui/components` 组件目录
+- `apps/storybook/stories ` storybook 目录
+- `packages/ui-preset` 主题系统
+- `packages/eslint-config-ui` eslint 配置
+- `packages/tsconfig-ui` tsconfig 配置
+
+
+---
+
+## 技术栈
+
+我们采用 React + Tailwind + Radix UI 的技术栈
+
+- [Radix UI](https://www.radix-ui.com/) 是一个基于 React 的无头组件库，他完成了很多可访问性的工作，我们使用它来构建组件的基础样式，然后再在此基础上进行二次开发
+- [Tailwind](https://tailwindcss.com/) 是一个 CSS 框架，我们使用它来快速构建组件的样式
+
+---
+
+## 参考
+
+- [shadcn/ui](https://ui.shadcn.com/docs) 也是一个基于 React + Radix UI + Tailwind 的组件库，我们可以参考它的实现来开发我们的组件
+- [medusajs](https://docs.medusajs.com/ui) 也是一个基于 React + Radix UI + Tailwind 的组件库，我们可以参考它的实现来开发我们的组件
+
+---
+
+## 代码规范
+
+### 命名规范
+
+- 文件夹采用驼峰命名
+  - Button/
+- 组件文件采用驼峰命名
+  - Button.tsx
+- 其他文件采用横线命名
+  - figma-variables.json
+
+---
+
+### 文件结构
+
+组件位于 packages/ui/components/ 下
+
+组件文件包括
+
+- 组件本身代码 Button.tsx
+- 组件 storybook Button.stories.tsx
+- index.ts 导出组件文件
+- 可复用函数 lib.ts (可选)
+- 可服用TS类型 type.ts (可选)
+
+---
+
+### React.forwardRef
+
+组件需要使用 React.forwardRef 包裹，方便外部传入 ref
+
+### className
+
+每个组件都需要处理传入的 className 并附在组件的根元素上
+
+### props 透传
+
+除了自己要用的 props 之外，其他的 props 需要透传给组件的根元素上
+
+### displayName
+
+需要补充组件的 displayName，方便调试
+
+### cva
+
+使用 cva 处理变体以及样式相关的关系，提高样式的可维护性
+
+[cva](https://cva.style/docs)
+
+### cn
+
+在我们的 lib/utils.ts 中有一个 cn 函数，用于处理 tailwind 的 className 合并以及方便 clsx 的特性。尽量都使用 cn 函数去包裹编写的 tailwind className ，尤其是其中存在多个判断条件的时候.
+
+```
+primary: cn('border-transparent text-white'),
+```
+
+同时为了确保组件的样式可以被外界覆盖，我们需要在组件需要修改样式的根元素上使用 cn 函数
+
+```
+<button
+  ref={ref}
+  type={htmlType}
+  className={cn(buttonVariants({ type, color, size, className }))}
+...
+
+```
+
+否则会造成多个样式 className 共存，导致样式无法覆盖的问题
+
+---
+
+### API 规范
+
+为了其他开发者更好的使用和理解组件，我们需要采用好的 API 命名规范
+综合考虑，我们可以使用 antd 的组件 API 命名规范来命名我们的组件。
+
+https://github.com/ant-design/ant-design/wiki/API-Naming-rules
+
+API 更新需要在 [组件文档](https://xskydata.feishu.cn/wiki/A2PFwHz6ziIWBCkUX3Mcu19ynAc) 的对应组件文档中更新
+
+---
+
+### 代码提交规范
+
+commit 规范请参考 [conventionalcommits](https://www.conventionalcommits.org/en/v1.0.0/)
+由于已经集成 commitlint，所以在提交代码的时候会自动检查 commit message 是否符合规范，如果不符合规范，会提示错误，需要修改后才能提交
+
+---
+
+> 更多技术细节请参考 [Eris 组件库技术细节和编码规范](https://xskydata.feishu.cn/wiki/F0yLwmPSIirFSgkZRhycKtZAnmg)

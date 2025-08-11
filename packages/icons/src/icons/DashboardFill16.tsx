@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const DashboardFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M14.1557 13.8931C15.0031 12.6783 15.5 11.2009 15.5 9.60742C15.5 5.46529 12.1421 2.10742 8 2.10742C3.85786 2.10742 0.5 5.46529 0.5 9.60742C0.5 11.2009 0.996946 12.6783 1.84431 13.8931H14.1557ZM7.35727 3.17896H8.64299V5.32182H7.35727V3.17896ZM13.357 6.23094L12.4479 5.3218L10.9327 6.83703L11.8418 7.74616L13.357 6.23094ZM3.55172 5.3218L2.64258 6.23094L4.15781 7.74616L5.06695 6.83703L3.55172 5.3218ZM1.5713 10.8983V9.61263H3.71415V10.8983H1.5713ZM12.2857 9.61263V10.8983H14.4286L14.4286 9.61263H12.2857ZM8.54786 11.711C9.05412 11.4188 9.23392 10.7824 8.94947 10.2897C8.86042 10.1981 8.72414 10.0557 8.55839 9.88257C7.76657 9.05529 6.30206 7.52522 6.09989 7.47105C6.02615 7.74625 6.68685 9.9283 6.99822 10.9566C7.04788 11.1206 7.08865 11.2553 7.11614 11.3482C7.4006 11.8409 8.0416 12.0033 8.54786 11.711Z"/>
+      </svg>
+    )
+  });
+
+  DashboardFill16.displayName = 'DashboardFill16';
+
+  export default DashboardFill16

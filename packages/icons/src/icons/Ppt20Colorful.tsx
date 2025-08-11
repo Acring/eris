@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const Ppt20Colorful = React.forwardRef(({color = 'currentColor', size= 20, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 20 20" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M13 1H4.80009C3.48015 1 2.40012 2.08004 2.40012 3.39998V16.5999C2.40012 17.92 3.48015 19 4.80009 19H15.6C16.9201 19 18 17.92 18 16.5999V6L13 1ZM10.5601 7.69605H7.89611V14.1221H8.87706V11.6201H10.5421C12.0811 11.6201 12.855 10.963 12.855 9.64907C12.855 8.34403 12.0901 7.69605 10.5601 7.69605ZM8.87706 10.7831V8.53301H10.479C10.9561 8.53301 11.3071 8.62301 11.5321 8.80302C11.757 8.96507 11.8741 9.25304 11.8741 9.64907C11.8741 10.045 11.757 10.3331 11.5411 10.5131C11.3161 10.6931 10.9651 10.7831 10.479 10.7831H8.87706Z" fill="#FFA557"/><path opacity="0.5" d="M12.9999 1L17.9999 6H14.1999C13.4799 6 12.9999 5.52 12.9999 4.8V1Z" fill="white"/>
+      </svg>
+    )
+  });
+
+  Ppt20Colorful.displayName = 'Ppt20Colorful';
+
+  export default Ppt20Colorful

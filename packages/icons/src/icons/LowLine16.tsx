@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const LowLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M10.6689 6.14945L11.6418 5.16986V5.36259V10.8232L10.6688 9.86042L9.82031 10.7109L12.2446 13.127L14.6688 10.7109L13.8203 9.86042L12.8474 10.8232V10.3919V5.17532L13.8204 6.14945L14.6689 5.30092L12.2447 2.87305L9.82042 5.30092L10.6689 6.14945ZM1.32617 3.27734H8.32617V4.47734H1.32617V3.27734ZM1.32617 7.27734H8.32617V8.47734H1.32617V7.27734ZM8.32617 11.2773H1.32617V12.4773H8.32617V11.2773Z"/>
+      </svg>
+    )
+  });
+
+  LowLine16.displayName = 'LowLine16';
+
+  export default LowLine16

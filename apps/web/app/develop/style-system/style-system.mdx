@@ -1,0 +1,43 @@
+# 样式系统
+
+Eris UI 组件库不仅提供了丰富的组件，还提供了一套基于 Tailwind 的样式系统，与设计的样式系统完全对应，可以让你快速的构建出符合你的设计规范的页面。并更加方便的查看设计图。
+
+> 由于设计的历史遗留问题，还有很多样式没有完全对应，后续会逐步完善。
+
+样式系统实现细节请参考 [Eris 组件库技术细节和编码规范](https://xskydata.feishu.cn/docx/MZ1edlWQeooQ8Wx9Ummc7Cjynfe#WKM5dfdTUoePLtxfE9ScLGjXn0g)
+
+---
+
+## 过去的方式
+
+在过去的开发过程中，很多时候我们需要用 value 去找 css 的值
+![](/style-system-2.png)
+
+如上图所示，我们得到的是颜色值，或者字号值，而为了对应到代码中的 css 值，我们需要去查找对应的 css 变量，这样的过程非常繁琐，而且容易出错。可能 text-2 和 icon-2 的颜色是一样的，但是我们却不知道，这样就会导致将来颜色样式不一致。
+
+---
+
+## 现在的方式
+
+现在我们可以直接在设计图中查看对应的 css 值，如下图所示：
+![](/style-system-1.png)
+
+这里标注了文字的颜色为 `--text-3` , 字号在注释部分，写了 xxx body xxx
+
+那我们就可以直接使用 tailwind className 的 `text-text-3` 和 `text-body` 来对应这个样式。大大加快了开发效率，也减少了出错的可能性。
+
+---
+
+## 总体的对照如下
+
+- 颜色
+  - 通过 css 来识别
+    ![](/style-system-3.png)
+  - 字号和行高
+    - 通过注释中的 body, title, caption 等来识别
+      ![](/style-system-4.png)
+  - 阴影
+    - 通过注释中来识别
+      ![](/style-system-5.png)
+
+> 注意上面的值都是通过 figma 的 dev mode 查看的，请善用 dev mode 来查看对应的 css 值

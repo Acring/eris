@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "types": ["cypress"]
+  },
+  "extends": "@xsky/eris-tsconfig-ui/base.json"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "web",
+  "version": "1.0.3",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3100",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^2.3.0",
+    "@mdx-js/react": "^2.3.0",
+    "@next/mdx": "^13.4.19",
+    "@types/highlight-words-core": "^1.2.3",
+    "@types/lodash": "^4.14.201",
+    "@types/pubsub-js": "^1.8.6",
+    "@xsky/eris-icons": "*",
+    "@xsky/eris-ui": "*",
+    "@xsky/eris-ui-preset": "*",
+    "highlight-words-core": "^1.2.2",
+    "iconoir-react": "^7.7.0",
+    "lodash": "^4.17.21",
+    "next": "^13.4.19",
+    "pubsub-js": "^1.9.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hotkeys-hook": "^4.5.0",
+    "rehype-pretty-code": "^0.12.3",
+    "shikiji": "^0.9.18"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.4.19",
+    "@types/node": "^17.0.12",
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "@xsky/eris-eslint-config-ui": "*",
+    "@xsky/eris-tsconfig-ui": "*",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "prettier-plugin-tailwindcss": "^0.5.7",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^4.5.3"
+  }
+}

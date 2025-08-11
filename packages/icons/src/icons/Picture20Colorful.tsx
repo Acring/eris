@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const Picture20Colorful = React.forwardRef(({color = 'currentColor', size= 20, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 20 20" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M13 1H4.39997C3.08004 1 2 2.08004 2 3.39998V16.5999C2 17.92 3.08004 19 4.39997 19H15.6C16.9201 19 18 17.92 18 16.5999V6L13 1ZM13.7047 7.75003C14.2018 7.75003 14.6047 8.15293 14.6047 8.65006C14.6047 9.14708 14.2018 9.54998 13.7047 9.54998C13.2077 9.54998 12.8048 9.14708 12.8048 8.65006C12.8048 8.15293 13.2077 7.75003 13.7047 7.75003ZM14.6588 13.9998H4.55727C4.07324 13.9998 3.80724 13.4366 4.11486 13.0627L6.90189 9.67379C7.01069 9.54143 7.17316 9.46474 7.34451 9.46474C7.42416 9.46474 7.50191 9.48132 7.57321 9.51238C7.65529 9.54808 7.72882 9.60301 7.78713 9.67379L10.2694 12.6925C10.3783 12.8249 10.5407 12.9015 10.712 12.9015C10.8835 12.9015 11.0458 12.8249 11.1546 12.6925L12.5334 11.016C12.5858 10.9522 12.6507 10.9014 12.723 10.8658C12.8008 10.8276 12.8872 10.807 12.976 10.807C13.1474 10.807 13.3097 10.8837 13.4187 11.016L15.1019 13.0631C15.409 13.4366 15.1432 13.9998 14.6588 13.9998Z" fill="#F07571"/><path opacity="0.5" d="M13 1L17.9999 6H14.1999C13.4799 6 12.9999 5.52 12.9999 4.8L13 1Z" fill="white"/>
+      </svg>
+    )
+  });
+
+  Picture20Colorful.displayName = 'Picture20Colorful';
+
+  export default Picture20Colorful

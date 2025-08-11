@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const StackLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M1.59961 5.63961L7.99961 8.75961L14.3996 5.67961L7.99961 2.59961L1.59961 5.63961ZM7.99961 7.75961L3.63961 5.63961L7.99961 3.59961L12.3596 5.67961L7.99961 7.75961ZM13.3596 7.3996L7.99961 9.9996L2.63961 7.3996L1.63961 7.8796L7.99961 10.9996L14.3996 7.9196L13.3596 7.3996ZM7.99961 12.1196L13.3596 9.55959L14.3996 10.0396L7.99961 13.1196L1.63961 9.99959L2.63961 9.51959L7.99961 12.1196Z"/>
+      </svg>
+    )
+  });
+
+  StackLine16.displayName = 'StackLine16';
+
+  export default StackLine16

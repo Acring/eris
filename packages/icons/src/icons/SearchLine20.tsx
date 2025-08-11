@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const SearchLine20 = React.forwardRef(({color = 'currentColor', size= 20, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 20 20" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M9.04094 1C4.60007 1 1 4.60007 1 9.04094C1 13.4818 4.60007 17.0819 9.04094 17.0819C10.9617 17.0819 12.7252 16.4084 14.1081 15.2847L17.8234 19L19 17.8234L15.2847 14.1081C16.4084 12.7252 17.0819 10.9617 17.0819 9.04094C17.0819 4.60007 13.4818 1 9.04094 1ZM2.99938 9.04094C2.99938 5.51906 5.51906 3.0009 9.04094 3.0009C12.5628 3.0009 15.0843 5.51906 15.0843 9.04094C15.0843 12.5628 12.5628 15.0858 9.04094 15.0858C5.51906 15.0858 2.99938 12.5628 2.99938 9.04094Z"/>
+      </svg>
+    )
+  });
+
+  SearchLine20.displayName = 'SearchLine20';
+
+  export default SearchLine20

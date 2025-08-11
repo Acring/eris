@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const RefreshLine20 = React.forwardRef(({color = 'currentColor', size= 20, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 20 20" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M1.84292 6.19203C1.30211 7.34853 1 8.63898 1 10C1 14.9706 5.02944 19 10 19C11.9407 19 13.738 18.3857 15.2079 17.341L14.2021 15.5989C13.0318 16.4786 11.5768 17 10 17C6.19875 17 3.10518 13.9701 3.00263 10.1936H4.84363L1.8449 6.19547L1.84292 6.19203ZM16.9983 10.155H14.9864L17.9866 14.155V14.1531C18.634 12.9106 19 11.498 19 10C19 5.02944 14.9706 1 10 1C7.94349 1 6.04809 1.68975 4.53251 2.85053L5.54351 4.60163C6.75408 3.60114 8.30684 3 10 3C13.866 3 17 6.13401 17 10C17 10.0518 16.9994 10.1035 16.9983 10.155ZM7.5 7.5H12.5V12.5H7.5V7.5Z"/>
+      </svg>
+    )
+  });
+
+  RefreshLine20.displayName = 'RefreshLine20';
+
+  export default RefreshLine20

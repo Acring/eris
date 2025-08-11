@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const DataAcquisitionLine16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path fillRule="evenodd" clipRule="evenodd" d="M2.79961 2.93242H7.43545V1.73242H2.53487C2.28793 1.73242 2.05042 1.82992 1.87477 2.00457C1.69899 2.17933 1.59961 2.4171 1.59961 2.66576V13.3324C1.59961 13.5811 1.69899 13.8188 1.87477 13.9936C2.05042 14.1683 2.28793 14.2658 2.53487 14.2658H13.4643C13.5408 14.2658 13.6227 14.2639 13.697 14.2536C13.7349 14.2484 13.794 14.2381 13.8596 14.2136C13.9286 14.1879 14.0252 14.1391 14.1112 14.0449C14.1602 13.9912 14.1935 13.9362 14.2164 13.8873C14.3345 13.7279 14.3996 13.5337 14.3996 13.3324V8.66575H13.1996V13.0658H2.79961V2.93242ZM10.3282 4.79347L13.3388 1.78291L14.1873 2.63145L11.1771 5.64165H13.6654V6.84165H9.72817H9.12817V6.24165V2.30507H10.3282V4.79347ZM6.59966 5.57339H3.99966V6.77339H6.59966V5.57339ZM3.99966 8.17324H7.79966V9.37324H3.99966V8.17324ZM9.99966 10.7731H3.99966V11.9731H9.99966V10.7731Z"/>
+      </svg>
+    )
+  });
+
+  DataAcquisitionLine16.displayName = 'DataAcquisitionLine16';
+
+  export default DataAcquisitionLine16

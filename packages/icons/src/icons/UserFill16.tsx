@@ -1,0 +1,16 @@
+import React, { ForwardedRef, SVGProps } from 'react';
+
+  const UserFill16 = React.forwardRef(({color = 'currentColor', size= 16, ...otherProps}: {
+    color?: string;
+    size?: number | string;
+  } & SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>) => {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill={color} {...otherProps} ref={ref}>
+        <path d="M8.125 1C10.105 1 11.7101 2.60004 11.7101 4.57343C11.7101 6.54734 10.105 8.14738 8.125 8.14738C6.14499 8.14738 4.53994 6.54734 4.53994 4.57343C4.53994 2.59953 6.14549 1 8.125 1ZM8.125 1C10.105 1 11.7101 2.60004 11.7101 4.57343C11.7101 6.54734 10.105 8.14738 8.125 8.14738C6.14499 8.14738 4.53994 6.54734 4.53994 4.57343C4.53994 2.59953 6.14549 1 8.125 1ZM6.63093 9.04359L8.125 10.3385L9.61907 9.04359C12.1769 9.04359 14.25 11.1098 14.25 13.6596V13.9569C14.25 14.9617 12.1764 15 9.61907 15H6.63093C4.07312 15 2 14.9985 2 13.9569V13.6596C2 11.1098 4.07312 9.04359 6.63093 9.04359Z"/>
+      </svg>
+    )
+  });
+
+  UserFill16.displayName = 'UserFill16';
+
+  export default UserFill16

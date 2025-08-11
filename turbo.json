@@ -1,0 +1,44 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "storybook-static"]
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "git-publish": {},
+    "release": {
+      "dependsOn": ["build", "^release"],
+      "outputMode": "new-only"
+    },
+    "i18n:scanner": {},
+    "test": {
+      "dependsOn": ["build"]
+    },
+    "ut:watch": {
+      "cache": false
+    },
+    "ut:coverage": {
+      "cache": false
+    },
+    "test-storybook": {
+      "cache": false
+    },
+    "test-storybook:ci": {
+      "cache": false
+    },
+    "cp:vt-actual": {
+      "cache": false
+    },
+    "test-storybook:update": {
+      "cache": false
+    },
+    "reg-cli": {},
+    "build-storybook": {}
+  }
+}
