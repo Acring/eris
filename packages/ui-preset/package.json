@@ -1,6 +1,6 @@
 {
   "name": "@xsky/eris-ui-preset",
-  "version": "1.17.1",
+  "version": "1.18.1",
   "description": "Eris UI preset",
   "scripts": {
     "dev": "tsup --watch",
