@@ -856,7 +856,6 @@ describe('DataTable', () => {
       render(
         <DataTable
           data={mockData}
-          fields={mockFields}
           expandable={{
             expandedRowRender: (parentRow) => {
               return (
@@ -877,6 +876,7 @@ describe('DataTable', () => {
               return parentRow.id !== 3;
             },
           }}
+          fields={mockFields}
         />,
       );
       return Promise.resolve();

@@ -1,48 +1,75 @@
-export const components = {
+export const components = (theme: (path?: string, defaultValue?: unknown) => any) => ({
   // button ring and shadow
   '.component-ring-primary': {
-    '@apply focus-visible:shadow-interactive-primary-focus active:shadow-interactive-primary-active':
-      {},
+    '&:focus-visible': {
+      'box-shadow': theme('boxShadow.interactive-primary-focus'),
+    },
+    '&:active': {
+      'box-shadow': theme('boxShadow.interactive-primary-active'),
+    },
   },
   '.component-border-primary': {
-    '@apply hover:border-form-border-default-hover focus-visible:border-form-border-default-focus active:border-form-border-default-active':
-      {},
+    '&:hover': {
+      'border-color': theme('colors.form-border-default-hover'),
+    },
+    '&:focus-visible': {
+      'border-color': theme('colors.form-border-default-focus'),
+    },
+    '&:active': {
+      'border-color': theme('colors.form-border-default-active'),
+    },
   },
   '.component-ring-danger': {
-    '@apply focus-visible:shadow-interactive-danger-focus active:shadow-interactive-danger-active':
-      {},
+    '&:focus-visible': {
+      'box-shadow': theme('boxShadow.interactive-danger-focus'),
+    },
+    '&:active': {
+      'box-shadow': theme('boxShadow.interactive-danger-active'),
+    },
   },
   '.component-border-danger': {
-    '@apply hover:border-form-border-danger-hover focus-visible:border-form-border-danger-focus active:border-form-border-danger-active':
-      {},
+    '&:hover': {
+      'border-color': theme('colors.form-border-danger-hover'),
+    },
+    '&:focus-visible': {
+      'border-color': theme('colors.form-border-danger-focus'),
+    },
+    '&:active': {
+      'border-color': theme('colors.form-border-danger-active'),
+    },
   },
   '.component-ring-none': {
-    '@apply focus-visible:!shadow-none active:!shadow-none aria-expanded:!shadow-none': {},
+    '&:focus-visible': { 'box-shadow': 'none !important' },
+    '&:active': { 'box-shadow': 'none !important' },
+    '&[aria-expanded="true"]': { 'box-shadow': 'none !important' },
   },
   '.component-border-none': {
-    '@apply !border-none hover:!border-none focus-visible:!border-none active:!border-none aria-expanded:!border-none':
-      {},
+    border: 'none !important',
+    '&:hover': { border: 'none !important' },
+    '&:focus-visible': { border: 'none !important' },
+    '&:active': { border: 'none !important' },
+    '&[aria-expanded="true"]': { border: 'none !important' },
   },
   // tooltip
   ".tooltip-content[data-side='top']": {
     transform: 'scale(0)',
     'transform-origin': '50% 100%',
-    '@apply animate-scaleAndFaceTooltip': {},
+    animation: theme('animation.scaleAndFaceTooltip'),
   },
   ".tooltip-content[data-side='bottom']": {
     transform: 'scale(0)',
     'transform-origin': '50% 0%',
-    '@apply animate-scaleAndFaceTooltip': {},
+    animation: theme('animation.scaleAndFaceTooltip'),
   },
   ".tooltip-content[data-side='right']": {
     transform: 'scale(0)',
     'transform-origin': '0% 50%',
-    '@apply animate-scaleAndFaceTooltip': {},
+    animation: theme('animation.scaleAndFaceTooltip'),
   },
   ".tooltip-content[data-side='left']": {
     transform: 'scale(0)',
     'transform-origin': '100% 50%',
-    '@apply animate-scaleAndFaceTooltip': {},
+    animation: theme('animation.scaleAndFaceTooltip'),
   },
   // scrollbar
   '.no-scrollbar::-webkit-scrollbar': {
@@ -50,46 +77,47 @@ export const components = {
   },
   // popover
   ".popover-content[data-side='top']": {
-    '@apply animate-slideDownAndFade': {},
+    animation: theme('animation.slideDownAndFade'),
   },
   ".popover-content[data-side='bottom']": {
-    '@apply animate-slideUpAndFade': {},
+    animation: theme('animation.slideUpAndFade'),
   },
   ".popover-content[data-side='right']": {
-    '@apply animate-slideLeftAndFade': {},
+    animation: theme('animation.slideLeftAndFade'),
   },
   ".popover-content[data-side='left']": {
-    '@apply animate-slideRightAndFade': {},
+    animation: theme('animation.slideRightAndFade'),
   },
   // message
   '.message-container-middle .message-enter': {
-    '@apply animate-slideDownAndFade': {},
+    animation: theme('animation.slideDownAndFade'),
   },
   '.message-container-middle .message-exit': {
-    '@apply animate-slideUpAndHidden': {},
+    animation: theme('animation.slideUpAndHidden'),
   },
   '.message-container-left .message-enter': {
-    '@apply animate-slideRightAndFade': {},
+    animation: theme('animation.slideRightAndFade'),
   },
   '.message-container-left .message-exit': {
-    '@apply animate-slideLeftAndHidden': {},
+    animation: theme('animation.slideLeftAndHidden'),
   },
   '.message-container-right .message-enter': {
-    '@apply animate-slideLeftAndFade': {},
+    animation: theme('animation.slideLeftAndFade'),
   },
   '.message-container-right .message-exit': {
-    '@apply animate-slideRightAndHidden': {},
+    animation: theme('animation.slideRightAndHidden'),
   },
   // notification
   '.notification-enter': {
-    '@apply animate-slideDownAndFade': {},
+    animation: theme('animation.slideDownAndFade'),
   },
   '.notification-exit': {
-    '@apply animate-hidden': {},
+    animation: theme('animation.hidden'),
   },
-  // day-cell
-  '.day-cell .day-range-middle': {
-    '@apply group-aria-selected:bg-primary-bg group-aria-selected:text-text-1': {},
+  // day-cell (group aria-selected)
+  '.group[aria-selected="true"] .day-cell .day-range-middle': {
+    'background-color': theme('colors.primary-bg'),
+    color: theme('colors.text-1'),
   },
   // background
   '.background-ease-in': {
@@ -104,4 +132,4 @@ export const components = {
   '.drawer-extra-operation-left': {
     left: 'calc(100% + 8px)',
   },
-};
+});

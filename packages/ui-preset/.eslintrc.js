@@ -1,6 +1,6 @@
 /* eslint-env node */
 module.exports = {
-  extends: ['@xsky/eris-eslint-config-ui/library'],
+  extends: [require.resolve('@xsky/eris-eslint-config-ui/library')],
   rules: {
     'no-console': 0,
   },

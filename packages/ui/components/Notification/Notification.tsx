@@ -64,14 +64,17 @@ export type NotificationProps = Omit<HTMLAttributes<HTMLDivElement>, 'title'> & 
  * 用于主动向用户发出系统通知消息
  */
 const Notification = forwardRef<HTMLDivElement, NotificationProps>(
-  ({
-    title,
-    description = undefined,
-    truncateDescription = true,
-    type = 'info',
-    onClose = function () {},
-    ...rest
-  }) => {
+  (
+    {
+      title,
+      description = undefined,
+      truncateDescription = true,
+      type = 'info',
+      onClose = function () {},
+      ...rest
+    },
+    ref,
+  ) => {
     const itemVar = VARIANTS[type];
     return (
       <div
@@ -80,6 +83,7 @@ const Notification = forwardRef<HTMLDivElement, NotificationProps>(
           itemVar.base,
         )}
         data-testid="Notification-root"
+        ref={ref}
         {...rest}
       >
         <div className="flex gap-1">

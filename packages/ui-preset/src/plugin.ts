@@ -8,7 +8,7 @@ export default plugin(
   function medusaUi({ addBase, addComponents, config, theme }) {
     const [darkMode, className = '.dark'] = ([] as string[]).concat(config('darkMode', 'media'));
 
-    addComponents(components);
+    addComponents(components(theme));
 
     addBase({
       html: {

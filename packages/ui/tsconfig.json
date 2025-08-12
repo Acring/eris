@@ -19,7 +19,8 @@
     "paths": {
       "@/components/*": ["./components/*"],
       "@/lib/*": ["./lib/*"],
-      "@/i18n/*": ["./i18n/*"]
+      "@/i18n/*": ["./i18n/*"],
+      "@/test/*": ["./test/*"]
     },
     "types": ["cypress"]
   },
@@ -28,6 +29,8 @@
     ".eslintrc.js",
     "./components/**/*",
     "./lib/**/*",
+    "./test/**/*",
+    "./i18n/**/*",
     "custom.d.ts",
     "setup.ts",
     "ConfigProvider.tsx"
