@@ -24,7 +24,7 @@ export default function SiteHeader() {
             </div>
           </div>
         </Link>
-        <div className="flex items-center gap-2 whitespace-nowrap">
+        <div className="flex items-center gap-3 whitespace-nowrap">
           <Link href="/themes/overview">
             <div
               className={cn('hover:text-primary-hover', {
@@ -49,23 +49,6 @@ export default function SiteHeader() {
             href="/components"
           >
             组件
-          </Link>
-          <Link
-            className={cn('hover:text-primary-hover', {
-              'text-primary-normal': pathname.includes('/usage'),
-            })}
-            href="/usage"
-          >
-            使用情况
-          </Link>
-          <Link
-            href="https://xskydata.feishu.cn/share/base/form/shrcnKvi0JD68IdCCbWZdSP9p1b"
-            target="_blank"
-          >
-            🐞 bug提交
-          </Link>
-          <Link href="http://10.16.180.148:3001" target="_blank">
-            业务组件
           </Link>
 
           <div className="relative" onClick={() => {}}>

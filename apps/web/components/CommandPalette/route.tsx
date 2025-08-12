@@ -410,13 +410,7 @@ export const routes: Route[] = [
     keywords: ['usage', '使用情况', 'shiyongqingkuang'],
     group: GroupType.other,
   },
-  {
-    name: 'bug 提交',
-    path: 'https://xskydata.feishu.cn/share/base/form/shrcnKvi0JD68IdCCbWZdSP9p1b',
-    keywords: ['bug report', 'bug 提交', 'bugtijiao'],
-    group: GroupType.other,
-    icon: <Code />,
-  },
+
   {
     name: '业务组件',
     path: 'http://10.16.180.148:3001',

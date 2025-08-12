@@ -1,4 +1,4 @@
-# 在 Nextjs 中使用 Eris UI
+# 在 Vite 中使用 Eris UI
 
 ## 使用
 
@@ -42,24 +42,48 @@ pnpm add @xsky/eris-ui @xsky/eris-ui-preset @xsky/eris-icons
 public-hoist-pattern[]=*@xsky/*
 ```
 
+#### Vite 配置优化
 
-### 配置 next.config.js 
-- transpilePackages (包转译)，解决 assets 引入图片问题
-- optimizePackageImports (包优化)
+在 `vite.config.js` 中添加优化配置：
 
-```ts
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  transpilePackages: ['@xsky/eris-ui'],
-  experimental: {
-    optimizePackageImports: ['@xsky/eris-ui'],
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  optimizeDeps: {
+    include: [
+      '@xsky/eris-ui',
+      '@xsky/eris-icons',
+      '@xsky/eris-ui-preset',
+      'big.js',
+      'lodash',
+      'buffer',
+      'assert',
+    ],
+    esbuildOptions: {
+      target: 'esnext',
+    },
   },
+  ssr: {
+    // 强制内联打包以避免 Node 直接以 CJS 方式加载其 ESM 构建
+    noExternal: [
+      '@xsky/eris-ui',
+      '@xsky/eris-ui-preset',
+      '@xsky/eris-icons',
+      'big.js',
+      'lodash',
+      'buffer',
+      'assert',
+    ],
+  },
+})
 ```
+
 
 ### 使用组件
 
 ```ts
 import { Button, Input } from '@xsky/eris-ui';
 ```
-

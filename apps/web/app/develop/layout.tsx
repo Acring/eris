@@ -22,11 +22,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   value: 'introduction',
                   path: '/develop/introduction',
                 },
-                {
-                  name: ' 更新日志 ',
-                  value: 'changelog',
-                  path: '/develop/changelog',
-                },
+                // {
+                //   name: ' 更新日志 ',
+                //   value: 'changelog',
+                //   path: '/develop/changelog',
+                // },
               ],
             },
             {
@@ -40,14 +40,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   path: '/develop/quick-start',
                 },
                 {
-                  name: ' 在 create-react-app 中使用 ',
-                  value: 'create-react-app',
-                  path: '/develop/create-react-app',
-                },
-                {
                   name: ' 在 Next.js 中使用 ',
                   value: 'nextjs',
                   path: '/develop/nextjs',
+                },
+                {
+                  name: ' 在 Vite 中使用 ',
+                  value: 'vite',
+                  path: '/develop/vite',
                 },
                 {
                   name: ' 样式系统 ',
