@@ -16,7 +16,8 @@
     "test-storybook:update": "npx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"yarn build-storybook && npx http-server storybook-static --port 6006 --silent\" \"npx wait-on tcp:6006 && yarn test-storybook --updateSnapshot\"",
     "start-playwright": "bash ./vt-test.sh",
     "test-storybook:ci": "npx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"npx http-server storybook-static --port 6006 --silent\" \"npx wait-on tcp:6006 && yarn test-storybook\"",
-    "reg-cli": "reg-cli ./__snapshots__/actual ./__snapshots__/base ./__snapshots__/diff -R ./report/visual-report.html -J ./report/reg.json -I -M 0.05"
+    "reg-cli": "reg-cli ./__snapshots__/actual ./__snapshots__/base ./__snapshots__/diff -R ./report/visual-report.html -J ./report/reg.json -I -M 0.05",
+    "extract-storybook-docs": "../../node_modules/.bin/storybook-llms-extractor --distPath storybook-static"
   },
   "dependencies": {
     "@types/highlight-words-core": "^1.2.3",

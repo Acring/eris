@@ -23,8 +23,7 @@
     "i18n:scanner": "turbo run i18n:scanner --filter @xsky/eris-ui",
     "release": "dotenv -- turbo release --concurrency=1",
     "postinstall": "yarn prepare",
-    "publish:changed": "node ./scripts/publish-changed.js",
-    "extract-storybook-docs": "storybook-llms-extractor --distPath apps/storybook/storybook-static"
+    "publish:changed": "node ./scripts/publish-changed.js"
   },
   "dependencies": {
     "@acring/storybook-llms-extractor": "0.0.0",
