@@ -45,8 +45,9 @@ jobs:
 
       - name: Build Storybook
         run: |
-          yarn build-storybook
-          ls -la apps/storybook/storybook-static/
+          cd apps/storybook
+          turbo run build
+          ls -la storybook-static/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
