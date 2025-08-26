@@ -6,6 +6,7 @@
     "dev": "yarn storybook",
     "build": "yarn build-storybook && yarn extract-storybook-docs",
     "start": "next start",
+    "start:storybook": "npx http-server storybook-static --port 6006 --silent",
     "lint": "next lint",
     "test": "yarn test-storybook:ci",
     "storybook": "storybook dev -p 6006",
