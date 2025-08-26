@@ -19,9 +19,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@acring/storybook-llms-extractor@npm:0.0.0":
-  version: 0.0.0
-  resolution: "@acring/storybook-llms-extractor@npm:0.0.0"
+"@acring/storybook-llms-extractor@npm:0.0.1":
+  version: 0.0.1
+  resolution: "@acring/storybook-llms-extractor@npm:0.0.1"
   dependencies:
     "@swc/helpers": ^0.5.1
     playwright: ^1.49.1
@@ -31,7 +31,7 @@ __metadata:
     yargs: ^17.7.2
   bin:
     storybook-llms-extractor: bin/storybook-llms-extractor.js
-  checksum: be477ba3c054d59cc11487f406e1019154857dee2b0c0665928160818202dc3a86136e2a5aacbcc3c72b46a3160f0a8d24c69ec83194f25295d8f6d4a20c159c
+  checksum: 22bfc9aa41ad705b0cb73bca18b1e67b2df0af47e0178b74d3ac4de3ae14cddb200420a7f5a883df70208c4923f66820a304151c7a383d81f5913c6816f3ed18
   languageName: node
   linkType: hard
 
@@ -11438,7 +11438,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "eris@workspace:."
   dependencies:
-    "@acring/storybook-llms-extractor": 0.0.0
+    "@acring/storybook-llms-extractor": 0.0.1
     "@b12k/mvm": 0.0.10
     "@commitlint/cli": ^17.6.7
     "@commitlint/config-conventional": ^17.6.7
