@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "yarn storybook",
-    "build": "yarn build-storybook",
+    "build": "yarn build-storybook && yarn extract-storybook-docs",
     "start": "next start",
     "lint": "next lint",
     "test": "yarn test-storybook:ci",
