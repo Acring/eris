@@ -318,32 +318,33 @@ export const WithParentPath: TreeSelectStory = {
   ),
 };
 
-const CustomPortalStory = () => {
-  const [container, setContainer] = React.useState<HTMLElement | null>(null);
-
-  return (
-    <div className="space-y-4">
-      <div>
-        <div className="mb-2 text-sm text-gray-500">默认挂载到 body</div>
-        <TreeSelect treeData={treeData} />
-      </div>
-
-      <div>
-        <div
-          ref={(el) => setContainer(el)}
-          className="relative border-2 border-dashed border-blue-300 p-4 overflow-hidden h-[200px]"
-        >
-          <div className="mb-2 text-sm text-blue-500">这是自定义的 Portal 容器</div>
-          <TreeSelect portalContainer={container} treeData={treeData} />
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export const CustomPortal: StoryObj<typeof TreeSelect> = {
   name: '自定义挂载节点',
-  render: () => <CustomPortalStory />,
+  render: () => {
+    const CustomPortalStory = () => {
+      const [container, setContainer] = React.useState<HTMLElement | null>(null);
+
+      return (
+        <div className="space-y-4">
+          <div>
+            <div className="mb-2 text-sm text-gray-500">默认挂载到 body</div>
+            <TreeSelect treeData={treeData} />
+          </div>
+
+          <div>
+            <div
+              ref={(el) => setContainer(el)}
+              className="relative border-2 border-dashed border-blue-300 p-4 overflow-hidden h-[200px]"
+            >
+              <div className="mb-2 text-sm text-blue-500">这是自定义的 Portal 容器</div>
+              <TreeSelect portalContainer={container} treeData={treeData} />
+            </div>
+          </div>
+        </div>
+      );
+    };
+    return <CustomPortalStory />;
+  },
   parameters: {
     docs: {
       description: {
@@ -353,19 +354,20 @@ export const CustomPortal: StoryObj<typeof TreeSelect> = {
   },
 };
 
-function OnBlurStory(args: React.ComponentProps<typeof TreeSelect>) {
-  return (
-    <TreeSelect
-      {...args}
-      treeData={treeData}
-      onChange={(value) => console.log('onChange', value)}
-      onBlur={() => console.log('onBlur')}
-      className="w-[300px]"
-    />
-  );
-}
-
 export const OnBlur: TreeSelectStory = {
   name: 'onBlur',
-  render: (args) => <OnBlurStory {...args} />,
+  render: (args) => {
+    function OnBlurStory(args: React.ComponentProps<typeof TreeSelect>) {
+      return (
+        <TreeSelect
+          {...args}
+          treeData={treeData}
+          onChange={(value) => console.log('onChange', value)}
+          onBlur={() => console.log('onBlur')}
+          className="w-[300px]"
+        />
+      );
+    }
+    return <OnBlurStory {...args} />;
+  },
 };

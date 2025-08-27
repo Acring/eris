@@ -77,11 +77,15 @@ export default {
       description: '输入框后面的后缀',
     },
     onChange: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '选项变化的回调函数。',
     },
     onStep: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '上下箭变化的回调函数。',
     },
     hideControl: {
@@ -125,26 +129,6 @@ export const WithDefaultValue: Story = {
     defaultValue: 10,
   },
 };
-const WithMaxInputNumber: Story['render'] = (args) => {
-  const [max, setMax] = useState(100);
-
-  const handleChange = (value: number | null | undefined) => {
-    console.log('🦄  value:', value);
-  };
-
-  return (
-    <>
-      <button
-        onClick={() => {
-          setMax(max - 1);
-        }}
-      >
-        设置最大值
-      </button>
-      <InputNumber max={max} defaultValue={10} onChange={handleChange} />
-    </>
-  );
-};
 
 export const WithMaxAndMin: Story = {
   args: {
@@ -157,7 +141,29 @@ export const WithMaxAndMin: Story = {
 };
 
 export const WithMaxChange: Story = {
-  render: () => <WithMaxInputNumber />,
+  render: () => {
+    const WithMaxInputNumber: Story['render'] = (args) => {
+      const [max, setMax] = useState(100);
+
+      const handleChange = (value: number | null | undefined) => {
+        console.log('🦄  value:', value);
+      };
+
+      return (
+        <>
+          <button
+            onClick={() => {
+              setMax(max - 1);
+            }}
+          >
+            设置最大值
+          </button>
+          <InputNumber max={max} defaultValue={10} onChange={handleChange} />
+        </>
+      );
+    };
+    return <WithMaxInputNumber />;
+  },
 };
 
 export const WithoutDecimal: Story = {
@@ -173,95 +179,55 @@ export const Step: Story = {
   },
 };
 
-const InputNumberWithStartAdornment: Story['render'] = (args) => {
-  const [value, setValue] = useState('读');
-  const [open, setOpen] = useState(false);
-
-  const startAdornment = (
-    <div className="flex items-center">
-      <Dropdown
-        label={
-          <Button
-            onClick={() => {
-              setOpen(!open);
-            }}
-            type="text"
-            className="h-[22px] w-[36px] pr-[12px] text-center"
-          >
-            {value}
-            <span className="p-[2px]">{open ? <UpLine12 /> : <DownLine12 />}</span>
-          </Button>
-        }
-        open={open}
-        menuList={[
-          { label: '读', key: 'read' },
-          { label: '写', key: 'write' },
-        ]}
-        onMenuClick={(menuItem) => {
-          menuItem.key && setValue(menuItem.label as string);
-          setOpen(!open);
-        }}
-      />
-    </div>
-  );
-  return (
-    <div className="flex w-[200px] flex-col gap-1">
-      <InputNumber
-        {...args}
-        startAdornment={startAdornment}
-        endAdornment={<p className="text-body text-text-2">MiB</p>}
-      />
-    </div>
-  );
-};
-
-const InputNumberWithEndAdornment: Story['render'] = (args) => {
-  const [value, setValue] = useState('MiB');
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="flex w-[200px] flex-col gap-1">
-      <InputNumber {...args} endAdornment={<p className="text-body text-text-2">MiB</p>} />
-      <InputNumber
-        {...args}
-        endAdornment={
-          <div className="flex items-center">
-            <Dropdown
-              label={
-                <Button
-                  onClick={() => {
-                    setOpen(!open);
-                  }}
-                  type="text"
-                  className="h-[22px] w-[50px] pl-[4px] pr-0 text-center"
-                >
-                  {value}
-                  <span className="p-[4px] flex">{open ? <UpLine12 /> : <DownLine12 />}</span>
-                </Button>
-              }
-              open={open}
-              menuList={[
-                { label: 'MiB', key: 'MiB' },
-                { label: 'GiB', key: 'GiB' },
-              ]}
-              onMenuClick={(menuItem) => {
-                menuItem.key && setValue(menuItem.key);
-                setOpen(!open);
-              }}
-            />
-          </div>
-        }
-      />
-    </div>
-  );
-};
-
 export const StartAdornment: Story = {
   args: {
     placeholder: '请输入',
     className: 'w-[220px]',
   },
-  render: (args) => <InputNumberWithStartAdornment {...args} />,
+  render: (args) => {
+    const InputNumberWithStartAdornment: Story['render'] = (args) => {
+      const [value, setValue] = useState('读');
+      const [open, setOpen] = useState(false);
+
+      const startAdornment = (
+        <div className="flex items-center">
+          <Dropdown
+            label={
+              <Button
+                onClick={() => {
+                  setOpen(!open);
+                }}
+                type="text"
+                className="h-[22px] w-[36px] pr-[12px] text-center"
+              >
+                {value}
+                <span className="p-[2px]">{open ? <UpLine12 /> : <DownLine12 />}</span>
+              </Button>
+            }
+            open={open}
+            menuList={[
+              { label: '读', key: 'read' },
+              { label: '写', key: 'write' },
+            ]}
+            onMenuClick={(menuItem) => {
+              menuItem.key && setValue(menuItem.label as string);
+              setOpen(!open);
+            }}
+          />
+        </div>
+      );
+      return (
+        <div className="flex w-[200px] flex-col gap-1">
+          <InputNumber
+            {...args}
+            startAdornment={startAdornment}
+            endAdornment={<p className="text-body text-text-2">MiB</p>}
+          />
+        </div>
+      );
+    };
+    return <InputNumberWithStartAdornment {...args} />;
+  },
 };
 
 export const EndAdornment: Story = {
@@ -269,7 +235,49 @@ export const EndAdornment: Story = {
     placeholder: '请输入',
     className: 'w-[180px]',
   },
-  render: (args) => <InputNumberWithEndAdornment {...args} />,
+  render: (args) => {
+    const InputNumberWithEndAdornment: Story['render'] = (args) => {
+      const [value, setValue] = useState('MiB');
+      const [open, setOpen] = useState(false);
+
+      return (
+        <div className="flex w-[200px] flex-col gap-1">
+          <InputNumber {...args} endAdornment={<p className="text-body text-text-2">MiB</p>} />
+          <InputNumber
+            {...args}
+            endAdornment={
+              <div className="flex items-center">
+                <Dropdown
+                  label={
+                    <Button
+                      onClick={() => {
+                        setOpen(!open);
+                      }}
+                      type="text"
+                      className="h-[22px] w-[50px] pl-[4px] pr-0 text-center"
+                    >
+                      {value}
+                      <span className="p-[4px] flex">{open ? <UpLine12 /> : <DownLine12 />}</span>
+                    </Button>
+                  }
+                  open={open}
+                  menuList={[
+                    { label: 'MiB', key: 'MiB' },
+                    { label: 'GiB', key: 'GiB' },
+                  ]}
+                  onMenuClick={(menuItem) => {
+                    menuItem.key && setValue(menuItem.key);
+                    setOpen(!open);
+                  }}
+                />
+              </div>
+            }
+          />
+        </div>
+      );
+    };
+    return <InputNumberWithEndAdornment {...args} />;
+  },
 };
 
 export const FitContent: Story = {
@@ -282,19 +290,6 @@ export const FitContent: Story = {
   render: (args) => <InputNumber {...args} />,
 };
 
-const ControlledInputWithHook: Story['render'] = (args) => {
-  const [value, setValue] = useState<number | null | undefined>(args.value);
-  return (
-    <div className="flex w-[200px] flex-col gap-1">
-      <p>Controlled</p>
-      <InputNumber {...args} value={value} onChange={(v) => setValue(v)} />
-      <InputNumber {...args} value={value} onChange={(v) => setValue(v)} />
-      <p>UnControlled</p>
-      <InputNumber defaultValue={value} onChange={(v) => setValue(v)} />
-    </div>
-  );
-};
-
 /**
  * 受控 Input
  */
@@ -303,42 +298,21 @@ export const ControlledInput: Story = {
     placeholder: '请输入',
     value: null,
   },
-  render: (args) => <ControlledInputWithHook {...args} />,
-};
-
-const RequiredDemo: Story['render'] = () => {
-  return (
-    <div className="flex flex-col gap-4">
-      <div>
-        <p className="mb-2 text-text-2">默认可为空（required = false）：</p>
-        <InputNumber placeholder="可为空" className="w-[200px]" min={0} max={100} />
-      </div>
-
-      <div>
-        <p className="mb-2 text-text-2">必填（required = true）：</p>
-        <InputNumber
-          placeholder="必填"
-          className="w-[200px]"
-          defaultValue={1}
-          min={0}
-          max={100}
-          required
-        />
-      </div>
-
-      <div>
-        <p className="mb-2 text-text-2">必填且设置最小值（min = 10）：</p>
-        <InputNumber
-          placeholder="失焦后设为最小值"
-          className="w-[200px]"
-          min={10}
-          max={100}
-          defaultValue={1}
-          required
-        />
-      </div>
-    </div>
-  );
+  render: (args) => {
+    const ControlledInputWithHook: Story['render'] = (args) => {
+      const [value, setValue] = useState<number | null | undefined>(args.value);
+      return (
+        <div className="flex w-[200px] flex-col gap-1">
+          <p>Controlled</p>
+          <InputNumber {...args} value={value} onChange={(v) => setValue(v)} />
+          <InputNumber {...args} value={value} onChange={(v) => setValue(v)} />
+          <p>UnControlled</p>
+          <InputNumber defaultValue={value} onChange={(v) => setValue(v)} />
+        </div>
+      );
+    };
+    return <ControlledInputWithHook {...args} />;
+  },
 };
 
 /**
@@ -346,5 +320,42 @@ const RequiredDemo: Story['render'] = () => {
  * 当 required 为 true 时，如果输入框为空并失焦，将自动设置为最小值（如果设置了 min）或 0。
  */
 export const Required: Story = {
-  render: RequiredDemo,
+  render: () => {
+    const RequiredDemo: Story['render'] = () => {
+      return (
+        <div className="flex flex-col gap-4">
+          <div>
+            <p className="mb-2 text-text-2">默认可为空（required = false）：</p>
+            <InputNumber placeholder="可为空" className="w-[200px]" min={0} max={100} />
+          </div>
+
+          <div>
+            <p className="mb-2 text-text-2">必填（required = true）：</p>
+            <InputNumber
+              placeholder="必填"
+              className="w-[200px]"
+              defaultValue={1}
+              min={0}
+              max={100}
+              required
+            />
+          </div>
+
+          <div>
+            <p className="mb-2 text-text-2">必填且设置最小值（min = 10）：</p>
+            <InputNumber
+              placeholder="失焦后设为最小值"
+              className="w-[200px]"
+              min={10}
+              max={100}
+              defaultValue={1}
+              required
+            />
+          </div>
+        </div>
+      );
+    };
+
+    return <RequiredDemo />;
+  },
 };

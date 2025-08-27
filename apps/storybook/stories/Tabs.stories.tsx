@@ -316,39 +316,38 @@ export const Scrollable: Story = {
   },
 };
 
-const fullHeightItems = [
-  {
-    key: '1',
-    label: `Tab 1`,
-    children: (
-      <ScrollArea height="100%">
-        <div className="h-[500px]">Content of Tab Pane 1</div>
-      </ScrollArea>
-    ),
-  },
-  {
-    key: '2',
-    label: `Tab 2`,
-    children: (
-      <ScrollArea height="100%">
-        <div className="h-[500px]">Content of Tab Pane 2</div>
-      </ScrollArea>
-    ),
-  },
-  {
-    key: '3',
-    label: `Tab 3`,
-    children: (
-      <ScrollArea height="100%">
-        <div className="h-[500px]">Content of Tab Pane 3</div>
-      </ScrollArea>
-    ),
-    disabled: true,
-  },
-];
-
 export const FullHeight: Story = {
   render: (args) => {
+    const fullHeightItems = [
+      {
+        key: '1',
+        label: `Tab 1`,
+        children: (
+          <ScrollArea height="100%">
+            <div className="h-[500px]">Content of Tab Pane 1</div>
+          </ScrollArea>
+        ),
+      },
+      {
+        key: '2',
+        label: `Tab 2`,
+        children: (
+          <ScrollArea height="100%">
+            <div className="h-[500px]">Content of Tab Pane 2</div>
+          </ScrollArea>
+        ),
+      },
+      {
+        key: '3',
+        label: `Tab 3`,
+        children: (
+          <ScrollArea height="100%">
+            <div className="h-[500px]">Content of Tab Pane 3</div>
+          </ScrollArea>
+        ),
+        disabled: true,
+      },
+    ];
     return (
       <div className="h-[300px] rounded-sm shadow-lg">
         <Tabs {...args} tabs={fullHeightItems} fullHeight />

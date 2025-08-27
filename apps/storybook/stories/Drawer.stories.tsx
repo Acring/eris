@@ -8,7 +8,12 @@ export default {
   tags: ['skip-test'],
   component: Drawer,
   argTypes: {
-    title: { control: 'text', description: '抽屉的标题' },
+    title: {
+      control: {
+        type: 'text',
+      },
+      description: '抽屉的标题',
+    },
     side: {
       control: {
         type: 'inline-radio',
@@ -37,9 +42,24 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    onOpenChange: { control: null, description: '当打开状态发生改变时的回调函数' },
-    onCancel: { control: null, description: '取消按钮点击时的回调函数' },
-    onOk: { control: null, description: '确认按钮点击时的回调函数' },
+    onOpenChange: {
+      control: {
+        type: 'object',
+      },
+      description: '当打开状态发生改变时的回调函数',
+    },
+    onCancel: {
+      control: {
+        type: 'object',
+      },
+      description: '取消按钮点击时的回调函数',
+    },
+    onOk: {
+      control: {
+        type: 'object',
+      },
+      description: '确认按钮点击时的回调函数',
+    },
     mask: {
       control: {
         type: 'boolean',
@@ -60,7 +80,12 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    closeIcon: { control: null, description: '自定义关闭图标元素' },
+    closeIcon: {
+      control: {
+        type: 'object',
+      },
+      description: '自定义关闭图标元素',
+    },
     showCloseIcon: {
       control: {
         type: 'boolean',
@@ -71,14 +96,54 @@ export default {
         defaultValue: { summary: 'true' },
       },
     },
-    okText: { control: 'text', description: '确认按钮的文本' },
-    okType: { control: 'text', description: '确认按钮的类型' },
-    okButtonProps: { control: null, description: '确认按钮的额外属性' },
-    cancelText: { control: 'text', description: '取消按钮的文本' },
-    cancelType: { control: 'text', description: '取消按钮的类型' },
-    cancelButtonProps: { control: null, description: '取消按钮的额外属性' },
-    footer: { control: null, description: '自定义抽屉底部区域' },
-    footerContent: { control: null, description: '抽屉底部内容' },
+    okText: {
+      control: {
+        type: 'text',
+      },
+      description: '确认按钮的文本',
+    },
+    okType: {
+      control: {
+        type: 'text',
+      },
+      description: '确认按钮的类型',
+    },
+    okButtonProps: {
+      control: {
+        type: 'object',
+      },
+      description: '确认按钮的额外属性',
+    },
+    cancelText: {
+      control: {
+        type: 'text',
+      },
+      description: '取消按钮的文本',
+    },
+    cancelType: {
+      control: {
+        type: 'text',
+      },
+      description: '取消按钮的类型',
+    },
+    cancelButtonProps: {
+      control: {
+        type: 'object',
+      },
+      description: '取消按钮的额外属性',
+    },
+    footer: {
+      control: {
+        type: 'object',
+      },
+      description: '自定义抽屉底部区域',
+    },
+    footerContent: {
+      control: {
+        type: 'object',
+      },
+      description: '抽屉底部内容',
+    },
     cancelOnEscapeKeyDown: {
       control: {
         type: 'boolean',
@@ -89,7 +154,12 @@ export default {
         defaultValue: { summary: 'true' },
       },
     },
-    extraOperation: { control: 'text', description: '抽屉的额外操作（需要上下翻页时）' },
+    extraOperation: {
+      control: {
+        type: 'object',
+      },
+      description: '抽屉的额外操作（需要上下翻页时）',
+    },
     classes: {
       description: '抽屉的类名配置',
       table: {
@@ -114,54 +184,8 @@ export default {
   },
 } as Meta;
 
-type DrawerStory = StoryObj<typeof Drawer>;
-
-const DrawerControlled = ({
-  open,
-  onCancel,
-  onOk,
-  children,
-  buttonLabel,
-  ...rest
-}: DrawerProps & { buttonLabel?: string }) => {
-  const [isOpen, setIsOpen] = useState(open || false);
-  const buttonRef = React.useRef<any>(null);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-    onOk?.();
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-    onCancel?.();
-  };
-
-  return (
-    <div>
-      <Button onClick={handleOpen} ref={buttonRef}>
-        {buttonLabel || 'Open Drawer'}
-      </Button>
-      <Drawer
-        open={isOpen}
-        onCancel={handleClose}
-        onOk={handleClose}
-        onClickOutSide={(event) => {
-          if (buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
-            setIsOpen(false);
-          }
-        }}
-        {...rest}
-      >
-        {children || (
-          <div>
-            <p>This is the content of the drawer.</p>
-            <p>You can add any content here.</p>
-          </div>
-        )}
-      </Drawer>
-    </div>
-  );
+type DrawerStory = StoryObj<typeof Drawer> & {
+  [key: string]: any;
 };
 
 export const DefaultDrawer: DrawerStory = {
@@ -181,8 +205,55 @@ export const DefaultDrawer: DrawerStory = {
       </div>
     ),
   },
+  DrawerControlled: ({
+    open,
+    onCancel,
+    onOk,
+    children,
+    buttonLabel,
+    ...rest
+  }: DrawerProps & { buttonLabel?: string }) => {
+    const [isOpen, setIsOpen] = useState(open || false);
+    const buttonRef = React.useRef<any>(null);
+
+    const handleOpen = () => {
+      setIsOpen(true);
+      onOk?.();
+    };
+
+    const handleClose = () => {
+      setIsOpen(false);
+      onCancel?.();
+    };
+
+    return (
+      <div>
+        <Button onClick={handleOpen} ref={buttonRef}>
+          {buttonLabel || 'Open Drawer'}
+        </Button>
+        <Drawer
+          open={isOpen}
+          onCancel={handleClose}
+          onOk={handleClose}
+          onClickOutSide={(event) => {
+            if (buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+              setIsOpen(false);
+            }
+          }}
+          {...rest}
+        >
+          {children || (
+            <div>
+              <p>This is the content of the drawer.</p>
+              <p>You can add any content here.</p>
+            </div>
+          )}
+        </Drawer>
+      </div>
+    );
+  },
   render: (rags) => {
-    return <DrawerControlled {...rags} />;
+    return <DefaultDrawer.DrawerControlled {...rags} />;
   },
 };
 
@@ -204,7 +275,7 @@ export const DrawerWithCustomButtonText: DrawerStory = {
     ),
   },
   render: (rags) => {
-    return <DrawerControlled {...rags} />;
+    return <DefaultDrawer.DrawerControlled {...rags} />;
   },
 };
 
@@ -227,7 +298,7 @@ export const ScrollDrawer: DrawerStory = {
     ),
   },
   render: (rags) => {
-    return <DrawerControlled {...rags} />;
+    return <DefaultDrawer.DrawerControlled {...rags} />;
   },
 };
 
@@ -245,7 +316,7 @@ export const DrawerWithExtraTitle: DrawerStory = {
   render: (rags) => {
     return (
       <div>
-        <DrawerControlled {...rags} />
+        <DefaultDrawer.DrawerControlled {...rags} />
       </div>
     );
   },
@@ -260,7 +331,7 @@ export const DrawerWithoutMask: DrawerStory = {
   render: (rags) => {
     return (
       <div>
-        <DrawerControlled {...rags} />
+        <DefaultDrawer.DrawerControlled {...rags} />
         <input type="text" />
       </div>
     );
@@ -279,7 +350,7 @@ export const DrawerWithoutFooter: DrawerStory = {
     ),
   },
   render: (rags) => {
-    return <DrawerControlled {...rags} />;
+    return <DefaultDrawer.DrawerControlled {...rags} />;
   },
 };
 
@@ -295,7 +366,7 @@ export const DrawerWithCustomFooter: DrawerStory = {
     ),
   },
   render: (rags) => {
-    return <DrawerControlled {...rags} />;
+    return <DefaultDrawer.DrawerControlled {...rags} />;
   },
 };
 
@@ -322,8 +393,8 @@ export const DrawerWithExtraOperation: DrawerStory = {
   render: (rags) => {
     return (
       <div>
-        <DrawerControlled {...rags} />
-        <DrawerControlled {...rags} side="left" buttonLabel="Open Drawer left" />
+        <DefaultDrawer.DrawerControlled {...rags} />
+        <DefaultDrawer.DrawerControlled {...rags} side="left" buttonLabel="Open Drawer left" />
       </div>
     );
   },
@@ -341,7 +412,7 @@ export const DrawerWithoutMaskAndCustomHeight: DrawerStory = {
   render: (rags) => {
     return (
       <div>
-        <DrawerControlled {...rags} />
+        <DefaultDrawer.DrawerControlled {...rags} />
       </div>
     );
   },

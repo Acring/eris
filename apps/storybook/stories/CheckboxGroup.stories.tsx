@@ -27,7 +27,9 @@ const meta: Meta<typeof CheckboxGroup> = {
       },
     },
     onChange: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '选中状态改变时的回调函数。', // 对 onChange 参数的中文描述
       table: {
         type: { summary: 'function' }, // 显示参数类型为函数
@@ -39,20 +41,20 @@ const meta: Meta<typeof CheckboxGroup> = {
       },
       options: ['horizontal', 'vertical'],
       description: '复选框的布局方向。', // 对 direction 参数的中文描述
-      table: {
-        type: { summary: ['horizontal', 'vertical'] }, // 显示参数类型为水平或垂直
-        defaultValue: { summary: 'horizontal' }, // 显示默认值为水平布局
-      },
     },
     options: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '复选框的选项列表。', // 对 options 参数的中文描述
       table: {
         type: { summary: 'CheckboxOption[]' }, // 显示参数类型为 CheckboxOption 数组
       },
     },
     value: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '当前选中的复选框的值列表。', // 对 value 参数的中文描述
       table: {
         type: { summary: 'T[]' }, // 显示参数类型为泛型数组
@@ -61,7 +63,9 @@ const meta: Meta<typeof CheckboxGroup> = {
   },
 };
 
-type Story = StoryObj<typeof CheckboxGroup>;
+type Story = StoryObj<typeof CheckboxGroup> & {
+  [key: string]: any;
+};
 
 const options = [
   { label: 'Apple', value: 'Apple' },
@@ -117,68 +121,67 @@ export const ExtraAndVerticalCheckboxGroup: Story = {
   },
 };
 
-const ContainerGroup = () => {
-  const [checkedList, setCheckedList] = useState<string[]>([]);
-  const onChange = (list: string[]) => {
-    setCheckedList(list);
-  };
-  return (
-    <>
-      <div className="h-[500px] overflow-y-auto">
-        <form>
-          <h4>CheckboxGroup with form</h4>
-          <CheckboxGroup<string>
-            name="fruit"
-            options={[
-              { label: 'Apple', value: 'Apple' },
-              { label: 'Pear disabled', value: 'Pear', disabled: true, tooltip: 'Pear disabled' },
-              { label: 'Orange with tooltip', value: 'Orange', tooltip: 'orange desc' },
-            ]}
-            value={checkedList}
-            onChange={onChange}
-          />
-        </form>
-        <div>
-          <h4>CheckboxGroup vertical</h4>
-          <CheckboxGroup<string>
-            name="fruit"
-            direction="vertical"
-            options={[
-              { label: 'Apple', value: 'Apple' },
-              { label: 'Pear disabled', value: 'Pear', disabled: true, tooltip: 'Pear disabled' },
-              { label: 'Orange with tooltip', value: 'Orange', tooltip: 'orange desc' },
-            ]}
-            value={checkedList}
-            onChange={onChange}
-          />
-        </div>
-        <div>
-          <h4>CheckboxGroup disable</h4>
-          <CheckboxGroup<string>
-            name="fruit"
-            disabled
-            direction="vertical"
-            options={[
-              { label: 'Apple', value: 'Apple' },
-              { label: 'Pear disabled', value: 'Pear', tooltip: 'Pear disabled' },
-              { label: 'Orange with tooltip', value: 'Orange', tooltip: 'orange desc' },
-            ]}
-            value={checkedList}
-            onChange={onChange}
-          />
-        </div>
-        <div>
-          <h4>CheckboxGroup number option</h4>
-          <CheckboxGroup<number> name="numberName" options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
-        </div>
-      </div>
-    </>
-  );
-};
-
 export const CustomCheckboxGroup: Story = {
   args: {},
-  render: () => <ContainerGroup />,
+  ContainerGroup: () => {
+    const [checkedList, setCheckedList] = useState<string[]>([]);
+    const onChange = (list: string[]) => {
+      setCheckedList(list);
+    };
+    return (
+      <>
+        <div className="h-[500px] overflow-y-auto">
+          <form>
+            <h4>CheckboxGroup with form</h4>
+            <CheckboxGroup<string>
+              name="fruit"
+              options={[
+                { label: 'Apple', value: 'Apple' },
+                { label: 'Pear disabled', value: 'Pear', disabled: true, tooltip: 'Pear disabled' },
+                { label: 'Orange with tooltip', value: 'Orange', tooltip: 'orange desc' },
+              ]}
+              value={checkedList}
+              onChange={onChange}
+            />
+          </form>
+          <div>
+            <h4>CheckboxGroup vertical</h4>
+            <CheckboxGroup<string>
+              name="fruit"
+              direction="vertical"
+              options={[
+                { label: 'Apple', value: 'Apple' },
+                { label: 'Pear disabled', value: 'Pear', disabled: true, tooltip: 'Pear disabled' },
+                { label: 'Orange with tooltip', value: 'Orange', tooltip: 'orange desc' },
+              ]}
+              value={checkedList}
+              onChange={onChange}
+            />
+          </div>
+          <div>
+            <h4>CheckboxGroup disable</h4>
+            <CheckboxGroup<string>
+              name="fruit"
+              disabled
+              direction="vertical"
+              options={[
+                { label: 'Apple', value: 'Apple' },
+                { label: 'Pear disabled', value: 'Pear', tooltip: 'Pear disabled' },
+                { label: 'Orange with tooltip', value: 'Orange', tooltip: 'orange desc' },
+              ]}
+              value={checkedList}
+              onChange={onChange}
+            />
+          </div>
+          <div>
+            <h4>CheckboxGroup number option</h4>
+            <CheckboxGroup<number> name="numberName" options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
+          </div>
+        </div>
+      </>
+    );
+  },
+  render: () => <CustomCheckboxGroup.ContainerGroup />,
 };
 
 export const CustomRadioChildren: Story = {

@@ -109,21 +109,6 @@ export const Mini: Story = {
   },
 };
 
-function ShowCountStory(args: any) {
-  const [showCount, setShowCount] = useState(args['showCount']);
-  const [selectedCount, setSelectedCount] = useState(args['selectedCount']);
-
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2">
-        <Switch checked={showCount} onChange={setShowCount}></Switch>
-        <InputNumber value={selectedCount} onChange={setSelectedCount} className="w-[72px]" />
-      </div>
-      <Pagination {...args} showCount={showCount} selectedCount={selectedCount} />
-    </div>
-  );
-}
-
 export const ShowCount: Story = {
   args: {
     selectedCount: 10,
@@ -132,7 +117,23 @@ export const ShowCount: Story = {
     rowsPerPage: 100,
     showCount: false,
   },
-  render: (args) => <ShowCountStory {...args} />,
+  render: (args) => {
+    function ShowCountStory(args: any) {
+      const [showCount, setShowCount] = useState(args['showCount']);
+      const [selectedCount, setSelectedCount] = useState(args['selectedCount']);
+
+      return (
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            <Switch checked={showCount} onChange={setShowCount}></Switch>
+            <InputNumber value={selectedCount} onChange={setSelectedCount} className="w-[72px]" />
+          </div>
+          <Pagination {...args} showCount={showCount} selectedCount={selectedCount} />
+        </div>
+      );
+    }
+    return <ShowCountStory {...args} />;
+  },
 };
 
 export default meta;

@@ -34,39 +34,40 @@ export default {
   },
 };
 
-type ControllerStory = StoryObj<typeof Form.Controller>;
-
-const ControlledInputWithHook: ControllerStory['render'] = (args) => {
-  const defaultValue = {
-    field: '123',
-  };
-  const { control, watch, setValue } = Form.useForm({
-    defaultValues: defaultValue,
-    mode: 'onChange',
-  });
-
-  return (
-    <>
-      <div className="flex">
-        <p>输入值：</p>
-        <p>{watch('field')}</p>
-      </div>
-      <Form.Controller
-        name="field"
-        control={control}
-        render={({ field }) => (
-          <Input
-            {...field}
-            onChange={(value) => {
-              setValue('field', value);
-            }}
-          />
-        )}
-      />
-    </>
-  );
+type ControllerStory = StoryObj<typeof Form.Controller> & {
+  [key: string]: any;
 };
 
 export const BaseController: ControllerStory = {
-  render: (args) => <ControlledInputWithHook {...args} />,
+  ControlledInputWithHook: () => {
+    const defaultValue = {
+      field: '123',
+    };
+    const { control, watch, setValue } = Form.useForm({
+      defaultValues: defaultValue,
+      mode: 'onChange',
+    });
+
+    return (
+      <>
+        <div className="flex">
+          <p>输入值：</p>
+          <p>{watch('field')}</p>
+        </div>
+        <Form.Controller
+          name="field"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              onChange={(value) => {
+                setValue('field', value);
+              }}
+            />
+          )}
+        />
+      </>
+    );
+  },
+  render: (args) => <BaseController.ControlledInputWithHook />,
 };

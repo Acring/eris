@@ -54,7 +54,9 @@ const meta: Meta<typeof IconButton> = {
   },
 };
 
-type Story = StoryObj<typeof IconButton>;
+type Story = StoryObj<typeof IconButton> & {
+  [key: string]: any;
+};
 
 export const Basic: Story = {
   args: {
@@ -155,19 +157,19 @@ export const Color: Story = {
   ),
 };
 
-function ActiveStory() {
-  const [active, setActive] = React.useState(true);
-
-  return (
-    <div className="flex items-start gap-1">
-      <IconButton active={active} onClick={() => setActive(!active)}>
-        <StarFill16></StarFill16>
-      </IconButton>
-    </div>
-  );
-}
 export const Active: Story = {
-  render: () => <ActiveStory></ActiveStory>,
+  ActiveStory: () => {
+    const [active, setActive] = React.useState(true);
+
+    return (
+      <div className="flex items-start gap-1">
+        <IconButton active={active} onClick={() => setActive(!active)}>
+          <StarFill16></StarFill16>
+        </IconButton>
+      </div>
+    );
+  },
+  render: () => <Active.ActiveStory></Active.ActiveStory>,
 };
 
 export default meta;

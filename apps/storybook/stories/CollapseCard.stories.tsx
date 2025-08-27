@@ -9,14 +9,18 @@ export default {
   tags: ['visual-test'],
   argTypes: {
     className: {
-      control: 'text',
+      control: {
+        type: 'text',
+      },
       description: '用于自定义样式的额外CSS类。',
       table: {
         type: { summary: 'string' },
       },
     },
     open: {
-      control: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: '指定折叠面板是否展开。',
       table: {
         type: { summary: 'boolean' },
@@ -24,14 +28,18 @@ export default {
       },
     },
     onOpenChange: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '当展开状态发生变化时的回调函数。',
       table: {
         type: { summary: 'function' },
       },
     },
     defaultOpen: {
-      control: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: '折叠面板的默认展开状态。',
       table: {
         type: { summary: 'boolean' },
@@ -39,21 +47,27 @@ export default {
       },
     },
     title: {
-      control: 'text',
+      control: {
+        type: 'text',
+      },
       description: '折叠面板的标题。',
       table: {
         type: { summary: 'string' },
       },
     },
     rightTitle: {
-      control: 'text',
+      control: {
+        type: 'text',
+      },
       description: '显示在折叠面板右侧的标题。',
       table: {
         type: { summary: 'string' },
       },
     },
     description: {
-      control: 'text',
+      control: {
+        type: 'text',
+      },
       description: '额外的描述或内容。',
       table: {
         type: { summary: 'string' },
@@ -63,30 +77,16 @@ export default {
       description: '折叠面板的内容。',
     },
     tooltip: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '用于提供额外信息的工具提示属性。',
     },
   },
 } as Meta;
 
-type Story = StoryObj<CardCollapseProps>;
-
-const ControlInExternal = () => {
-  const [open, setOpen] = useState(true);
-  const handleOpenChange = (value: boolean) => {
-    setOpen(value);
-    console.log('callback...');
-  };
-  return (
-    <Collapse.Card
-      className={'w-[300px]'}
-      open={open}
-      onOpenChange={handleOpenChange}
-      title={open ? '收起面板' : '展开面板'}
-    >
-      <Content />
-    </Collapse.Card>
-  );
+type Story = StoryObj<CardCollapseProps> & {
+  [key: string]: any;
 };
 
 const Content = () => {
@@ -151,8 +151,25 @@ export const RightTitle: Story = {
 };
 
 export const Control: Story = {
+  ControlInExternal: () => {
+    const [open, setOpen] = useState(true);
+    const handleOpenChange = (value: boolean) => {
+      setOpen(value);
+      console.log('callback...');
+    };
+    return (
+      <Collapse.Card
+        className={'w-[300px]'}
+        open={open}
+        onOpenChange={handleOpenChange}
+        title={open ? '收起面板' : '展开面板'}
+      >
+        <Content />
+      </Collapse.Card>
+    );
+  },
   render: () => {
-    return <ControlInExternal />;
+    return <Control.ControlInExternal />;
   },
 };
 

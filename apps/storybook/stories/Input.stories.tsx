@@ -126,19 +126,6 @@ export const AllowClear: InputStory = {
   ),
 };
 
-const ControlledInputWithHook: InputStory['render'] = (args) => {
-  const [value, setValue] = useState<string | undefined>(undefined);
-  return (
-    <div className="flex w-[200px] flex-col gap-1">
-      <p>Controlled</p>
-      <Input {...args} value={value} onChange={(v) => setValue(v)} />
-      <Input {...args} value={value} onChange={(v) => setValue(v)} />
-      <p>UnControlled</p>
-      <Input defaultValue={value} onChange={(v) => setValue(v)} />
-    </div>
-  );
-};
-
 /**
  * 受控 Input
  */
@@ -147,7 +134,21 @@ export const ControlledInput: InputStory = {
     placeholder: '请输入',
     value: 'value',
   },
-  render: (args) => <ControlledInputWithHook {...args} />,
+  render: (args) => {
+    const ControlledInputWithHook: InputStory['render'] = (args) => {
+      const [value, setValue] = useState<string | undefined>(undefined);
+      return (
+        <div className="flex w-[200px] flex-col gap-1">
+          <p>Controlled</p>
+          <Input {...args} value={value} onChange={(v) => setValue(v)} />
+          <Input {...args} value={value} onChange={(v) => setValue(v)} />
+          <p>UnControlled</p>
+          <Input defaultValue={value} onChange={(v) => setValue(v)} />
+        </div>
+      );
+    };
+    return <ControlledInputWithHook {...args} />;
+  },
 };
 
 /**
@@ -181,25 +182,6 @@ export const WithTooltip: InputStory = {
   ),
 };
 
-const MaxCountStorybook: InputStory['render'] = (args) => {
-  const [value, setValue] = useState('123123123123123123');
-
-  return (
-    <div className="w-[200px]">
-      <p>需要业务根据 value 设置 error</p>
-      <Input
-        {...args}
-        value={value}
-        error={value.length > (args.maxCount ?? 0)}
-        onChange={(value) => setValue(value)}
-      />
-      {value.length > (args.maxCount ?? 0) && (
-        <span className="mt-0-5 text-danger-normal">超过最大长度限制</span>
-      )}
-    </div>
-  );
-};
-
 /**
  * 最大输入长度
  */
@@ -208,7 +190,27 @@ export const MaxCount: InputStory = {
     placeholder: '请输入',
     maxCount: 10,
   },
-  render: (args) => <MaxCountStorybook {...args}></MaxCountStorybook>,
+  render: (args) => {
+    const MaxCountStorybook: InputStory['render'] = (args) => {
+      const [value, setValue] = useState('123123123123123123');
+
+      return (
+        <div className="w-[200px]">
+          <p>需要业务根据 value 设置 error</p>
+          <Input
+            {...args}
+            value={value}
+            error={value.length > (args.maxCount ?? 0)}
+            onChange={(value) => setValue(value)}
+          />
+          {value.length > (args.maxCount ?? 0) && (
+            <span className="mt-0-5 text-danger-normal">超过最大长度限制</span>
+          )}
+        </div>
+      );
+    };
+    return <MaxCountStorybook {...args} />;
+  },
 };
 
 /**
@@ -253,23 +255,6 @@ export const FitContent: InputStory = {
   render: (args) => <Input {...args} />,
 };
 
-function ForwardRefInput(props: InputStory['args']) {
-  const ref = React.useRef<HTMLInputElement>(null);
-
-  return (
-    <div className="flex flex-col items-start gap-1">
-      <Button
-        onClick={() => {
-          ref.current?.focus();
-        }}
-      >
-        聚焦
-      </Button>
-      <Input {...props} ref={ref} />
-    </div>
-  );
-}
-
 /**
  * 外部控制
  */
@@ -278,7 +263,25 @@ export const ForwardRef: InputStory = {
     placeholder: '请输入',
     size: 'sm',
   },
-  render: (args) => <ForwardRefInput {...args} />,
+  render: (args) => {
+    function ForwardRefInput(props: InputStory['args']) {
+      const ref = React.useRef<HTMLInputElement>(null);
+
+      return (
+        <div className="flex flex-col items-start gap-1">
+          <Button
+            onClick={() => {
+              ref.current?.focus();
+            }}
+          >
+            聚焦
+          </Button>
+          <Input {...props} ref={ref} />
+        </div>
+      );
+    }
+    return <ForwardRefInput {...args} />;
+  },
 };
 
 /**

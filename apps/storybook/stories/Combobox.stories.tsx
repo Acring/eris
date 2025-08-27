@@ -130,7 +130,9 @@ const meta: Meta<typeof Combobox> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Combobox>;
+type Story = StoryObj<typeof Combobox> & {
+  [key: string]: any;
+};
 
 const FRAMEWORKS: ComboboxOption[] = [
   {
@@ -364,51 +366,6 @@ export const Basic: Story = {
   ),
 };
 
-/**
- * 受控的展开状态
- */
-function ControlledOpenStory(args: React.ComponentProps<typeof Combobox>) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = useState<string[]>([]);
-  const ref = useRef<ComboboxRef>(null);
-
-  return (
-    <div className="space-y-4">
-      <Combobox
-        {...args}
-        ref={ref}
-        className="w-[300px]"
-        defaultOptions={FRAMEWORKS}
-        onChange={(newValue) => setValue(newValue as string[])}
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        value={value}
-      />
-      <div className="space-x-2">
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={() => setIsOpen(true)}
-        >
-          打开
-        </button>
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={() => setIsOpen(false)}
-        >
-          关闭
-        </button>
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={() => ref.current?.focus()}
-        >
-          聚焦
-        </button>
-      </div>
-      <div>当前状态: {isOpen ? '展开' : '收起'}</div>
-    </div>
-  );
-}
-
 export const ControlledOpen: Story = {
   name: '受控的展开状态',
   parameters: {
@@ -418,7 +375,51 @@ export const ControlledOpen: Story = {
       },
     },
   },
-  render: (args) => <ControlledOpenStory {...args} />,
+  /**
+   * 受控的展开状态
+   */
+  ControlledOpenStory: (args: React.ComponentProps<typeof Combobox>) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [value, setValue] = useState<string[]>([]);
+    const ref = useRef<ComboboxRef>(null);
+
+    return (
+      <div className="space-y-4">
+        <Combobox
+          {...args}
+          ref={ref}
+          className="w-[300px]"
+          defaultOptions={FRAMEWORKS}
+          onChange={(newValue) => setValue(newValue as string[])}
+          open={isOpen}
+          onOpenChange={setIsOpen}
+          value={value}
+        />
+        <div className="space-x-2">
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded"
+            onClick={() => setIsOpen(true)}
+          >
+            打开
+          </button>
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded"
+            onClick={() => setIsOpen(false)}
+          >
+            关闭
+          </button>
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded"
+            onClick={() => ref.current?.focus()}
+          >
+            聚焦
+          </button>
+        </div>
+        <div>当前状态: {isOpen ? '展开' : '收起'}</div>
+      </div>
+    );
+  },
+  render: (args) => <ControlledOpen.ControlledOpenStory {...args} />,
 };
 
 /**
@@ -480,28 +481,6 @@ export const Multiple: Story = {
   ),
 };
 
-/**
- * 受控的单选模式
- */
-function ControlledSingleStory(args: React.ComponentProps<typeof Combobox>) {
-  const [value, setValue] = useState<string | undefined>();
-
-  return (
-    <div className="space-y-4">
-      <Combobox
-        {...args}
-        className="w-[300px]"
-        defaultOptions={FRAMEWORKS}
-        multiple={false}
-        placeholder="请选择"
-        onChange={(newValue) => setValue(newValue as string | undefined)}
-        value={value}
-      />
-      <div>当前选中值: {value}</div>
-    </div>
-  );
-}
-
 export const ControlledSingle: Story = {
   name: '受控的单选模式',
   parameters: {
@@ -511,29 +490,29 @@ export const ControlledSingle: Story = {
       },
     },
   },
-  render: (args) => <ControlledSingleStory {...args} />,
+  /**
+   * 受控的单选模式
+   */
+  ControlledSingleStory: (args: React.ComponentProps<typeof Combobox>) => {
+    const [value, setValue] = useState<string | undefined>();
+
+    return (
+      <div className="space-y-4">
+        <Combobox
+          {...args}
+          className="w-[300px]"
+          defaultOptions={FRAMEWORKS}
+          multiple={false}
+          placeholder="请选择"
+          onChange={(newValue) => setValue(newValue as string | undefined)}
+          value={value}
+        />
+        <div>当前选中值: {value}</div>
+      </div>
+    );
+  },
+  render: (args) => <ControlledSingle.ControlledSingleStory {...args} />,
 };
-
-/**
- * 受控的多选模式
- */
-function ControlledMultipleStory(args: React.ComponentProps<typeof Combobox>) {
-  const [value, setValue] = useState<string[]>([]);
-
-  return (
-    <div className="space-y-4">
-      <Combobox
-        {...args}
-        className="w-[300px]"
-        options={FRAMEWORKS}
-        multiple={true}
-        onChange={(newValue) => setValue(newValue as string[])}
-        value={value}
-      />
-      <div>当前选中值: {value.join(', ')}</div>
-    </div>
-  );
-}
 
 export const ControlledMultiple: Story = {
   name: '受控的多选模式',
@@ -544,7 +523,27 @@ export const ControlledMultiple: Story = {
       },
     },
   },
-  render: (args) => <ControlledMultipleStory {...args} />,
+  /**
+   * 受控的多选模式
+   */
+  ControlledMultipleStory: (args: React.ComponentProps<typeof Combobox>) => {
+    const [value, setValue] = useState<string[]>([]);
+
+    return (
+      <div className="space-y-4">
+        <Combobox
+          {...args}
+          className="w-[300px]"
+          options={FRAMEWORKS}
+          multiple={true}
+          onChange={(newValue) => setValue(newValue as string[])}
+          value={value}
+        />
+        <div>当前选中值: {value.join(', ')}</div>
+      </div>
+    );
+  },
+  render: (args) => <ControlledMultiple.ControlledMultipleStory {...args} />,
 };
 
 function FitContentStory(args: React.ComponentProps<typeof Combobox>) {
@@ -783,34 +782,33 @@ export const CustomDescription: Story = {
   ),
 };
 
-/**
- * 带提示
- */
-function TooltipStory(args: React.ComponentProps<typeof Combobox>) {
-  const [value, setValue] = useState<string>();
-  const [disabled, setDisabled] = useState(false);
-  return (
-    <div className="mt-[100px] flex flex-col gap-2 items-start absolute top-[100px] left-[20px]">
-      <Combobox
-        {...args}
-        className="w-[300px] "
-        defaultOptions={FRAMEWORKS_WITH_TOOLTIP}
-        onChange={(value) => {
-          setValue(value as string);
-        }}
-        tooltip="这是一个提示"
-        placeholder="选择一个框架"
-        value={value}
-        disabled={disabled}
-      />
-      <button onClick={() => setDisabled(!disabled)}>disabled</button>
-    </div>
-  );
-}
-
 export const WithTooltip: Story = {
   name: '带有 Tooltip 的选项',
-  render: (args) => <TooltipStory {...args} />,
+  /**
+   * 带提示
+   */
+  TooltipStory: (args: React.ComponentProps<typeof Combobox>) => {
+    const [value, setValue] = useState<string>();
+    const [disabled, setDisabled] = useState(false);
+    return (
+      <div className="mt-[100px] flex flex-col gap-2 items-start absolute top-[100px] left-[20px]">
+        <Combobox
+          {...args}
+          className="w-[300px] "
+          defaultOptions={FRAMEWORKS_WITH_TOOLTIP}
+          onChange={(value) => {
+            setValue(value as string);
+          }}
+          tooltip="这是一个提示"
+          placeholder="选择一个框架"
+          value={value}
+          disabled={disabled}
+        />
+        <button onClick={() => setDisabled(!disabled)}>disabled</button>
+      </div>
+    );
+  },
+  render: (args) => <WithTooltip.TooltipStory {...args} />,
   parameters: {
     docs: {
       description: {
@@ -1037,43 +1035,6 @@ export const Size: Story = {
   ),
 };
 
-function SearchableStory(args: React.ComponentProps<typeof Combobox>) {
-  const [value, setValue] = useState<string>('');
-
-  return (
-    <>
-      <div className="mb-2 text-sm text-red-500">
-        异步搜索时需要将搜索结果设为全量搜索，因为搜索结果不支持翻页加载
-      </div>
-      <Combobox
-        {...args}
-        placeholder="请选择"
-        defaultOptions={FRAMEWORKS}
-        className="w-[300px]"
-        value={value}
-        onChange={(value) => setValue(value as string)}
-        onSearch={(search) => {
-          console.log('search', search);
-          if (!search) {
-            return Promise.resolve(FRAMEWORKS);
-          }
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              resolve(
-                FRAMEWORKS.filter(
-                  (option) =>
-                    option.description?.toLowerCase().includes(search.toLowerCase()) ||
-                    option.label.toLowerCase().includes(search.toLowerCase()),
-                ),
-              );
-            }, 1000);
-          });
-        }}
-      />
-    </>
-  );
-}
-
 export const Searchable: Story = {
   name: '异步搜索',
   parameters: {
@@ -1083,55 +1044,90 @@ export const Searchable: Story = {
       },
     },
   },
+  SearchableStory: (args: React.ComponentProps<typeof Combobox>) => {
+    const [value, setValue] = useState<string>('');
+
+    return (
+      <>
+        <div className="mb-2 text-sm text-red-500">
+          异步搜索时需要将搜索结果设为全量搜索，因为搜索结果不支持翻页加载
+        </div>
+        <Combobox
+          {...args}
+          placeholder="请选择"
+          defaultOptions={FRAMEWORKS}
+          className="w-[300px]"
+          value={value}
+          onChange={(value) => setValue(value as string)}
+          onSearch={(search) => {
+            console.log('search', search);
+            if (!search) {
+              return Promise.resolve(FRAMEWORKS);
+            }
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                resolve(
+                  FRAMEWORKS.filter(
+                    (option) =>
+                      option.description?.toLowerCase().includes(search.toLowerCase()) ||
+                      option.label.toLowerCase().includes(search.toLowerCase()),
+                  ),
+                );
+              }, 1000);
+            });
+          }}
+        />
+      </>
+    );
+  },
   render: (args) => {
-    return <SearchableStory {...args} />;
+    return <Searchable.SearchableStory {...args} />;
   },
 };
 
-/**
- * 滚动加载
- */
-function InfiniteScrollStory(args: React.ComponentProps<typeof Combobox>) {
-  const [options, setOptions] = React.useState<ComboboxOption[]>([]);
-  const [isLoadingMore, setIsLoadingMore] = React.useState(false);
-  const [hasNextPage, setHasNextPage] = React.useState(true);
-  const pageRef = React.useRef(1);
-
-  const loadMore = React.useCallback(async () => {
-    setIsLoadingMore(true);
-    // 模拟异步加载
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const newOptions = Array.from({ length: 10 }, (_, i) => ({
-      value: `item-${pageRef.current}-${i + 1}`,
-      label: `选项 ${pageRef.current}-${i + 1}`,
-      description: `这是第 ${pageRef.current} 页的第 ${i + 1} 个选项`,
-    }));
-    setOptions((prev) => [...prev, ...newOptions]);
-    pageRef.current += 1;
-    setHasNextPage(pageRef.current < 10); // 最多加载 4 页
-    setIsLoadingMore(false);
-  }, []);
-
-  React.useEffect(() => {
-    void loadMore();
-  }, [loadMore]);
-
-  return (
-    <Combobox
-      {...args}
-      className="w-[300px]"
-      options={options}
-      infiniteScroll
-      hasNextPage={hasNextPage}
-      isLoadingMore={isLoadingMore}
-      onLoadMore={loadMore}
-      placeholder="请选择选项"
-    />
-  );
-}
-
 export const InfiniteScroll: Story = {
-  render: (args) => <InfiniteScrollStory {...args} />,
+  /**
+   * 滚动加载
+   */
+  InfiniteScrollStory: (args: React.ComponentProps<typeof Combobox>) => {
+    const [options, setOptions] = React.useState<ComboboxOption[]>([]);
+    const [isLoadingMore, setIsLoadingMore] = React.useState(false);
+    const [hasNextPage, setHasNextPage] = React.useState(true);
+    const pageRef = React.useRef(1);
+
+    const loadMore = React.useCallback(async () => {
+      setIsLoadingMore(true);
+      // 模拟异步加载
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const newOptions = Array.from({ length: 10 }, (_, i) => ({
+        value: `item-${pageRef.current}-${i + 1}`,
+        label: `选项 ${pageRef.current}-${i + 1}`,
+        description: `这是第 ${pageRef.current} 页的第 ${i + 1} 个选项`,
+      }));
+      setOptions((prev) => [...prev, ...newOptions]);
+      pageRef.current += 1;
+      setHasNextPage(pageRef.current < 10); // 最多加载 4 页
+      setIsLoadingMore(false);
+    }, []);
+
+    React.useEffect(() => {
+      void loadMore();
+    }, [loadMore]);
+
+    return (
+      <Combobox
+        {...args}
+        className="w-[300px]"
+        options={options}
+        infiniteScroll
+        hasNextPage={hasNextPage}
+        isLoadingMore={isLoadingMore}
+        onLoadMore={loadMore}
+        placeholder="请选择选项"
+      />
+    );
+  },
+  render: (args) => <InfiniteScroll.InfiniteScrollStory {...args} />,
   name: '滚动加载',
   args: {
     outlined: true,
@@ -1192,59 +1188,57 @@ export const Virtual: Story = {
   ),
 };
 
-function RefUsageStory() {
-  const ref = useRef<ComboboxRef>(null);
-
-  return (
-    <>
-      <Combobox ref={ref} options={FRAMEWORKS} placeholder="请选择" />
-      <button className="mt-[900px]" onClick={() => ref.current?.focus()}>
-        聚焦
-      </button>
-    </>
-  );
-}
-
 export const RefUsage: Story = {
   name: 'Ref 使用',
-  render: (args) => <RefUsageStory {...args} />,
+  RefUsageStory: () => {
+    const ref = useRef<ComboboxRef>(null);
+
+    return (
+      <>
+        <Combobox ref={ref} options={FRAMEWORKS} placeholder="请选择" />
+        <button className="mt-[900px]" onClick={() => ref.current?.focus()}>
+          聚焦
+        </button>
+      </>
+    );
+  },
+  render: (args) => <RefUsage.RefUsageStory {...args} />,
 };
 
-/**
- * 自定义 Portal 容器
- */
-function CustomPortalStory(args: React.ComponentProps<typeof Combobox>) {
-  const [container, setContainer] = useState<HTMLElement | null>(null);
+export const CustomPortal: Story = {
+  /**
+   * 自定义 Portal 容器
+   */
+  CustomPortalStory: (args: React.ComponentProps<typeof Combobox>) => {
+    const [container, setContainer] = useState<HTMLElement | null>(null);
 
-  return (
-    <div className="space-y-4">
-      <div className="text-sm text-text-2">默认挂载到 body：</div>
-      <Combobox
-        {...args}
-        className="w-[300px]"
-        defaultOptions={FRAMEWORKS}
-        placeholder="默认挂载到 body"
-      />
-
-      <div className="text-sm text-text-2 mt-8">自定义挂载容器：</div>
-      <div
-        ref={(el) => setContainer(el)}
-        className="relative border-2 border-dashed border-blue-300 p-4 overflow-hidden h-[200px]"
-      >
-        <div className="mb-2 text-sm text-blue-500">这是自定义的 Portal 容器</div>
+    return (
+      <div className="space-y-4">
+        <div className="text-sm text-text-2">默认挂载到 body：</div>
         <Combobox
           {...args}
           className="w-[300px]"
           defaultOptions={FRAMEWORKS}
-          placeholder="挂载到当前容器"
-          portalContainer={container}
+          placeholder="默认挂载到 body"
         />
-      </div>
-    </div>
-  );
-}
 
-export const CustomPortal: Story = {
+        <div className="text-sm text-text-2 mt-8">自定义挂载容器：</div>
+        <div
+          ref={(el) => setContainer(el)}
+          className="relative border-2 border-dashed border-blue-300 p-4 overflow-hidden h-[200px]"
+        >
+          <div className="mb-2 text-sm text-blue-500">这是自定义的 Portal 容器</div>
+          <Combobox
+            {...args}
+            className="w-[300px]"
+            defaultOptions={FRAMEWORKS}
+            placeholder="挂载到当前容器"
+            portalContainer={container}
+          />
+        </div>
+      </div>
+    );
+  },
   name: '自定义挂载节点',
   parameters: {
     docs: {
@@ -1254,7 +1248,7 @@ export const CustomPortal: Story = {
       },
     },
   },
-  render: (args) => <CustomPortalStory {...args} />,
+  render: (args) => <CustomPortal.CustomPortalStory {...args} />,
 };
 
 function OnBlurStory(args: React.ComponentProps<typeof Combobox>) {

@@ -35,19 +35,25 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    onOpenChange: { control: null, description: '当打开状态发生改变时的回调函数' },
-    onCancel: { control: null, description: '取消按钮点击时的回调函数' },
-    onOk: { control: null, description: '确认按钮点击时的回调函数' },
-    mask: {
+    onOpenChange: {
       control: {
-        type: 'boolean',
+        type: 'object',
       },
-      description: '是否显示遮罩层。',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
+      description: '当打开状态发生改变时的回调函数',
     },
+    onCancel: {
+      control: {
+        type: 'object',
+      },
+      description: '取消按钮点击时的回调函数',
+    },
+    onOk: {
+      control: {
+        type: 'object',
+      },
+      description: '确认按钮点击时的回调函数',
+    },
+    mask: { control: 'boolean', description: '是否显示遮罩层。' },
     dropContentContainer: {
       control: {
         type: 'boolean',
@@ -69,7 +75,12 @@ export default {
       },
     },
     maskClassName: { control: 'text', description: '遮罩层的自定义类名' },
-    closeIcon: { control: null, description: '自定义关闭图标元素' },
+    closeIcon: {
+      control: {
+        type: 'object',
+      },
+      description: '自定义关闭图标元素',
+    },
     showCloseIcon: {
       control: {
         type: 'boolean',
@@ -94,10 +105,15 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    okButtonProps: { control: null, description: '确认按钮的额外属性' },
+    okButtonProps: {
+      control: {
+        type: 'object',
+      },
+      description: '确认按钮的额外属性',
+    },
     cancelText: { control: 'text', description: '取消按钮的文本' },
     cancelType: { control: 'text', description: '取消按钮的类型' },
-    cancelButtonProps: { control: null, description: '取消按钮的额外属性' },
+    cancelButtonProps: { control: 'object', description: '取消按钮的额外属性' },
     children: { control: 'text', description: '模态框内容区域的内容' },
     size: {
       control: { type: 'select', options: Object.values(SizeType) },
@@ -117,8 +133,18 @@ export default {
         defaultValue: { summary: 'false' },
       },
     },
-    footer: { control: null, description: '自定义模态框底部区域' },
-    footerContent: { control: null, description: '模态框底部内容' },
+    footer: {
+      control: {
+        type: 'object',
+      },
+      description: '自定义模态框底部区域',
+    },
+    footerContent: {
+      control: {
+        type: 'object',
+      },
+      description: '模态框底部内容',
+    },
     draggable: {
       control: {
         type: 'boolean',
@@ -142,63 +168,8 @@ export default {
   },
 } as Meta;
 
-type ModalStory = StoryObj<typeof Modal>;
-
-const ModalControlled = ({ open, onCancel, onOk, ...rest }: ModalProps) => {
-  const [isOpen, setIsOpen] = useState(open || false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-    onOk?.();
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-    onCancel?.();
-  };
-  return (
-    <div>
-      <Button onClick={handleOpen}>Open</Button>
-      <Modal open={isOpen} onCancel={handleClose} onOk={handleClose} {...rest} />
-    </div>
-  );
-};
-
-const DoubleModalControlled = ({ open, onCancel, onOk, ...rest }: ModalProps) => {
-  const [isOpen, setIsOpen] = useState(open || false);
-  const [isSecondOpen, setIsSecondOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-    onOk?.();
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-    onCancel?.();
-  };
-
-  const openSecond = () => {
-    setIsSecondOpen(true);
-  };
-
-  const handleSecondClose = () => {
-    setIsSecondOpen(false);
-  };
-
-  return (
-    <div>
-      <Button onClick={handleOpen}>Open</Button>
-      <Modal
-        open={isOpen}
-        onCancel={handleClose}
-        onOk={openSecond}
-        {...rest}
-        mask={!isSecondOpen}
-      />
-      <Modal open={isSecondOpen} onCancel={handleSecondClose} onOk={handleSecondClose} {...rest} />
-    </div>
-  );
+type ModalStory = StoryObj<typeof Modal> & {
+  [key: string]: any;
 };
 
 export const DefaultModal: ModalStory = {
@@ -218,8 +189,27 @@ export const DefaultModal: ModalStory = {
       </div>
     ),
   },
+  ModalControlled: ({ open, onCancel, onOk, ...rest }: ModalProps) => {
+    const [isOpen, setIsOpen] = useState(open || false);
+
+    const handleOpen = () => {
+      setIsOpen(true);
+      onOk?.();
+    };
+
+    const handleClose = () => {
+      setIsOpen(false);
+      onCancel?.();
+    };
+    return (
+      <div>
+        <Button onClick={handleOpen}>Open</Button>
+        <Modal open={isOpen} onCancel={handleClose} onOk={handleClose} {...rest} />
+      </div>
+    );
+  },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -241,7 +231,7 @@ export const ModalWithCustomText: ModalStory = {
     ),
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -252,7 +242,7 @@ export const SmallModal: ModalStory = {
     children: <p>This is a small modal content.</p>,
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -263,7 +253,7 @@ export const MiddleModal: ModalStory = {
     children: <p>This is a large modal content.</p>,
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -274,7 +264,7 @@ export const LargeModal: ModalStory = {
     children: <p>This is a large modal content.</p>,
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -286,7 +276,7 @@ export const ModalWithoutMask: ModalStory = {
     children: <p>This is a large modal content.</p>,
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -308,7 +298,7 @@ export const ModalWithMask: ModalStory = {
     ),
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -324,7 +314,7 @@ export const ModalWithDefaultOpen: ModalStory = {
     ),
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -340,7 +330,7 @@ export const ModalWithoutFooter: ModalStory = {
     ),
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -356,7 +346,7 @@ export const ModalWithDraggable: ModalStory = {
     ),
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -372,6 +362,47 @@ export const DoubleModalWithDraggable: ModalStory = {
     ),
   },
   render: (rags) => {
+    const DoubleModalControlled = ({ open, onCancel, onOk, ...rest }: ModalProps) => {
+      const [isOpen, setIsOpen] = useState(open || false);
+      const [isSecondOpen, setIsSecondOpen] = useState(false);
+
+      const handleOpen = () => {
+        setIsOpen(true);
+        onOk?.();
+      };
+
+      const handleClose = () => {
+        setIsOpen(false);
+        onCancel?.();
+      };
+
+      const openSecond = () => {
+        setIsSecondOpen(true);
+      };
+
+      const handleSecondClose = () => {
+        setIsSecondOpen(false);
+      };
+
+      return (
+        <div>
+          <Button onClick={handleOpen}>Open</Button>
+          <Modal
+            open={isOpen}
+            onCancel={handleClose}
+            onOk={openSecond}
+            {...rest}
+            mask={!isSecondOpen}
+          />
+          <Modal
+            open={isSecondOpen}
+            onCancel={handleSecondClose}
+            onOk={handleSecondClose}
+            {...rest}
+          />
+        </div>
+      );
+    };
     return <DoubleModalControlled {...rags} />;
   },
 };
@@ -395,7 +426,7 @@ export const ModalWithoutCentered: ModalStory = {
     ),
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };
 
@@ -573,6 +604,6 @@ export const ModalWithScroll: ModalStory = {
     ),
   },
   render: (rags) => {
-    return <ModalControlled {...rags} />;
+    return <DefaultModal.ModalControlled {...rags} />;
   },
 };

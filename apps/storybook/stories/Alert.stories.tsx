@@ -9,7 +9,9 @@ export default {
   tags: ['visual-test'],
 } as Meta;
 
-type AlertStory = StoryObj<AlertProps>;
+type AlertStory = StoryObj<AlertProps> & {
+  [key: string]: any;
+};
 
 export const InfoAlert: AlertStory = {
   args: {
@@ -136,7 +138,47 @@ export const AlertCustomMessage: AlertStory = {
 };
 
 export const MultipleAlerts: AlertStory = {
-  render: () => <AlertList />,
+  AlertList: () => {
+    const [expanded, setExpanded] = useState(false);
+    const [closedIndices, setClosedIndices] = useState<number[]>([]);
+
+    const toggleExpand = () => {
+      setExpanded(!expanded);
+    };
+
+    const memoizedAlertData = useMemo(() => {
+      const alertDataParsed = alertData?.map((alert, index) => ({
+        ...alert,
+        staticIndex: index,
+        onClose: () => setClosedIndices((prev) => [...prev, index]),
+      }));
+      const activeAlertData = alertDataParsed?.filter((_, index) => !closedIndices.includes(index));
+      const hasOverflow = activeAlertData?.length > 1;
+      // 如果未展开且有多条数据，仅保留第一条
+      const filteredData = !expanded && hasOverflow ? [activeAlertData[0]] : activeAlertData;
+      return filteredData?.map((alert, index) => ({
+        ...alert,
+        className: `${alert.className} [&_.action-wrapper]:flex [&_.action-wrapper]:items-center [&>.alert-content-wrapper]:justify-center rounded-none`,
+        action:
+          index === 0 && hasOverflow ? (
+            expanded ? (
+              <UpLine16 onClick={toggleExpand} className="pl-1" />
+            ) : (
+              <DownLine16 onClick={toggleExpand} className="pl-1" />
+            )
+          ) : null,
+        showClose: !(index === 0 && hasOverflow),
+      }));
+    }, [alertData, expanded, closedIndices]);
+    return (
+      <div className="alert-list">
+        {memoizedAlertData.map((alert, index) => (
+          <Alert key={alert.staticIndex} {...lodash.omit(alert, 'staticIndex')} />
+        ))}
+      </div>
+    );
+  },
+  render: () => <MultipleAlerts.AlertList />,
 };
 
 const alertData: AlertProps[] = [
@@ -161,43 +203,3 @@ const alertData: AlertProps[] = [
     content: 'content4',
   },
 ];
-const AlertList: React.FC<any> = () => {
-  const [expanded, setExpanded] = useState(false);
-  const [closedIndices, setClosedIndices] = useState<number[]>([]);
-
-  const toggleExpand = () => {
-    setExpanded(!expanded);
-  };
-
-  const memoizedAlertData = useMemo(() => {
-    const alertDataParsed = alertData?.map((alert, index) => ({
-      ...alert,
-      staticIndex: index,
-      onClose: () => setClosedIndices((prev) => [...prev, index]),
-    }));
-    const activeAlertData = alertDataParsed?.filter((_, index) => !closedIndices.includes(index));
-    const hasOverflow = activeAlertData?.length > 1;
-    // 如果未展开且有多条数据，仅保留第一条
-    const filteredData = !expanded && hasOverflow ? [activeAlertData[0]] : activeAlertData;
-    return filteredData?.map((alert, index) => ({
-      ...alert,
-      className: `${alert.className} [&_.action-wrapper]:flex [&_.action-wrapper]:items-center [&>.alert-content-wrapper]:justify-center rounded-none`,
-      action:
-        index === 0 && hasOverflow ? (
-          expanded ? (
-            <UpLine16 onClick={toggleExpand} className="pl-1" />
-          ) : (
-            <DownLine16 onClick={toggleExpand} className="pl-1" />
-          )
-        ) : null,
-      showClose: !(index === 0 && hasOverflow),
-    }));
-  }, [alertData, expanded, closedIndices]);
-  return (
-    <div className="alert-list">
-      {memoizedAlertData.map((alert, index) => (
-        <Alert key={alert.staticIndex} {...lodash.omit(alert, 'staticIndex')} />
-      ))}
-    </div>
-  );
-};

@@ -127,28 +127,28 @@ export const NotificationOnClose: NotificationStory = {
 
 type NotificationsStory = StoryObj<NotificationsProps>;
 
-function NotificationsExampleChildren() {
-  const notificationsContextValue = useNotifications();
-
-  const [count, setCount] = useState(1);
-  const push = function () {
-    const title = `This is a title ${count}`;
-    notificationsContextValue.pushData({
-      title,
-      description: 'This is a description',
-      type: 'info',
-      onClose: function () {
-        console.log(`onClose called with title: ${title}`);
-      },
-    });
-    setCount(count + 1);
-  };
-
-  return <button onClick={push}>push notification</button>;
-}
-
 export const NotificationsExample: NotificationsStory = {
   render: function () {
+    function NotificationsExampleChildren() {
+      const notificationsContextValue = useNotifications();
+
+      const [count, setCount] = useState(1);
+      const push = function () {
+        const title = `This is a title ${count}`;
+        notificationsContextValue.pushData({
+          title,
+          description: 'This is a description',
+          type: 'info',
+          onClose: function () {
+            console.log(`onClose called with title: ${title}`);
+          },
+        });
+        setCount(count + 1);
+      };
+
+      return <button onClick={push}>push notification</button>;
+    }
+
     return (
       <Notifications>
         <NotificationsExampleChildren />

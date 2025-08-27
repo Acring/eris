@@ -52,7 +52,7 @@ const meta: Meta<typeof Switch> = {
       description: '是否禁用。',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'false' },
       },
     },
     loading: {
@@ -78,7 +78,7 @@ const meta: Meta<typeof Switch> = {
       description: '自定义样式类名。',
     },
     onChange: {
-      control: null,
+      control: 'object',
       description: '选中状态改变时的回调函数。',
       table: {
         type: { summary: 'function' },

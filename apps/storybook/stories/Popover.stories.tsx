@@ -162,97 +162,104 @@ export const PopoverWithHovers: Story = {
   },
 };
 
-const ControlledItem = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  return (
-    <div className="h-[200px] overflow-y-auto">
-      <Popover
-        content="This popover is placed in a container"
-        open={open}
-        trigger={['click']}
-        onOpenChange={(val) => {
-          console.log(val, 'val');
-          setOpen(val);
-        }}
-      >
-        <button
-          className="btn btn-primary"
-          onClick={() => {
-            setOpen(true);
-          }}
-        >
-          click me
-        </button>
-      </Popover>
-    </div>
-  );
-};
-
 export const ControlledOpen: Story = {
   args: {
     content: 'This is a popover with children',
   },
-  render: () => <ControlledItem />,
-};
-
-const ControlledOpenPreventOnPointerDownOutsideItem = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  return (
-    <div className="h-[200px] overflow-y-auto">
-      <Popover
-        content="This is a popover preventDefault while click outside"
-        open={open}
-        trigger={['click']}
-        onOpenChange={(val) => {
-          console.log(val, '&&&');
-          setOpen(val);
-        }}
-        onPointerDownOutside={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <button
-          className="btn btn-primary"
-          onClick={() => {
-            setOpen(true);
-          }}
-        >
-          click me
-        </button>
-      </Popover>
-    </div>
-  );
+  render: () => {
+    const ControlledItem = () => {
+      const [open, setOpen] = useState<boolean>(false);
+      return (
+        <div className="h-[200px] overflow-y-auto">
+          <Popover
+            content="This popover is placed in a container"
+            open={open}
+            trigger={['click']}
+            onOpenChange={(val) => {
+              console.log(val, 'val');
+              setOpen(val);
+            }}
+          >
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              click me
+            </button>
+          </Popover>
+        </div>
+      );
+    };
+    return <ControlledItem />;
+  },
 };
 
 export const ControlledOpenPreventOnPointerDownOutside: Story = {
   args: {
     content: 'This is a popover preventDefault while click outside',
   },
-  render: () => <ControlledOpenPreventOnPointerDownOutsideItem />,
-};
-
-const ContainerItem = () => {
-  const [container, setContainer] = useState<HTMLElement | null>();
-  useEffect(() => {
-    setContainer(document.getElementById('containerId'));
-  }, []);
-  return (
-    <div className="flex h-[200px] justify-center overflow-y-auto">
-      <div className="h-[400px] overflow-y-auto" id="containerId">
-        我有很多内容,出现了滚动条
-        <Popover content="This popover is placed in a container" container={container} open={true}>
-          <button className="btn btn-primary">hover</button>
-        </Popover>
-      </div>
-    </div>
-  );
+  render: () => {
+    const ControlledOpenPreventOnPointerDownOutsideItem = () => {
+      const [open, setOpen] = useState<boolean>(false);
+      return (
+        <div className="h-[200px] overflow-y-auto">
+          <Popover
+            content="This is a popover preventDefault while click outside"
+            open={open}
+            trigger={['click']}
+            onOpenChange={(val) => {
+              console.log(val, '&&&');
+              setOpen(val);
+            }}
+            onPointerDownOutside={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              click me
+            </button>
+          </Popover>
+        </div>
+      );
+    };
+    return <ControlledOpenPreventOnPointerDownOutsideItem />;
+  },
 };
 
 export const Container: Story = {
   args: {
     content: 'This is a popover with children',
   },
-  render: () => <ContainerItem />,
+  render: () => {
+    const ContainerItem = () => {
+      const [container, setContainer] = useState<HTMLElement | null>();
+      useEffect(() => {
+        setContainer(document.getElementById('containerId'));
+      }, []);
+      return (
+        <div className="flex h-[200px] justify-center overflow-y-auto">
+          <div className="h-[400px] overflow-y-auto" id="containerId">
+            我有很多内容,出现了滚动条
+            <Popover
+              content="This popover is placed in a container"
+              container={container}
+              open={true}
+            >
+              <button className="btn btn-primary">hover</button>
+            </Popover>
+          </div>
+        </div>
+      );
+    };
+    return <ContainerItem />;
+  },
 };
 
 export const OverflowPopover: Story = {

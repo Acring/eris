@@ -16,10 +16,6 @@ const meta: Meta<typeof Popconfirm> = {
       },
       options: ['top', 'bottom', 'left', 'right'],
       description: '气泡框显示的位置。',
-      table: {
-        type: { summary: ['top', 'bottom', 'left', 'right'] },
-        defaultValue: { summary: 'top' },
-      },
     },
     arrow: {
       control: {
@@ -33,7 +29,7 @@ const meta: Meta<typeof Popconfirm> = {
     },
     container: {
       control: {
-        type: null,
+        type: 'object',
       },
       description: '气泡框的容器元素。',
     },
@@ -58,7 +54,9 @@ const meta: Meta<typeof Popconfirm> = {
       },
     },
     onOpenChange: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '当气泡框的打开状态发生变化时的回调函数。',
     },
     trigger: {
@@ -78,10 +76,6 @@ const meta: Meta<typeof Popconfirm> = {
       },
       options: ['start', 'center', 'end'],
       description: '气泡框显示的位置。',
-      table: {
-        type: { summary: ['start', 'center', 'end'] },
-        defaultValue: { summary: 'center' },
-      },
     },
     okText: {
       control: {
@@ -122,11 +116,15 @@ const meta: Meta<typeof Popconfirm> = {
       description: '页脚内容。',
     },
     onOk: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '点击确认按钮时的回调函数。',
     },
     onCancel: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '点击取消按钮时的回调函数。',
     },
   },
@@ -157,38 +155,39 @@ export const CustomConfirm: Story = {
   },
 };
 
-const ControlInExternal = () => {
-  const [open, setOpen] = useState(true);
-  const handleOpenChange = (open: boolean) => {
-    console.log('handle change cb!!', open);
-    setOpen(open);
-  };
-  return (
-    <div>
-      <Popconfirm
-        content="This is a basic popconfirm"
-        onOpenChange={handleOpenChange}
-        open={open}
-        onOk={() => {
-          console.log('handle ok cb!!');
-          setOpen(false);
-        }}
-        onCancel={() => {
-          console.log('handle cancel cb!!');
-          setOpen(false);
-        }}
-      >
-        click me
-      </Popconfirm>
-    </div>
-  );
-};
-
 export const ControlConfirm: Story = {
   args: {
     content: 'This is a popover with children',
   },
-  render: () => <ControlInExternal />,
+  render: () => {
+    const ControlInExternal = () => {
+      const [open, setOpen] = useState(true);
+      const handleOpenChange = (open: boolean) => {
+        console.log('handle change cb!!', open);
+        setOpen(open);
+      };
+      return (
+        <div>
+          <Popconfirm
+            content="This is a basic popconfirm"
+            onOpenChange={handleOpenChange}
+            open={open}
+            onOk={() => {
+              console.log('handle ok cb!!');
+              setOpen(false);
+            }}
+            onCancel={() => {
+              console.log('handle cancel cb!!');
+              setOpen(false);
+            }}
+          >
+            click me
+          </Popconfirm>
+        </div>
+      );
+    };
+    return <ControlInExternal />;
+  },
 };
 
 export default meta;

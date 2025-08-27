@@ -1,7 +1,7 @@
 import { CloseLine16, SearchLine16 } from '@xsky/eris-icons';
 import { CommandPalette, IconButton, Tag, cn } from '@xsky/eris-ui';
 import { Meta, StoryObj } from '@storybook/react';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { findAll } from 'highlight-words-core';
 
 export default {

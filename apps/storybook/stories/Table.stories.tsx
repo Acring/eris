@@ -146,7 +146,9 @@ const meta: Meta<typeof DataTable> = {
   },
 };
 
-type Story = StoryObj<typeof DataTable<any>>;
+type Story = StoryObj<typeof DataTable<any>> & {
+  [key: string]: any;
+};
 
 interface Person {
   id: number;
@@ -157,38 +159,37 @@ interface Person {
   info?: string;
 }
 
-const data: Person[] = [
-  {
-    id: 2,
-    name: 'Bob',
-    age: 30,
-    country: 'Canada',
-    info: 'info',
-  },
-  {
-    id: 3,
-    name: 'Charlie',
-    age: 35,
-    country: 'UK',
-    info: 'info',
-  },
-  {
-    id: 1,
-    name: 'Alice',
-    age: 25,
-    country: 'USA',
-    info: 'info',
-  },
-  {
-    id: 4,
-    name: 'David',
-    age: 40,
-    country: 'USA',
-    info: 'info',
-  },
-];
-
 export const Basic: Story = {
+  data: [
+    {
+      id: 2,
+      name: 'Bob',
+      age: 30,
+      country: 'Canada',
+      info: 'info',
+    },
+    {
+      id: 3,
+      name: 'Charlie',
+      age: 35,
+      country: 'UK',
+      info: 'info',
+    },
+    {
+      id: 1,
+      name: 'Alice',
+      age: 25,
+      country: 'USA',
+      info: 'info',
+    },
+    {
+      id: 4,
+      name: 'David',
+      age: 40,
+      country: 'USA',
+      info: 'info',
+    },
+  ],
   args: {
     // Provide default values for your props here
     fields: [
@@ -205,7 +206,36 @@ export const Basic: Story = {
         header: 'Country',
       },
     ],
-    data: data,
+    data: [
+      {
+        id: 2,
+        name: 'Bob',
+        age: 30,
+        country: 'Canada',
+        info: 'info',
+      },
+      {
+        id: 3,
+        name: 'Charlie',
+        age: 35,
+        country: 'UK',
+        info: 'info',
+      },
+      {
+        id: 1,
+        name: 'Alice',
+        age: 25,
+        country: 'USA',
+        info: 'info',
+      },
+      {
+        id: 4,
+        name: 'David',
+        age: 40,
+        country: 'USA',
+        info: 'info',
+      },
+    ],
     // Add more default values for your props as needed
   },
 };
@@ -264,7 +294,7 @@ function SelectStory(props: any) {
       <Alert content={defaultShow ? '选择框始终显示' : '选择框默认隐藏，鼠标悬停或选中时显示'} />
       <DataTable
         fields={fields}
-        data={data}
+        data={Basic.data}
         rowSelection={{
           state: selection,
           onChange: setSelection,
@@ -319,7 +349,7 @@ export const HideHeader: Story = {
         header: 'Country',
       },
     ],
-    data: data,
+    data: Basic.data,
     showHeader: false,
   },
 };
@@ -343,7 +373,7 @@ export const EnableFocusRow: Story = {
         header: 'Country',
       },
     ],
-    data: data,
+    data: Basic.data,
     enableRowFocus: true,
   },
 };
@@ -378,7 +408,7 @@ function ControlledFocusRowStory(props: DataTableProps<any>) {
         <Button
           size="sm"
           onClick={() => {
-            setFocusRow(focusRow >= data.length - 1 ? data.length - 1 : focusRow + 1);
+            setFocusRow(focusRow >= Basic.data.length - 1 ? Basic.data.length - 1 : focusRow + 1);
           }}
         >
           next
@@ -387,7 +417,7 @@ function ControlledFocusRowStory(props: DataTableProps<any>) {
       <DataTable
         {...props}
         fields={fields}
-        data={data}
+        data={Basic.data}
         rowSelection={{
           type: 'checkbox',
           state: selectState,
@@ -398,7 +428,7 @@ function ControlledFocusRowStory(props: DataTableProps<any>) {
         onFocusTableRow={(rowData: any, index: number) => {
           setSelectState((prev) => ({
             ...prev,
-            [data[index].id]: true,
+            [Basic.data[index].id]: true,
           }));
           setFocusRow(index);
         }}
@@ -436,12 +466,12 @@ function SortingStory(props: any) {
     return fields;
   }, []);
 
-  return <DataTable {...props} fields={fields} data={data} />;
+  return <DataTable {...props} fields={fields} data={Basic.data} />;
 }
 
 function ManualSortingStory(props: any) {
   const [sorting, setSorting] = React.useState<NonNullable<DataTableProps<Person>['sorting']>>([]);
-  const [sortedData, setSortedData] = React.useState<Person[]>(data);
+  const [sortedData, setSortedData] = React.useState<Person[]>(Basic.data);
 
   const fields = React.useMemo(
     () => [
@@ -466,9 +496,9 @@ function ManualSortingStory(props: any) {
 
   useEffect(() => {
     // 根据排序状态来获取数据
-    if (!sorting.length) return setSortedData(data);
+    if (!sorting.length) return setSortedData(Basic.data);
     const sortedData = [
-      ...lodash.orderBy<Person>(data, [sorting[0].id], sorting[0].desc ? 'desc' : 'asc'),
+      ...lodash.orderBy<Person>(Basic.data, [sorting[0].id], sorting[0].desc ? 'desc' : 'asc'),
     ];
     setSortedData(sortedData);
   }, [sorting]);
@@ -608,7 +638,7 @@ function FilterStory(props: any) {
           value: key,
         }))}
       />
-      <DataTable {...props} fields={fields} data={data}></DataTable>
+      <DataTable {...props} fields={fields} data={Basic.data}></DataTable>
     </div>
   );
 }
@@ -624,7 +654,7 @@ function ManualFilterStory(props: any) {
   const [filter, setFilter] = React.useState<NonNullable<DataTableProps<Person>['columnFilters']>>(
     [],
   );
-  const [filteredData, setFilteredData] = React.useState<Person[]>(data);
+  const [filteredData, setFilteredData] = React.useState<Person[]>(Basic.data);
 
   const fields: TableField<Person>[] = useMemo(() => {
     const fields: TableField<Person>[] = [
@@ -673,8 +703,8 @@ function ManualFilterStory(props: any) {
 
   useEffect(() => {
     // 根据筛选状态来获取数据
-    if (!filter.length) return setFilteredData(data);
-    const filteredData = data.filter((row) => {
+    if (!filter.length) return setFilteredData(Basic.data);
+    const filteredData = Basic.data.filter((row: Person) => {
       const nameFilter = filter.find((f) => f.id === 'name');
       if (nameFilter) {
         return row.name === nameFilter.value;
@@ -707,7 +737,7 @@ function ControlledFilterStory() {
   const [columnFilters, setColumnFilters] = React.useState<
     NonNullable<DataTableProps<Person>['columnFilters']>
   >([]);
-  const [filteredData, setFilteredData] = React.useState<Person[]>(data);
+  const [filteredData, setFilteredData] = React.useState<Person[]>(Basic.data);
 
   const fields: TableField<Person>[] = useMemo(() => {
     return [
@@ -765,7 +795,7 @@ function ControlledFilterStory() {
 
   // 模拟外部数据过滤逻辑
   useEffect(() => {
-    let filtered = [...data];
+    let filtered = [...Basic.data];
 
     columnFilters.forEach((filter) => {
       if (filter.id === 'name' && filter.value) {
@@ -813,7 +843,7 @@ function ControlledFilterStory() {
         content={`当前过滤条件: ${columnFilters.length === 0 ? '无' : columnFilters.map((f) => `${f.id}: ${Array.isArray(f.value) ? f.value.join(', ') : f.value}`).join(' | ')}`}
       />
 
-      <Alert content={`显示 ${filteredData.length} / ${data.length} 条数据`} />
+      <Alert content={`显示 ${filteredData.length} / ${Basic.data.length} 条数据`} />
 
       <DataTable
         fields={fields}
@@ -1953,8 +1983,10 @@ function CustomSortTooltipStory() {
   );
 
   const sortedData = React.useMemo(() => {
-    if (!sorting.length) return data;
-    return [...lodash.orderBy<Person>(data, [sorting[0].id], sorting[0].desc ? 'desc' : 'asc')];
+    if (!sorting.length) return Basic.data;
+    return [
+      ...lodash.orderBy<Person>(Basic.data, [sorting[0].id], sorting[0].desc ? 'desc' : 'asc'),
+    ];
   }, [sorting]);
 
   return (

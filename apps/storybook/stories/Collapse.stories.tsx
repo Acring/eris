@@ -9,14 +9,18 @@ export default {
   tags: ['visual-test'],
   argTypes: {
     className: {
-      control: 'text',
+      control: {
+        type: 'text',
+      },
       description: '用于自定义样式的额外CSS类。',
       table: {
         type: { summary: 'string' },
       },
     },
     open: {
-      control: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: '指定折叠面板是否展开。',
       table: {
         type: { summary: 'boolean' },
@@ -24,14 +28,18 @@ export default {
       },
     },
     onOpenChange: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '当展开状态发生变化时的回调函数。',
       table: {
         type: { summary: 'function' },
       },
     },
     defaultOpen: {
-      control: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: '折叠面板的默认展开状态。',
       table: {
         type: { summary: 'boolean' },
@@ -39,21 +47,27 @@ export default {
       },
     },
     title: {
-      control: 'text',
+      control: {
+        type: 'text',
+      },
       description: '折叠面板的标题。',
       table: {
         type: { summary: 'string' },
       },
     },
     rightTitle: {
-      control: 'text',
+      control: {
+        type: 'text',
+      },
       description: '显示在折叠面板右侧的标题。',
       table: {
         type: { summary: 'string' },
       },
     },
     description: {
-      control: 'text',
+      control: {
+        type: 'text',
+      },
       description: '额外的描述或内容。',
       table: {
         type: { summary: 'string' },
@@ -63,11 +77,15 @@ export default {
       description: '折叠面板的内容。',
     },
     tooltip: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '用于提供额外信息的工具提示属性。',
     },
     hoverStyle: {
-      control: 'object',
+      control: {
+        type: 'object',
+      },
       description: '定义鼠标悬停时的样式行为，包括颜色和光标样式。',
       table: {
         type: { summary: 'object' },
@@ -75,7 +93,9 @@ export default {
       },
     },
     showIcon: {
-      control: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: '是否显示折叠面板的图标。',
       table: {
         type: { summary: 'boolean' },
@@ -83,7 +103,9 @@ export default {
       },
     },
     iconButtonProps: {
-      control: 'object',
+      control: {
+        type: 'object',
+      },
       description: '传递给图标按钮的额外属性。',
       table: {
         type: { summary: 'object' },
@@ -93,19 +115,8 @@ export default {
   },
 } as Meta;
 
-type Story = StoryObj<CollapseProps>;
-
-const ControlInExternal = () => {
-  const [open, setOpen] = useState(true);
-  const handleOpenChange = (value: boolean) => {
-    setOpen(value);
-    console.log('callback...');
-  };
-  return (
-    <Collapse open={open} onOpenChange={handleOpenChange} title={open ? '收起' : '展开'}>
-      <Content />
-    </Collapse>
-  );
+type Story = StoryObj<CollapseProps> & {
+  [key: string]: any;
 };
 
 const Content = () => {
@@ -166,41 +177,52 @@ export const RightTitle: Story = {
 };
 
 export const Control: Story = {
+  ControlInExternal: () => {
+    const [open, setOpen] = useState(true);
+    const handleOpenChange = (value: boolean) => {
+      setOpen(value);
+      console.log('callback...');
+    };
+    return (
+      <Collapse open={open} onOpenChange={handleOpenChange} title={open ? '收起' : '展开'}>
+        <Content />
+      </Collapse>
+    );
+  },
   render: () => {
-    return <ControlInExternal />;
+    return <Control.ControlInExternal />;
   },
 };
 
-const DividerCollapseDemo = () => {
-  const [open, setOpen] = useState(true);
-  const handleOpenChange = (value: boolean) => {
-    setOpen(value);
-    console.log('callback...');
-  };
-  return (
-    <Collapse
-      className="w-[300px]"
-      open={open}
-      title={'高级选项'}
-      onOpenChange={handleOpenChange}
-      rightTitle={<Divider type="horizontal" dashed />}
-      hoverStyle={{
-        changeColor: false,
-        cursorArea: 'full',
-      }}
-      iconButtonProps={{
-        clickableAreaInvisible: false,
-        tooltip: open ? '收起' : '展开',
-      }}
-    >
-      <Content />
-    </Collapse>
-  );
-};
-
 export const DividerCollapse: Story = {
+  DividerCollapseDemo: () => {
+    const [open, setOpen] = useState(true);
+    const handleOpenChange = (value: boolean) => {
+      setOpen(value);
+      console.log('callback...');
+    };
+    return (
+      <Collapse
+        className="w-[300px]"
+        open={open}
+        title={'高级选项'}
+        onOpenChange={handleOpenChange}
+        rightTitle={<Divider type="horizontal" dashed />}
+        hoverStyle={{
+          changeColor: false,
+          cursorArea: 'full',
+        }}
+        iconButtonProps={{
+          clickableAreaInvisible: false,
+          tooltip: open ? '收起' : '展开',
+        }}
+      >
+        <Content />
+      </Collapse>
+    );
+  },
   render: () => {
-    return <DividerCollapseDemo />;
+    return <DividerCollapse.DividerCollapseDemo />;
   },
 };
 

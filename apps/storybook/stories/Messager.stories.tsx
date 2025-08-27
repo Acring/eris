@@ -22,16 +22,17 @@ const fakeMessage = [
     type: 'info',
   },
 ];
-const getRadomMessage = () => fakeMessage[Math.floor(Math.random() * fakeMessage.length)];
-
-const Item = () => {
-  const props = useMessage();
-  return <button onClick={() => props?.push(getRadomMessage())}>message.push</button>;
-};
 
 export const CustomMessager: Story = {
   args: {},
   render: (args) => {
+    const getRadomMessage = () => fakeMessage[Math.floor(Math.random() * fakeMessage.length)];
+
+    const Item = () => {
+      const props = useMessage();
+      return <button onClick={() => props?.push(getRadomMessage())}>message.push</button>;
+    };
+
     return (
       <Messager duration={2000} maxMessages={5} position="topRight" {...args}>
         <Item />

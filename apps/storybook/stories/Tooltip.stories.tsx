@@ -16,10 +16,6 @@ const meta: Meta<typeof Tooltip> = {
       },
       options: ['top', 'bottom', 'left', 'right'],
       description: '提示框显示的位置。', // 对 side 参数的中文描述
-      table: {
-        type: { summary: ['top', 'bottom', 'left', 'right'] }, // 显示参数类型为字符串
-        defaultValue: { summary: 'top' }, // 显示默认值为 'top'
-      },
     },
     title: {
       control: {
@@ -43,7 +39,7 @@ const meta: Meta<typeof Tooltip> = {
     },
     container: {
       control: {
-        type: null,
+        type: 'object',
       },
       description: '提示框的容器元素。', // 对 container 参数的中文描述
     },
@@ -68,7 +64,7 @@ const meta: Meta<typeof Tooltip> = {
       },
     },
     onOpenChange: {
-      control: null,
+      control: 'object',
       description: '当提示框的打开状态发生变化时的回调函数。', // 对 onOpenChange 参数的中文描述
     },
     align: {
@@ -77,10 +73,6 @@ const meta: Meta<typeof Tooltip> = {
       },
       options: ['start', 'center', 'end'],
       description: '提示框显示的位置。',
-      table: {
-        type: { summary: ['start', 'center', 'end'] },
-        defaultValue: { summary: 'center' },
-      },
     },
     disableHoverableContent: {
       control: {
@@ -163,28 +155,33 @@ export const TooltipWithImgAndLink: Story = {
   },
 };
 
-const ContainerItem = () => {
-  const [container, setContainer] = useState<HTMLElement | null>();
-  useEffect(() => {
-    setContainer(document.getElementById('containerId'));
-  }, []);
-  return (
-    <div className="flex h-[200px] justify-center overflow-y-auto">
-      <p className="h-[400px] overflow-y-auto" id="containerId">
-        我有很多内容,出现了滚动条
-        <Tooltip title="This tooltip is placed in a container" container={container} open={true}>
-          <button className="btn btn-primary">Hover me</button>
-        </Tooltip>
-      </p>
-    </div>
-  );
-};
-
 export const Container: Story = {
   args: {
     title: 'This is a tooltip with children',
   },
-  render: () => <ContainerItem />,
+  render: () => {
+    const ContainerItem = () => {
+      const [container, setContainer] = useState<HTMLElement | null>();
+      useEffect(() => {
+        setContainer(document.getElementById('containerId'));
+      }, []);
+      return (
+        <div className="flex h-[200px] justify-center overflow-y-auto">
+          <p className="h-[400px] overflow-y-auto" id="containerId">
+            我有很多内容,出现了滚动条
+            <Tooltip
+              title="This tooltip is placed in a container"
+              container={container}
+              open={true}
+            >
+              <button className="btn btn-primary">Hover me</button>
+            </Tooltip>
+          </p>
+        </div>
+      );
+    };
+    return <ContainerItem />;
+  },
 };
 
 const EmptyTooltipStory = (args: any) => {

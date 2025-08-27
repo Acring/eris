@@ -8,7 +8,7 @@ import {
   Empty as EmptyComponent,
   Tag,
 } from '@xsky/eris-ui';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 export default {
   title: 'DATA ENTRY/Cascader',

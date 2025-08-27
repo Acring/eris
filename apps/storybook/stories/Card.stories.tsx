@@ -27,7 +27,9 @@ export default {
   },
 } as Meta;
 
-type CardStory = StoryObj<CardProps>;
+type CardStory = StoryObj<CardProps> & {
+  [key: string]: any;
+};
 
 export const Basic: CardStory = {
   tags: ['visual-test'],
@@ -87,42 +89,41 @@ export const Inner: CardStory = {
   ),
 };
 
-const OperateCard = () => {
-  const [checked, setChecked] = React.useState(false);
-  const [hovered, setHovered] = React.useState(false);
-
-  const handleCheckedChange = (newChecked: boolean) => setChecked(newChecked);
-  console.log('controlled checked', checked);
-  return (
-    <Card
-      title={
-        <Checkbox
-          checked={checked}
-          onChange={handleCheckedChange}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          className="h-full w-full"
-        >
-          <div className="ml-[8px] cursor-pointer">标签</div>
-        </Checkbox>
-      }
-      extra="操作区域"
-      className={cn(
-        'border-stroke-border-2 w-[400px] border border-solid transition-shadow duration-200',
-        {
-          'border-primary-normal': checked,
-          'shadow-elevation-3-bottom': hovered,
-          'shadow-none': !hovered,
-        },
-      )}
-    >
-      <div className="bg-grey-100 h-[100px] w-full">内容</div>
-    </Card>
-  );
-};
-
 export const WithOperate: CardStory = {
-  render: () => <OperateCard />,
+  OperateCard: () => {
+    const [checked, setChecked] = React.useState(false);
+    const [hovered, setHovered] = React.useState(false);
+
+    const handleCheckedChange = (newChecked: boolean) => setChecked(newChecked);
+    console.log('controlled checked', checked);
+    return (
+      <Card
+        title={
+          <Checkbox
+            checked={checked}
+            onChange={handleCheckedChange}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            className="h-full w-full"
+          >
+            <div className="ml-[8px] cursor-pointer">标签</div>
+          </Checkbox>
+        }
+        extra="操作区域"
+        className={cn(
+          'border-stroke-border-2 w-[400px] border border-solid transition-shadow duration-200',
+          {
+            'border-primary-normal': checked,
+            'shadow-elevation-3-bottom': hovered,
+            'shadow-none': !hovered,
+          },
+        )}
+      >
+        <div className="bg-grey-100 h-[100px] w-full">内容</div>
+      </Card>
+    );
+  },
+  render: () => <WithOperate.OperateCard />,
 };
 
 export const WithTab: CardStory = {

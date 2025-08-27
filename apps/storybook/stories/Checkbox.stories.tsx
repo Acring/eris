@@ -47,7 +47,6 @@ const metaCheckboxGroup: Meta<typeof Checkbox> = {
       },
     },
     onChange: {
-      control: null,
       description: '选中状态改变时的回调函数。',
       table: {
         type: { summary: 'function' },
@@ -74,14 +73,16 @@ const metaCheckboxGroup: Meta<typeof Checkbox> = {
     },
     children: {
       control: {
-        type: null,
+        type: 'text',
       },
       description: 'Checkbox 的内容，正常情况下推荐使用label。支持传入函数完全自定义渲染。',
     },
   },
 };
 
-type Story = StoryObj<typeof Checkbox>;
+type Story = StoryObj<typeof Checkbox> & {
+  [key: string]: any;
+};
 
 export const BasicCheckbox: Story = {
   args: {
@@ -191,29 +192,28 @@ export const CustomCheckbox: Story = {
   render: () => <ContainerItem />,
 };
 
-const ControlledCheckbox = () => {
-  const [checked, setChecked] = React.useState(false);
-  const [indeterminate, setIndeterminate] = React.useState(false);
-  const handleCheckedChange = (newChecked: boolean) => setChecked(newChecked);
-  console.log('controlled checked', checked);
-  return (
-    <div>
-      <button onClick={() => setChecked(true)}>选中</button>
-      <button onClick={() => setChecked(false)}>取消</button>
-      <button onClick={() => setIndeterminate(true)}>半选</button>
-      <button onClick={() => setIndeterminate(false)}>取消半选</button>
-      <div>
-        <Checkbox checked={checked} onChange={handleCheckedChange} indeterminate={indeterminate}>
-          control checked
-        </Checkbox>
-      </div>
-    </div>
-  );
-};
-
 export const ControlCheckbox: Story = {
   args: {},
-  render: () => <ControlledCheckbox />,
+  ControlledCheckbox: () => {
+    const [checked, setChecked] = React.useState(false);
+    const [indeterminate, setIndeterminate] = React.useState(false);
+    const handleCheckedChange = (newChecked: boolean) => setChecked(newChecked);
+    console.log('controlled checked', checked);
+    return (
+      <div>
+        <button onClick={() => setChecked(true)}>选中</button>
+        <button onClick={() => setChecked(false)}>取消</button>
+        <button onClick={() => setIndeterminate(true)}>半选</button>
+        <button onClick={() => setIndeterminate(false)}>取消半选</button>
+        <div>
+          <Checkbox checked={checked} onChange={handleCheckedChange} indeterminate={indeterminate}>
+            control checked
+          </Checkbox>
+        </div>
+      </div>
+    );
+  },
+  render: () => <ControlCheckbox.ControlledCheckbox />,
 };
 
 export default metaCheckboxGroup;

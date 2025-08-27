@@ -50,72 +50,73 @@ export default {
   },
 };
 
-type FormStory = StoryObj<typeof Form>;
-
-const BaseMessage = () => {
-  const {
-    control,
-    formState: { errors },
-  } = Form.useFormContext();
-
-  return (
-    <div className="grid grid-cols-3 gap-1 w-full">
-      <div>
-        <Form.Field label="名称" required errors={errors} name="name">
-          <Form.Controller
-            name="name"
-            control={control}
-            render={({ field }) => (
-              <Input placeholder="1～128个字符，支持中英文和特殊字符" {...field} />
-            )}
-          />
-        </Form.Field>
-        <Button htmlType="submit" className="mt-2">
-          保存
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-const FormWithHook: FormStory['render'] = (args) => {
-  const defaultValues = {
-    name: '',
-  };
-
-  const schema = yup.object({
-    name: yup
-      .string()
-      .min(1, '名称不能为空')
-      .matches(/^[\u4e00-\u9fa5A-Za-z0-9\._\-]{1,128}$/, '名称不能包含特殊字符'),
-  });
-
-  const warningSchema = yup.object({
-    name: yup.string().max(5, '建议名称不超过5个字符'),
-  });
-
-  const handleSubmit = (data: any) => {
-    alert(JSON.stringify(data));
-  };
-
-  return (
-    <Form
-      defaultValues={defaultValues}
-      mode="onBlur"
-      reValidateMode="onBlur"
-      schema={schema}
-      warningSchema={warningSchema}
-      onSubmit={handleSubmit}
-    >
-      <BaseMessage />
-    </Form>
-  );
+type FormStory = StoryObj<typeof Form> & {
+  [key: string]: any;
 };
 
 export const Default: FormStory = {
-  render: (args) => <FormWithHook {...args} />,
+  FormWithHook: () => {
+    const BaseMessage = () => {
+      const {
+        control,
+        formState: { errors },
+      } = Form.useFormContext();
+
+      return (
+        <div className="grid grid-cols-3 gap-1 w-full">
+          <div>
+            <Form.Field label="名称" required errors={errors} name="name">
+              <Form.Controller
+                name="name"
+                control={control}
+                render={({ field }) => (
+                  <Input placeholder="1～128个字符，支持中英文和特殊字符" {...field} />
+                )}
+              />
+            </Form.Field>
+            <Button htmlType="submit" className="mt-2">
+              保存
+            </Button>
+          </div>
+        </div>
+      );
+    };
+
+    const defaultValues = {
+      name: '',
+    };
+
+    const schema = yup.object({
+      name: yup
+        .string()
+        .min(1, '名称不能为空')
+        .matches(/^[\u4e00-\u9fa5A-Za-z0-9\._\-]{1,128}$/, '名称不能包含特殊字符'),
+    });
+
+    const warningSchema = yup.object({
+      name: yup.string().max(5, '建议名称不超过5个字符'),
+    });
+
+    const handleSubmit = (data: any) => {
+      alert(JSON.stringify(data));
+    };
+
+    return (
+      <Form
+        defaultValues={defaultValues}
+        mode="onBlur"
+        reValidateMode="onBlur"
+        schema={schema}
+        warningSchema={warningSchema}
+        onSubmit={handleSubmit}
+      >
+        <BaseMessage />
+      </Form>
+    );
+  },
+  render: (args) => <Default.FormWithHook {...args} />,
 };
 
 export const WithWarningSchema: FormStory = {
-  render: (args) => <FormWithHook {...args} />,
+  render: (args) => <Default.FormWithHook {...args} />,
 };

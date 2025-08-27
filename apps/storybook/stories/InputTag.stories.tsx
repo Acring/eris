@@ -181,20 +181,21 @@ export const OnRemovedAndOnExistingExample: Story = {
   },
 };
 
-const ControlItem = () => {
-  const [tags, setTags] = useState<string[]>([]);
-  const [input, setInput] = useState<string>('');
-  return (
-    <div>
-      <button onClick={() => setTags([...tags, input])}>set tags</button>
-      <input type="text" onChange={(e) => setInput(e.target.value)} />
-      <InputTag value={tags} onChange={(tags) => setTags(tags)} />
-    </div>
-  );
-};
-
 export const ControlExample: Story = {
-  render: () => <ControlItem />,
+  render: () => {
+    const ControlItem = () => {
+      const [tags, setTags] = useState<string[]>([]);
+      const [input, setInput] = useState<string>('');
+      return (
+        <div>
+          <button onClick={() => setTags([...tags, input])}>set tags</button>
+          <input type="text" onChange={(e) => setInput(e.target.value)} />
+          <InputTag value={tags} onChange={(tags) => setTags(tags)} />
+        </div>
+      );
+    };
+    return <ControlItem />;
+  },
 };
 
 export const RenderTagExample: Story = {

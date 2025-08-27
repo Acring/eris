@@ -185,37 +185,38 @@ export const CustomDropdownWidth: Story = {
   },
 };
 
-function FocusStory() {
-  const selectRef = useRef<SelectRef>(null);
-  console.log('selectRef', selectRef);
-
-  return (
-    <div className="flex flex-col gap-2 items-start">
-      <Select
-        ref={selectRef}
-        options={[
-          { label: '选项1', value: '10' },
-          { label: '选项2', value: '50' },
-          { label: '选项3', value: '100' },
-          { label: '选项4', value: '200' },
-        ]}
-        className="w-[120px]"
-        placeholder="请选择"
-        error
-      />
-
-      <Button className="mt-[900px]" onClick={() => selectRef.current?.focus()}>
-        聚焦
-      </Button>
-    </div>
-  );
-}
-
 /**
  * 通过 ref 调用 focus 方法来聚焦 Select 组件
  */
 export const Focus: Story = {
-  render: () => <FocusStory />,
+  render: () => {
+    function FocusStory() {
+      const selectRef = useRef<SelectRef>(null);
+      console.log('selectRef', selectRef);
+
+      return (
+        <div className="flex flex-col gap-2 items-start">
+          <Select
+            ref={selectRef}
+            options={[
+              { label: '选项1', value: '10' },
+              { label: '选项2', value: '50' },
+              { label: '选项3', value: '100' },
+              { label: '选项4', value: '200' },
+            ]}
+            className="w-[120px]"
+            placeholder="请选择"
+            error
+          />
+
+          <Button className="mt-[900px]" onClick={() => selectRef.current?.focus()}>
+            聚焦
+          </Button>
+        </div>
+      );
+    }
+    return <FocusStory />;
+  },
 };
 
 export default metaSelect;

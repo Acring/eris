@@ -1,29 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { Tree } from '@xsky/eris-ui';
 
-const treeData = [
-  {
-    key: '0-0',
-    title: '0-0',
-    children: [
-      {
-        key: '0-0-1',
-        title: '0-0-1',
-        children: [
-          {
-            key: '0-0-0-1',
-            title: '0-0-0-1',
-            children: [
-              { key: '0-0-0-0-1', title: '0-0-0-0-1' },
-              { key: '0-0-0-0-2', title: '0-0-0-0-2' },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-];
-
 export default {
   title: 'DATA DISPLAY/Tree/TreeNode',
   component: Tree,
@@ -73,6 +50,28 @@ type TreeStory = StoryObj<typeof Tree>;
 
 export const BasicTree: TreeStory = {
   render: () => {
+    const treeData = [
+      {
+        key: '0-0',
+        title: '0-0',
+        children: [
+          {
+            key: '0-0-1',
+            title: '0-0-1',
+            children: [
+              {
+                key: '0-0-0-1',
+                title: '0-0-0-1',
+                children: [
+                  { key: '0-0-0-0-1', title: '0-0-0-0-1' },
+                  { key: '0-0-0-0-2', title: '0-0-0-0-2' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ];
     return <Tree treeData={treeData} defaultExpandAll />;
   },
 };

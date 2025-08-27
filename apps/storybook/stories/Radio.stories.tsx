@@ -81,20 +81,12 @@ const metaRadio: Meta<typeof Radio> = {
       },
     },
     onChange: {
-      control: null,
+      control: {
+        type: 'object',
+      },
       description: '单选框的值发生变化时的回调。',
       table: {
         type: { summary: 'function' },
-      },
-    },
-    stopPropagationSelector: {
-      control: {
-        type: 'string',
-      },
-      description: '控制不与radio联动的dom',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
       },
     },
     allowUncheck: {
@@ -109,7 +101,7 @@ const metaRadio: Meta<typeof Radio> = {
     },
     children: {
       control: {
-        type: null,
+        type: 'object',
       },
       description: 'Radio 的内容，正常情况下推荐使用label。支持传入函数完全自定义渲染。',
     },
@@ -181,27 +173,28 @@ export const AllowUnchecked: Story = {
   },
 };
 
-const ControlledRadio = () => {
-  const [checked, setChecked] = React.useState(false);
-  const handleCheckedChange = (value: string) => {
-    setChecked(!!value);
-  };
-  return (
-    <div>
-      <button onClick={() => setChecked(true)}>选中</button>
-      <button onClick={() => setChecked(false)}>取消</button>
-      <div>
-        <Radio value="default" checked={checked} onChange={handleCheckedChange} allowUncheck>
-          control checked and allowUncheck
-        </Radio>
-      </div>
-    </div>
-  );
-};
-
 export const ControlRadio: Story = {
   args: {},
-  render: () => <ControlledRadio />,
+  render: () => {
+    const ControlledRadio = () => {
+      const [checked, setChecked] = React.useState(false);
+      const handleCheckedChange = (value: string) => {
+        setChecked(!!value);
+      };
+      return (
+        <div>
+          <button onClick={() => setChecked(true)}>选中</button>
+          <button onClick={() => setChecked(false)}>取消</button>
+          <div>
+            <Radio value="default" checked={checked} onChange={handleCheckedChange} allowUncheck>
+              control checked and allowUncheck
+            </Radio>
+          </div>
+        </div>
+      );
+    };
+    return <ControlledRadio />;
+  },
 };
 
 export const StopPropagation: Story = {

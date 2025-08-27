@@ -61,58 +61,8 @@ const meta: Meta<typeof Button> = {
   },
 };
 
-type Story = StoryObj<typeof Button>;
-
-const AllButton = () => {
-  const [disabled, setDisabled] = React.useState(false);
-  return (
-    <div className="flex flex-col gap-2">
-      <Checkbox checked={disabled} onChange={setDisabled}>
-        禁用
-      </Checkbox>
-      <Container title="Primary">
-        <Button disabled={disabled} type="primary" color="primary">
-          Button
-        </Button>
-        <Button disabled={disabled} type="primary" color="danger">
-          Button
-        </Button>
-      </Container>
-      <Container title="Secondary">
-        <Button disabled={disabled} type="secondary">
-          Button
-        </Button>
-        <Button disabled={disabled} type="secondary" color="primary">
-          Button
-        </Button>
-        <Button disabled={disabled} type="secondary" color="danger">
-          Button
-        </Button>
-      </Container>
-      <Container title="Outlined">
-        <Button disabled={disabled} type="outlined">
-          Button
-        </Button>
-        <Button disabled={disabled} type="outlined" color="primary">
-          Button
-        </Button>
-        <Button disabled={disabled} type="outlined" color="danger">
-          Button
-        </Button>
-      </Container>
-      <Container title="Text">
-        <Button disabled={disabled} type="text">
-          Button
-        </Button>
-        <Button disabled={disabled} type="text" color="primary">
-          Button
-        </Button>
-        <Button disabled={disabled} type="text" color="danger">
-          Button
-        </Button>
-      </Container>
-    </div>
-  );
+type Story = StoryObj<typeof Button> & {
+  [key: string]: any;
 };
 
 const Container = ({ title, children }: { title: string; children: React.ReactNode }) => {
@@ -127,7 +77,60 @@ const Container = ({ title, children }: { title: string; children: React.ReactNo
  * 全部按钮展示
  */
 export const All: Story = {
-  render: (args) => <AllButton {...args}></AllButton>,
+  AllButton: () => {
+    const [disabled, setDisabled] = React.useState(false);
+    return (
+      <div className="flex flex-col gap-2">
+        <Checkbox checked={disabled} onChange={setDisabled}>
+          禁用
+        </Checkbox>
+        <Container title="Primary">
+          <Button disabled={disabled} type="primary" color="primary">
+            Button
+          </Button>
+          <Button disabled={disabled} type="primary" color="danger">
+            Button
+          </Button>
+        </Container>
+        <Container title="Secondary">
+          <Button disabled={disabled} type="secondary">
+            Button
+          </Button>
+          <Button disabled={disabled} type="secondary" color="primary">
+            Button
+          </Button>
+          <Button disabled={disabled} type="secondary" color="danger">
+            Button
+          </Button>
+        </Container>
+        <Container title="Outlined">
+          <Button disabled={disabled} type="outlined">
+            Button
+          </Button>
+          <Button disabled={disabled} type="outlined" color="primary">
+            Button
+          </Button>
+          <Button disabled={disabled} type="outlined" color="danger">
+            Button
+          </Button>
+        </Container>
+        <Container title="Text">
+          <Button disabled={disabled} type="text">
+            Button
+          </Button>
+          <Button disabled={disabled} type="text" color="primary">
+            Button
+          </Button>
+          <Button disabled={disabled} type="text" color="danger">
+            Button
+          </Button>
+        </Container>
+      </div>
+    );
+  },
+  render: () => {
+    return <All.AllButton />;
+  },
 };
 
 export const Size: Story = {

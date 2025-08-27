@@ -156,29 +156,30 @@ export const CustomOnChangeRadioGroup: Story = {
   },
 };
 
-const ControlledRadioGroupItem = () => {
-  const [value, setValue] = React.useState('option3');
-  console.log('controlled value', value);
-  return (
-    <form>
-      <button onClick={() => setValue('option2')} type="button">
-        改变值为 &rsquo;option2&rsquo;
-      </button>
-      <RadioGroup
-        value={value}
-        options={options}
-        onChange={(value: string) => {
-          console.log('Selected value:', value);
-          setValue(value);
-        }}
-      />
-    </form>
-  );
-};
-
 export const ControlRadioGroup: Story = {
   args: {},
-  render: () => <ControlledRadioGroupItem />,
+  render: () => {
+    const ControlledRadioGroupItem = () => {
+      const [value, setValue] = React.useState('option3');
+      console.log('controlled value', value);
+      return (
+        <form>
+          <button onClick={() => setValue('option2')} type="button">
+            改变值为 &rsquo;option2&rsquo;
+          </button>
+          <RadioGroup
+            value={value}
+            options={options}
+            onChange={(value: string) => {
+              console.log('Selected value:', value);
+              setValue(value);
+            }}
+          />
+        </form>
+      );
+    };
+    return <ControlledRadioGroupItem />;
+  },
 };
 
 export const CustomRadioChildren: Story = {

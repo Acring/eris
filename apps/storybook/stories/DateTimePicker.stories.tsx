@@ -79,7 +79,9 @@ const meta: Meta<typeof DateTimePicker> = {
   },
 };
 
-type Story = StoryObj<typeof DateTimePicker>;
+type Story = StoryObj<typeof DateTimePicker> & {
+  [key: string]: any;
+};
 
 const onChange = (date: Date | (Date | undefined)[] | null, dateString: string | string[]) => {
   console.log('onChange:', date, dateString);
@@ -222,34 +224,34 @@ export const Placement: Story = {
   },
 };
 
-const ControlledDatePickerWithHook: Story['render'] = (args) => {
-  const [value, setValue] = useState(args.value);
-  return (
-    <div>
-      <p>Controlled</p>
-      <DateTimePicker
-        placeholder="请选择"
-        value={value}
-        picker={args.picker}
-        onChange={(v) => setValue(v as Date)}
-      />
-      <p>UnControlled</p>
-      <DateTimePicker
-        placeholder="请选择"
-        picker={args.picker}
-        defaultValue={value}
-        onChange={(v) => setValue(v as Date)}
-      />
-    </div>
-  );
-};
 export const ControlledDatePicker: Story = {
   args: {
     placeholder: '请输入',
     picker: Picker.date,
     value: new Date('2024-10-18'),
   },
-  render: (args) => <ControlledDatePickerWithHook {...args} />,
+  ControlledDatePickerWithHook: (args: React.ComponentProps<typeof DateTimePicker>) => {
+    const [value, setValue] = useState(args.value);
+    return (
+      <div>
+        <p>Controlled</p>
+        <DateTimePicker
+          placeholder="请选择"
+          value={value}
+          picker={args.picker}
+          onChange={(v) => setValue(v as Date)}
+        />
+        <p>UnControlled</p>
+        <DateTimePicker
+          placeholder="请选择"
+          picker={args.picker}
+          defaultValue={value}
+          onChange={(v) => setValue(v as Date)}
+        />
+      </div>
+    );
+  },
+  render: (args) => <ControlledDatePicker.ControlledDatePickerWithHook {...args} />,
 };
 
 export const ControlledRangeDatePicker: Story = {
@@ -258,7 +260,7 @@ export const ControlledRangeDatePicker: Story = {
     picker: Picker.dateRange,
     value: [new Date('2024-10-18'), new Date('2024-10-18')],
   },
-  render: (args) => <ControlledDatePickerWithHook {...args} />,
+  render: (args) => <ControlledDatePicker.ControlledDatePickerWithHook {...args} />,
 };
 
 export const DisabledDates: Story = {

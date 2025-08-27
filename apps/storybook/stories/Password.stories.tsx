@@ -47,28 +47,6 @@ export const Base: InputStory = {
   render: (args) => <Input.Password {...args} />,
 };
 
-const ControlledPasswordWithHook: InputStory['render'] = (args) => {
-  const [value, setValue] = useState(args.value);
-  const [visible, setVisible] = useState(args.visible);
-
-  return (
-    <div className="flex w-[200px] flex-col items-start gap-1">
-      <p>Controlled</p>
-      <Button onClick={() => setVisible(!visible)}>{visible ? '隐藏' : '显示'}</Button>
-      <Input.Password
-        {...args}
-        visible={visible}
-        onVisibleChange={(visible) => setVisible(visible)}
-        value={value}
-        onChange={(v) => {
-          setValue(v);
-        }}
-      />
-      <p className="text-body">{value}</p>
-    </div>
-  );
-};
-
 /**
  * 受控模式
  */
@@ -77,7 +55,30 @@ export const Controlled: InputStory = {
     placeholder: '请输入密码',
     value: '123',
   },
-  render: (args) => <ControlledPasswordWithHook {...args} />,
+  render: (args) => {
+    const ControlledPasswordWithHook: InputStory['render'] = (args) => {
+      const [value, setValue] = useState(args.value);
+      const [visible, setVisible] = useState(args.visible);
+
+      return (
+        <div className="flex w-[200px] flex-col items-start gap-1">
+          <p>Controlled</p>
+          <Button onClick={() => setVisible(!visible)}>{visible ? '隐藏' : '显示'}</Button>
+          <Input.Password
+            {...args}
+            visible={visible}
+            onVisibleChange={(visible) => setVisible(visible)}
+            value={value}
+            onChange={(v) => {
+              setValue(v);
+            }}
+          />
+          <p className="text-body">{value}</p>
+        </div>
+      );
+    };
+    return <ControlledPasswordWithHook {...args} />;
+  },
 };
 
 export const Disabled: InputStory = {

@@ -59,7 +59,9 @@ const meta: Meta<typeof Spinner> = {
   },
 };
 
-type Story = StoryObj<typeof Spinner>;
+type Story = StoryObj<typeof Spinner> & {
+  [key: string]: any;
+};
 
 export const Base: Story = {
   args: {
@@ -98,36 +100,6 @@ export const TipPosition: Story = {
   ),
 };
 
-const SpinningElements = ({ controlSpining = false }) => {
-  const [spinning, setSpinning] = React.useState(controlSpining);
-  const SpinnerChild = () => {
-    return (
-      <div className="h-10 border-spacing-1 overflow-hidden rounded-lg bg-blue-500 p-2">
-        I am a child element
-      </div>
-    );
-  };
-  return (
-    <div className="rounded-2 flex flex-col items-start gap-2 p-2">
-      {!controlSpining && <Button onClick={() => setSpinning(!spinning)}>Toggle</Button>}
-      <Spinner
-        classes={{ root: 'text-red-400', body: 'h-full' }}
-        size="sm"
-        tip="加载中"
-        spinning={spinning}
-      >
-        <SpinnerChild />
-      </Spinner>
-      <Spinner size="md" tip="加载中" spinning={spinning}>
-        <SpinnerChild />
-      </Spinner>
-      <Spinner size="lg" tip="加载中" spinning={spinning}>
-        <SpinnerChild />
-      </Spinner>
-    </div>
-  );
-};
-
 export const WithChildrenDefault: Story = {
   args: {
     size: 'md',
@@ -147,7 +119,36 @@ export const WithChildren: Story = {
     size: 'md',
     tip: '加载中',
   },
-  render: () => <SpinningElements></SpinningElements>,
+  SpinningElements: ({ controlSpining = false }) => {
+    const [spinning, setSpinning] = React.useState(controlSpining);
+    const SpinnerChild = () => {
+      return (
+        <div className="h-10 border-spacing-1 overflow-hidden rounded-lg bg-blue-500 p-2">
+          I am a child element
+        </div>
+      );
+    };
+    return (
+      <div className="rounded-2 flex flex-col items-start gap-2 p-2">
+        {!controlSpining && <Button onClick={() => setSpinning(!spinning)}>Toggle</Button>}
+        <Spinner
+          classes={{ root: 'text-red-400', body: 'h-full' }}
+          size="sm"
+          tip="加载中"
+          spinning={spinning}
+        >
+          <SpinnerChild />
+        </Spinner>
+        <Spinner size="md" tip="加载中" spinning={spinning}>
+          <SpinnerChild />
+        </Spinner>
+        <Spinner size="lg" tip="加载中" spinning={spinning}>
+          <SpinnerChild />
+        </Spinner>
+      </div>
+    );
+  },
+  render: () => <WithChildren.SpinningElements></WithChildren.SpinningElements>,
 };
 export const Dark: Story = {
   render: () => (
@@ -187,7 +188,7 @@ export const WithConfigProvider: Story = {
         },
       }}
     >
-      <SpinningElements controlSpining={true} />
+      <WithChildren.SpinningElements controlSpining={true} />
     </ConfigProvider>
   ),
 };
@@ -217,7 +218,7 @@ export const Oem: Story = {
           },
         }}
       >
-        <SpinningElements controlSpining={true} />
+        <WithChildren.SpinningElements controlSpining={true} />
       </ConfigProvider>
     </>
   ),

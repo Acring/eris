@@ -119,26 +119,6 @@ export default {
 
 type StepsStory = StoryObj<StepsProps>;
 
-const StepsComponent = (args: StepsPropsVertical & { current: number }) => {
-  const { items, current: defaultCurrent, direction, size } = args;
-  const [current, setCurrent] = React.useState(defaultCurrent);
-  const onClick = (current: number) => {
-    setCurrent(current);
-  };
-  React.useEffect(() => {
-    setCurrent(defaultCurrent);
-  }, [defaultCurrent]);
-  return (
-    <Steps
-      current={current}
-      items={items}
-      direction={direction}
-      size={size}
-      onStepClick={onClick}
-    />
-  );
-};
-
 export const BaseSteps: StepsStory = {
   args: {
     items: [
