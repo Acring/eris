@@ -1217,14 +1217,14 @@ export default function DataTable<TData>({
                           );
 
                         return isSubTable && isSelection ? (
-                          <>
+                          <React.Fragment key={header.id}>
                             {headerContent}
                             {/** 子表格的展开按钮占位符 */}
                             <TableHead
                               className="pl-2 pr-1 border-0 border-divider-solid border-b border-solid "
                               style={{ width: ExpandWidth }}
                             />
-                          </>
+                          </React.Fragment>
                         ) : (
                           headerContent
                         );
@@ -1298,7 +1298,7 @@ export default function DataTable<TData>({
                             }
 
                             return (
-                              <>
+                              <React.Fragment key={cell.id}>
                                 <TableCell
                                   className={cn(
                                     'peer relative',
@@ -1328,7 +1328,6 @@ export default function DataTable<TData>({
                                   data-expand={isExpand}
                                   data-id={cell.id}
                                   data-selection={isSelection}
-                                  key={cell.id}
                                   onClick={(e) => {
                                     onClickTableCell?.(cell.id, row.original, row.index, e);
                                   }}
@@ -1363,7 +1362,7 @@ export default function DataTable<TData>({
                                 {isSubTable && isSelection ? (
                                   <TableCell className="pl-2 pr-1" style={{ width: ExpandWidth }} />
                                 ) : null}
-                              </>
+                              </React.Fragment>
                             );
                           })}
                         </TableRow>
