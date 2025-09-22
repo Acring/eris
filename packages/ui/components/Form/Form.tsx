@@ -78,7 +78,6 @@ const Form = forwardRef((props: FormProps, ref) => {
 
   useImperativeHandle(ref, () => ({
     submit: () => {
-      debugger;
       if (Object.keys(errors).length === 0 && handleSubmit) {
         return handleSubmit();
       }

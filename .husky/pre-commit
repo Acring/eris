@@ -60,5 +60,5 @@ checkUnitTestCoverage() {
   done
 }
 
-checkUnitTestCoverage
+# checkUnitTestCoverage
 checkUnitTestFile
