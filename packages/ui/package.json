@@ -1,6 +1,6 @@
 {
   "name": "@xsky/eris-ui",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "license": "MIT",
   "scripts": {
     "dev": "concurrently \"yarn dev:js:cjs\" \"yarn dev:js:esm\"",
@@ -19,7 +19,8 @@
     "ut:coverage": "FORCE_COLOR=1 vitest run --coverage",
     "json2exc:vi": "node ./scripts/json2exc.js vi",
     "json2exc:en": "node ./scripts/json2exc.js en",
-    "i18n:scanner": "i18next-scanner --config ./i18next-scanner.config.js"
+    "i18n:scanner": "i18next-scanner --config ./i18next-scanner.config.js",
+    "release": "pnpm build && npm publish --access public"
   },
   "files": [
     "dist",

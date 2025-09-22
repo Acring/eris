@@ -34,7 +34,8 @@ export interface FormProps {
   id?: string;
 }
 
-interface FormWithStatics extends React.ForwardRefExoticComponent<FormProps> {
+interface FormWithStatics
+  extends React.ForwardRefExoticComponent<FormProps & React.RefAttributes<any>> {
   FieldGroup: typeof FieldGroup;
   Field: typeof Field;
   Errors: typeof Errors;
@@ -77,6 +78,7 @@ const Form = forwardRef((props: FormProps, ref) => {
 
   useImperativeHandle(ref, () => ({
     submit: () => {
+      debugger;
       if (Object.keys(errors).length === 0 && handleSubmit) {
         return handleSubmit();
       }

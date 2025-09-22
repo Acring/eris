@@ -1,6 +1,7 @@
-import { Button, Form, Input } from '@xsky/eris-ui';
+import { Button, Drawer, Form, Input } from '@xsky/eris-ui';
 import { StoryObj } from '@storybook/react';
 import * as yup from 'yup';
+import { useRef, useState } from 'react';
 
 export default {
   title: 'DATA ENTRY/Form/Form',
@@ -124,4 +125,66 @@ export const Default: FormStory = {
 
 export const WithWarningSchema: FormStory = {
   render: (args) => <Default.FormWithHook {...args} />,
+};
+
+export const WithRef: FormStory = {
+  render: (args) => {
+    function WithRef() {
+      const formRef = useRef<any>(null);
+      const defaultValues = {
+        name: '',
+      };
+      const schema = yup.object({
+        name: yup.string().required('名称不能为空'),
+      });
+      const handleSubmit = (data: any) => {
+        console.log('handleSubmit', data);
+        alert(JSON.stringify(data));
+      };
+      const [open, setOpen] = useState(false);
+
+      return (
+        <>
+          <Button onClick={() => setOpen(true)}>打开表单</Button>
+          <Drawer
+            open={open}
+            onCancel={() => setOpen(false)}
+            onOk={() => {
+              console.log('onOk');
+              const result = formRef.current.submit();
+              console.log('result', result);
+              // setOpen(false);
+            }}
+          >
+            <Form
+              ref={formRef}
+              defaultValues={defaultValues}
+              schema={schema}
+              onSubmit={handleSubmit}
+            >
+              <FormContent />
+            </Form>
+          </Drawer>
+        </>
+      );
+
+      function FormContent() {
+        const {
+          control,
+          formState: { errors },
+        } = Form.useFormContext();
+
+        return (
+          <Form.Field label="名称" required errors={errors} name="name">
+            <Form.Controller
+              name="name"
+              control={control}
+              render={({ field }) => <Input {...field} />}
+            />
+          </Form.Field>
+        );
+      }
+    }
+    return <WithRef />;
+  },
 };
