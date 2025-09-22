@@ -31,6 +31,7 @@ export interface FormProps {
   warningSchema?: AnyObjectSchema;
   className?: string;
   context?: Record<string, any>;
+  id?: string;
 }
 
 interface FormWithStatics extends React.ForwardRefExoticComponent<FormProps> {
@@ -57,6 +58,7 @@ const Form = forwardRef((props: FormProps, ref) => {
     warningSchema,
     context,
     className,
+    id,
   } = props;
 
   const methods: UseFormReturn = useForm({
@@ -89,6 +91,7 @@ const Form = forwardRef((props: FormProps, ref) => {
     <FormProvider {...methods}>
       <FormContext warningSchema={warningSchema}>
         <form
+          id={id}
           className={cn('h-full', className)}
           onSubmit={(e) => {
             e.preventDefault();

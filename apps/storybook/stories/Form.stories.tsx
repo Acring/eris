@@ -47,6 +47,11 @@ export default {
       description: '表单的Schema',
       defaultValue: null,
     },
+    id: {
+      type: 'string',
+      description: '表单元素的 id 属性',
+      defaultValue: '',
+    },
   },
 };
 
