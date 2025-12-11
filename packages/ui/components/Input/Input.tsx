@@ -265,7 +265,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       return (
         allowClear && (
           <Clear
-            className={cn('ml-1', 'hover:opacity-1', 'opacity-0', {
+            className={cn('ml-1', 'hover:opacity-100', 'opacity-0', {
               'opacity-1': focused,
               'opacity-0 hover:opacity-0': !curValue?.length || disabled,
               'group-hover:opacity-100': curValue?.length && !disabled,
